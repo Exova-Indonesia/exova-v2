@@ -1,0 +1,12 @@
+.slideshow {
+    animation: 15s moveSlideshow alternate infinite;
+}
+@keyframes moveSlideshow {
+    100% {
+        transform: translateX(-66.6666%);
+    }
+}
+.rounded-4xl {
+    border-top-left-radius: 72px;
+    border-top-right-radius: 72px;
+}
