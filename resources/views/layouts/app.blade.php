@@ -10,14 +10,16 @@
       <!-- Styles -->
       <link rel="stylesheet" href="{{ mix('css/app.css') }}">
       <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+      <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
       @livewireStyles
       <!-- Scripts -->
       <script src="{{ mix('js/app.js') }}" defer></script>
       <script src="{{ asset('js/main.js') }}" defer></script>
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
       <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+      <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
    </head>
    <body class="font-sans antialiased">
       <x-jet-banner />

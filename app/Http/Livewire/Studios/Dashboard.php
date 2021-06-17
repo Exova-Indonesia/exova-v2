@@ -6,9 +6,11 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    public $listeners = ["loadContent"];
     public $title = "dashboard";
-    
-    public function loadContent($title) {
+
+    public function loadContent($title)
+    {
         $this->title = $title;
     }
 

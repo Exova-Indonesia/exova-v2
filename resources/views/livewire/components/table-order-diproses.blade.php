@@ -4,9 +4,9 @@
                 <div class="sm:flex items-center justify-between">
                     <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Order Diproses</p>
                     <div>
-                        <button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-                            <p class="text-sm font-medium leading-none text-white">See All</p>
-                        </button>
+                        <x-jet-button class="ml-2 bg-purple-500 hover:bg-purple-600 focus:border-purple-600 active:bg-purple-900" wire:loading.attr="disabled">
+                            {{ __('Lihat Semua') }}
+                        </x-jet-button>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,6 @@
 <x-app-layout>
+    <x-slot name="navbar">
+    </x-slot>
     @livewire('dashboard.jumbotron')
     @livewire('dashboard.features')
     @livewire('dashboard.trends')

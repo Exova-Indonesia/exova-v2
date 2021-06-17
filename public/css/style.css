@@ -10,3 +10,11 @@
     border-top-left-radius: 72px;
     border-top-right-radius: 72px;
 }
+.checkbox:checked {
+    /* Apply class right-0*/
+    right: 0;
+}
+.checkbox:checked + .toggle-label {
+    /* Apply class bg-indigo-700 */
+    background-color: #4c51bf;
+}
