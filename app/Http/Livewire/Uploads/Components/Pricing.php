@@ -2,15 +2,114 @@
 
 namespace App\Http\Livewire\Uploads\Components;
 
+use App\Models\Product;
 use Livewire\Component;
+use App\Models\ProductAdditional;
 
 class Pricing extends Component
 {
-    public $count = 1;
-    public function AddIncrement()
+    public $tambahan = [];
+    public $value = [];
+    public $namatambahan;
+    public $deskripsitambahan;
+    public $hargatambahan;
+    public $uuid;
+    public $harga;
+    public $tipeharga;
+    public $hargaRevisian;
+    public $jumlahrevisian;
+    public $product;
+
+    protected $listeners = ["updatePricing"];
+
+    public function mount()
     {
-        $this->count = $this->count + 1;
+        $this->uuid = session()->get('products.uuid');
+        $this->product = Product::with('tambahan')->where('uuid', $this->uuid)->first();
+        
+        $this->harga = $this->product['price'];
+        $this->tipeharga = $this->product['price_type_id'];
+        $this->hargaRevisian = $this->product['revision_price'];
+        $this->jumlahrevisian = $this->product['revision_amount'];
+        
+        if(count($this->product['tambahan']) > 0) {
+            foreach ($this->product['tambahan'] as $key => $value) {
+                $this->tambahan[] = 
+                    [
+                        'id' => $value['id'],
+                        'namatambahan' => $value['title'],
+                        'deskripsitambahan' => $value['description'],
+                        'hargatambahan' => $value['price'],
+                    ];
+            }
+        } else {
+            $this->tambahan = [
+                [
+                    'id' => '',
+                    'namatambahan' => '',
+                    'deskripsitambahan' => '',
+                    'hargatambahan' => '',
+                ]
+            ];
+        }
     }
+
+    public function AddTambahan()
+    {
+        $this->tambahan[] = [
+            'id' => '',
+            'namatambahan' => '',
+            'deskripsitambahan' => '',
+            'hargatambahan' => '',
+        ];
+    }
+
+    private function updatePrice()
+    {
+        try {
+            Product::updateOrCreate([
+                "uuid" => $this->uuid,
+                "seller_id" => auth()->user()->id,
+            ],[
+                "price" => $this->harga,
+                "price_type_id" => $this->tipeharga,
+                "revision_price" => $this->hargaRevisian,
+                "revision_amount" => $this->jumlahrevisian,
+            ]);
+            foreach ($this->tambahan as $key => $value) {
+                $product = new ProductAdditional;
+                $product->updateOrCreate([
+                    'id' => $value['id'],
+                    'product_id' => $this->product['id'],
+                ],[
+                    'title' => $value['namatambahan'],
+                    'description' => $value['deskripsitambahan'],
+                    'price' => $value['hargatambahan'],
+                ]);
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function updatePricing()
+    {
+        try {
+            $this->updatePrice();
+            $this->emit('nextPage');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function deleteTambahan($index)
+    {
+        $product = new ProductAdditional;
+        $product->where('id', $this->tambahan[$index]['id'])->delete();
+        unset($this->tambahan[$index]);
+        $this->tambahan = array_values($this->tambahan);
+    }
+
     public function render()
     {
         return view('livewire.uploads.components.pricing');

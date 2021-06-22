@@ -1,12 +1,12 @@
 <div class="w-full">
    <div class="antialiased py-2 relative text-gray-900">
       <div class="m-2">
-         <img src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">    
+         <img src="{{ $product['cover']['getSmall']['path'] }}" alt=" random imgee" class="w-full object-cover object-center rounded-lg shadow-md">    
          <div class="relative -mt-6 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
             <div class="p-4 bg-white rounded-3xl shadow-lg">
                <span class="inline-block px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Prawedding</span>
-               <h2 class="mt-2 mb-2  font-bold">Balinese style photography</h2>
-               <p class="text-sm">A good taste mixed with emotional</p>
+               <h2 class="mt-2 mb-2  font-bold">{{ $product['title'] }}</h2>
+               <p class="text-sm">{{ $product['description'] }}</p>
                <div class="flex justify-between">
                   <div class="mt-3 ">
                      <span class="text-sm font-semibold">Rp</span>&nbsp;<span class="font-bold text-xl">1.000</span>&nbsp;<span class="text-sm font-semibold">000</span>

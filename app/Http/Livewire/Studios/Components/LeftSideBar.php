@@ -6,8 +6,10 @@ use Livewire\Component;
 
 class LeftSideBar extends Component
 {  
+    public $title = "dashboard";
     public function loadContent($title) {
         $this->emit("loadContent", $title);
+        $this->title = $title;
     }
     public function sidebarHandler()
     {

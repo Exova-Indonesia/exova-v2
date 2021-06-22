@@ -5,17 +5,17 @@
          <x-jet-input type="text" class="mt-1 block w-full"
             placeholder="{{ __('Nama Project') }}"
             x-ref="namaproject"
-            wire:model="namaproject"
-            wire:change="namaproject" />
+            wire:model="namaproject" />
       </div>
       <div class="mt-2 flex flex-col w-full">
          <x-jet-label for="style" value="{{ __('Style') }}" />
          <x-simple-select-field type="text" class="mt-1 block w-full"
             placeholder="{{ __('Style') }}"
             x-ref="style"
-            wire:model="style"
-            wire:change="style">
+            wire:model="style">
+            <option hidden selected>Select SubCategory</option>
             <option value="1">Balinese</option>
+            <option value="2">Javanese</option>
          </x-simple-select-field>
       </div>
    </div>
@@ -26,8 +26,7 @@
             rows="5"
             placeholder="{{ __('Deskripsi') }}"
             x-ref="deskripsi"
-            wire:model="deskripsi"
-            wire:change="deskripsi">
+            wire:model="deskripsi">
          </x-simple-textarea-field>
          <p class="w-full text-right text-xs text-gray-500 pt-1">Character Limit: 200</p>
       </div>
@@ -37,8 +36,8 @@
             <x-simple-select-field type="text" class="mt-1 block w-full"
                placeholder="{{ __('Kategori') }}"
                x-ref="kategori"
-               wire:model="kategori"
-               wire:change="kategori">
+               wire:model="kategori" >
+               <option hidden selected>Select Category</option>
                <option value="1">Photography</option>
             </x-simple-select-field>
          </div>
@@ -47,8 +46,8 @@
             <x-simple-select-field type="text" class="mt-1 block w-full"
                placeholder="{{ __('Sub Kategori') }}"
                x-ref="subkategori"
-               wire:model="subkategori"
-               wire:change="subkategori">
+               wire:model="subkategori" >
+               <option hidden selected>Select SubCategory</option>
                <option value="1">Prawedding</option>
             </x-simple-select-field>
          </div>
@@ -59,7 +58,6 @@
       <x-jet-input type="text" class="mt-1 block w-full"
          placeholder="{{ __('Tags') }}"
          x-ref="tags"
-         wire:model="tags"
-         wire:change="tags" />
+         wire:model="tags" />
    </div>
 </div>

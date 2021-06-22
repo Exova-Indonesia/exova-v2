@@ -10,16 +10,12 @@
                <div>
                   <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $namaproject }}</h3>
                   <div class="w-full mt-8 mx-auto">
+                     
                      <div class="bg-gray-200 h-1 flex items-center justify-between">
-                        <div class="w-1/3 bg-indigo-700 h-1 flex items-center">
-                           <div class="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                 <path stroke="none" d="M0 0h24v24H0z" />
-                                 <path d="M5 12l5 5l10 -10" />
-                              </svg>
-                           </div>
-                        </div>
-                        <div class="w-1/3 flex justify-between bg-indigo-700 h-1 items-center relative">
+                        @foreach ($timeline as $item)
+                        <div class="flex justify-between bg-indigo-700 h-1 items-center relative">
+                           @if($page == $item['page'])
+                           {{-- Details --}}
                            <div class="absolute right-0 -mr-2">
                               <div class="relative bg-white shadow-lg px-2 py-1 rounded mt-16 -mr-12">
                                  <svg class="absolute top-0 -mt-1 w-full right-0 left-0" width="16px" height="8px" viewBox="0 0 16 8" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -31,29 +27,43 @@
                                        </g>
                                     </g>
                                  </svg>
-                                 <p tabindex="0" class="focus:outline-none text-indigo-700 text-xs font-bold">Step 3: Analyzing</p>
+                                 <p tabindex="0" class="focus:outline-none text-indigo-700 text-xs font-bold">{{ "Step " . $item['page'] .  " : " . $item['title'] }}</p>
                               </div>
                            </div>
+                           {{-- Details End --}}
+                           <div class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative">
+                              <div class="h-3 w-3 bg-indigo-700 rounded-full"></div>
+                           </div>
+                           @endif
+                           @if($page > $item['page'])
                            <div class="bg-indigo-700 h-6 w-6 rounded-full shadow flex items-center justify-center -ml-2">
                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                  <path stroke="none" d="M0 0h24v24H0z" />
                                  <path d="M5 12l5 5l10 -10" />
                               </svg>
                            </div>
-                           <div class="bg-white h-6 w-6 rounded-full shadow flex items-center justify-center -mr-3 relative">
-                              <div class="h-3 w-3 bg-indigo-700 rounded-full"></div>
-                           </div>
+                           @endif
                         </div>
-                        <div class="w-1/3 flex justify-end">
+                        @if($page < $item['page'])
+                        <div class="flex justify-end">
                            <div class="bg-white h-6 w-6 rounded-full shadow"></div>
                         </div>
-                     </div>
+                        @endif
+                        @endforeach
+                     </div> 
+                     
                   </div>
                </div>
                <div class="mt-16">
-                    {{-- @livewire('uploads.components.details') --}}
-                    {{-- @livewire('uploads.components.gallery') --}}
-                    @livewire('uploads.components.pricing')
+                  @if ($page == 1)
+                     @livewire('uploads.components.details')
+                  @elseif($page == 2)
+                     @livewire('uploads.components.gallery')
+                  @elseif($page == 3)
+                     @livewire('uploads.components.pricing')
+                  @elseif($page == 4)
+                     @livewire('uploads.components.publish')
+                  @endif
                </div>
             </div>
             <!-- One big close button.  --->
@@ -62,9 +72,22 @@
                   <x-jet-button class="bg-pink-500 hover:bg-pink-600 focus:border-pink-600 active:bg-pink-900" wire:click="closeModal" wire:loading.attr="disabled">
                      {{ __('Batal') }}
                   </x-jet-button>
-                  <x-jet-button class="bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="closeModal" wire:loading.attr="disabled">
-                     {{ __('Lanjutkan') }}
-                  </x-jet-button>
+                  <div class="flex justify-between">
+                  @if ($page > 1)
+                     <x-jet-button type="button" class="mx-1 bg-indigo-500 hover:bg-indigo-600 focus:border-indigo-600 active:bg-indigo-900" wire:click="previousPage" wire:loading.attr="disabled">
+                        {{ __('Kembali') }}
+                     </x-jet-button>
+                  @endif
+                  @if($page == 4)
+                     <x-jet-button type="button" class="mx-1 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="publish" wire:loading.attr="disabled">
+                        {{ __('Publikasikan') }}
+                     </x-jet-button>
+                  @else
+                     <x-jet-button type="button" class="mx-1 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="continue" wire:loading.attr="disabled">
+                        {{ __('Lanjutkan') }}
+                     </x-jet-button>
+                  @endif
+                  </div>
                </span>
             </div>
          </div>
