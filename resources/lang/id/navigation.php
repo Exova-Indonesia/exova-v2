@@ -5,7 +5,7 @@
             'menu-2' => 'Kategori',
             'menu-3' => 'Trends',
             'menu-4' => 'Feed',
-            'menu-5' => 'Help',
+            'menu-5' => 'Freelancers',
         ]
     ]
 ?>

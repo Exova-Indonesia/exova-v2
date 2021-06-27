@@ -36,6 +36,16 @@ class Product extends Model
         return $this->hasMany(ProductImageDimension::class, 'product_id');
     }
 
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
+
+    public function style()
+    {
+        return $this->belongsTo(Style::class, 'style_id');
+    }
+
     public function cover()
     {
         return $this->belongsTo(ProductImageDimension::class, 'cover_id');

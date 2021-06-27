@@ -15,6 +15,7 @@
       <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
       @livewireStyles
       <!-- Scripts -->
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{{ mix('js/app.js') }}" defer></script>
       <script src="{{ asset('js/main.js') }}" defer></script>
       <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
@@ -65,6 +66,26 @@
                 el: '.swiper-scrollbar',
             },
          })
+   </script>
+   <script>
+      window.addEventListener('notification', event => {
+         const Toast = Swal.mixin({
+         toast: true,
+         position: 'top-end',
+         showConfirmButton: false,
+         timer: 3000,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+         }
+         })
+
+         Toast.fire({
+            icon: event.detail.type,
+            title: event.detail.title
+         })
+      })
    </script>
    @stack('scripts')
 </div>

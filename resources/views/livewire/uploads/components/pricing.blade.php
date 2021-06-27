@@ -8,6 +8,7 @@
                 type-currency="IDR"
                 wire:model="harga"
                 x-ref="harga" />
+            @error('harga') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror
             </div>
             <div class="mt-2 flex flex-col mt-4">
             <x-jet-label for="hargaRevisian" value="{{ __('Harga Revisian') }}" />
@@ -15,6 +16,7 @@
                 placeholder="{{ __('Rp') }}"
                 x-ref="hargaRevisian"
                 wire:model="hargaRevisian" />
+                @error('hargaRevisian') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
         <div class="w-full">
@@ -29,6 +31,7 @@
                 <option value="3">Per Sesi</option>
                 <option value="4">Lainnya</option>
             </x-simple-select-field>
+            @error('tipeharga') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror
             </div>
             <div class="mt-2 flex flex-col mt-4">
             <x-jet-label for="jumlahrevisian" value="{{ __('Jumlah Revisian') }}" />
@@ -40,6 +43,7 @@
                     <option value="{{ $i }}">{{ $i }} Kali</option>
                 @endfor
             </x-simple-select-field>
+            @error('jumlahrevisian') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror
             </div>
         </div>
     </div>

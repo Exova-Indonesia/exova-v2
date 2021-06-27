@@ -1,8 +1,8 @@
 <div>
   <div class="border h-24 items-center min-h-full rounded-lg max-h-full">
-      @if(isset($product['images'][0]))
-        <img class="w-full h-full object-cover rounded-lg" src="{{ $product['images'][0]['getSmall']['path'] }}" alt="">
-        <x-delete-button wire:loading.attr="disabled" wire:target="deletePicture('{{ $product['images'][0]['id'] }}')" wire:click="deletePicture('{{ $product['images'][0]['id'] }}')" class="h-8 w-8 bg-red-500 hover:bg-red-600 mt-1 flex items-start justify-start" />    
+      @if(isset($product['images'][1]))
+        <img class="w-full h-full object-cover rounded-lg" src="{{ $product['images'][1]['getSmall']['path'] }}" alt="">
+        <x-delete-button wire:loading.attr="disabled" wire:target="deletePicture('{{ $product['images'][1]['id'] }}')" wire:click="deletePicture('{{ $product['images'][1]['id'] }}')" class="h-8 w-8 bg-red-500 hover:bg-red-600 mt-1 flex items-start justify-start" />    
       @else
       <x-jet-label for="pictures" class="h-24 flex items-center min-h-full max-h-full justify-center w-full">
         Gambar

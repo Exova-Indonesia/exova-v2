@@ -8,7 +8,9 @@ class YoutubePlayerPreview extends Component
 {
 
     public $urls;
-    public function mount($urls)
+    protected $listeners = ["updateYoutubePreview"];
+
+    public function updateYoutubePreview($urls)
     {
         $this->urls = $urls;
     }

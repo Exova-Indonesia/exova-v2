@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Uploads\Components;
 
+use App\Models\Style;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -14,24 +17,43 @@ class Details extends Component
     public $deskripsi;
     public $kategori;
     public $subkategori;
+    public $segmentedSubcategory;
+    public $allCategory;
+    public $allStyles;
+    public $strLengthDes;
     public $tags;
     public $uuid;
     public $product = [];
 
     protected $listeners = ["updateDetails"];
+    protected $rules = [
+        'namaproject' => 'required|min:6',
+        'style' => 'required',
+        'kategori' => 'required',
+        'subkategori' => 'required',
+        'deskripsi' => 'required|max:200',
+    ];
 
     public function mount()
     {
         $this->uuid = session()->get('products.uuid');
         $this->product = Product::where('uuid', $this->uuid)->first();
+        $this->allCategory = Category::all();
+        $this->allStyles = Style::all();
         $this->namaproject = $this->product['title'] ?? '';
         $this->deskripsi = $this->product['description'] ?? '';
         $this->tags = $this->product['tags'] ?? '';
         $this->style = $this->product['style'] ?? '';
     }
 
+    public function updatedKategori()
+    {
+        $this->segmentedSubcategory = SubCategory::where('category_id', $this->kategori)->get();
+    }
+
     public function updateDetails()
     {
+        $this->validate();
         try {
             Product::updateOrCreate([
                 "uuid" => $this->uuid,
@@ -48,7 +70,9 @@ class Details extends Component
             ]);
             $this->emit("nextPage");
         } catch (\Throwable $th) {
-                dd($th);
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Something wrong!']);
             }
         }
 
@@ -58,6 +82,7 @@ class Details extends Component
     }
     public function render()
     {
+        $this->strLengthDes = strlen($this->deskripsi);
         return view('livewire.uploads.components.details');
     }
 }

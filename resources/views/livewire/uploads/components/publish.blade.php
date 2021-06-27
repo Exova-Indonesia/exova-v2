@@ -31,7 +31,7 @@
       </div>
       <div class="mt-2 flex flex-col w-full">
         <x-jet-label for="preview" value="{{ __('Preview') }}" />
-        @livewire('components.card-product')
+        @livewire('components.card-product', ['product' => $product])
       </div>
     </div>
 </div>

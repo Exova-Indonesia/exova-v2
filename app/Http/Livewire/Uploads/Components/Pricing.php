@@ -19,8 +19,14 @@ class Pricing extends Component
     public $hargaRevisian;
     public $jumlahrevisian;
     public $product;
+    protected $rules = [
+        'harga' => 'required',
+        'tipeharga' => 'required',
+        'hargaRevisian' => 'required',
+        'jumlahrevisian' => 'required',
+    ];
 
-    protected $listeners = ["updatePricing"];
+    protected $listeners = ['updatePricing' => 'updatePrice'];
 
     public function mount()
     {
@@ -64,8 +70,9 @@ class Pricing extends Component
         ];
     }
 
-    private function updatePrice()
+    public function updatePrice()
     {
+        $this->validate();
         try {
             Product::updateOrCreate([
                 "uuid" => $this->uuid,
@@ -87,18 +94,11 @@ class Pricing extends Component
                     'price' => $value['hargatambahan'],
                 ]);
             }
-        } catch (\Throwable $th) {
-            throw $th;
-        }
-    }
-
-    public function updatePricing()
-    {
-        try {
-            $this->updatePrice();
             $this->emit('nextPage');
         } catch (\Throwable $th) {
-            throw $th;
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Something wrong!']);
         }
     }
 

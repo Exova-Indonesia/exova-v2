@@ -54,7 +54,12 @@ class Dashboard extends Component
                 break;
             
             case 4:
-                $this->emit("updatePublish");
+                try {
+                    $this->emit("updatePublish");
+                    $this->closeModal();
+                } catch (\Throwable $th) {
+                    throw $th;
+                }
                 break;
             
             default:

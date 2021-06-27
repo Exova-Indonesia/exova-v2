@@ -7,8 +7,8 @@
                <div class="w-full text-center lg:text-left">
                   <div class="max-w-md mx-auto lg:mx-0">
                      <h2 class="mb-3 text-4xl lg:text-5xl text-white font-bold">
-                        <span>Exova | Save The</span>
-                        <span class="text-blue-600">Culture</span>
+                        <span>Jepret Momen</span>
+                        <span class="text-blue-600">Anti Ribet</span>
                      </h2>
                   </div>
                   <div class="max-w-sm mx-auto lg:mx-0">

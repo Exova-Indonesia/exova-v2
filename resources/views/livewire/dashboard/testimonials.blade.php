@@ -1,5 +1,5 @@
 <div>
-<section class="relative bg-yellow-500 rounded-4xl -mt-16 w-full">
+<section class="relative bg-pink-500 rounded-4xl -mt-16 w-full">
    <div class="container items-center max-w-6xl py-20 px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
       <h2 class="mb-4 text-3xl text-white font-bold leading-tight tracking-tight sm:text-4xl font-heading">Testimonials</h2>
       <figure class="visible">
