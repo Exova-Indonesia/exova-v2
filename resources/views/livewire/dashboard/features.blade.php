@@ -1,6 +1,6 @@
 <div>
 <!-- Section 3 -->
-<section class="bg-gray-50 sm:pb-32 md:pb-32">
+<section class="bg-gray-50 pb-32 pt-12">
    <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
       <div class="flex flex-wrap items-center -mx-3">
          <div class="order-1 w-full px-3 lg:w-1/2 lg:order-0">
@@ -55,45 +55,19 @@
          </div>
          <div class="w-full px-3 py-16 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
             <div class="flex flex-wrap">
-               <div class="mb-8 lg:mb-0 w-full md:w-1/2 px-4">
-                  <div class="mb-8 py-6 pl-6 pr-4 shadow rounded-3xl bg-blue-600 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-                     <span class="mb-4 inline-block p-3 rounded-2xl bg-blue-100">
-                        <svg class="w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                     </span>
-                     <h4 class="mb-2 text-2xl font-bold text-white font-heading">Lorem ipsum</h4>
-                     <p class="text-gray-200 leading-loose">Lorem ipsum, consectetur adipiscing elit.</p>
+               <div class="flex items-center justify-center -mx-4 lg:pl-8">
+                  <div class="flex flex-col items-end px-3">
+                     <img
+                        class="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out"
+                        src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                        alt=""
+                        />
+                     <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
+                        " src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
                   </div>
-                  <div class="py-6 pl-6 pr-4 shadow rounded-3xl bg-red-600 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-                     <span class="mb-4 inline-block p-3 rounded-2xl bg-blue-100">
-                        <svg class="w-10 h-10 text-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                           <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
-                        </svg>
-                     </span>
-                     <h4 class="mb-2 text-2xl text-white font-bold font-heading">Lorem ipsum</h4>
-                     <p class="text-gray-200 leading-loose">Lorem ipsum, consectetur adipiscing elit.</p>
-                  </div>
-               </div>
-               <div class="w-full md:w-1/2 lg:mt-20 px-4">
-                  <div class="mb-8 py-6 pl-6 pr-4 shadow rounded-3xl bg-purple-600 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-                     <span class="mb-4 inline-block p-3 rounded-2xl bg-blue-100">
-                        <svg class="w-10 h-10 text-purple-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                        </svg>
-                     </span>
-                     <h4 class="mb-2 text-2xl text-white font-bold font-heading">Lorem ipsum</h4>
-                     <p class="text-gray-200 leading-loose">Lorem ipsum, consectetur adipiscing elit.</p>
-                  </div>
-                  <div class="py-6 pl-6 pr-4 shadow rounded-3xl bg-pink-600 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-                     <span class="mb-4 inline-block p-3 rounded-2xl bg-blue-100">
-                        <svg class="w-10 h-10 text-pink-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                           <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                           <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
-                        </svg>
-                     </span>
-                     <h4 class="mb-2 text-2xl text-white font-bold font-heading">Lorem ipsum</h4>
-                     <p class="text-gray-200 leading-loose">Lorem ipsum, consectetur adipiscing elit.</p>
+                  <div class="px-3">
+                     <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
+                        " src="https://images.pexels.com/photos/3182739/pexels-photo-3182739.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="" />
                   </div>
                </div>
             </div>

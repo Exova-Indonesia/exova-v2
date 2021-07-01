@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1235592313,
+        "room_id": 4,
+        "from_id": 1,
+        "to_id": 2,
+        "messages": "hello",
+        "attachments": 1,
+        "created_at": "2021-07-01T06:22:49.579620Z",
+        "updated_at": "2021-07-01T06:22:49.579635Z"
+    },
+    {
+        "id": 1650957713,
+        "room_id": 6,
+        "from_id": 1,
+        "to_id": 3,
+        "messages": "tes",
+        "attachments": 1,
+        "created_at": "2021-07-01T12:06:18.835556Z",
+        "updated_at": "2021-07-01T12:06:18.835570Z"
+    },
+    {
+        "id": 1994523429,
+        "room_id": 4,
+        "from_id": 1,
+        "to_id": 2,
+        "messages": "hah",
+        "attachments": 1,
+        "created_at": "2021-07-01T12:08:05.388812Z",
+        "updated_at": "2021-07-01T12:08:05.388825Z"
+    },
+    {
+        "id": 2065494022,
+        "room_id": 4,
+        "from_id": 1,
+        "to_id": 2,
+        "messages": "keren",
+        "attachments": { "disk": "local" },
+        "created_at": "2021-07-01T15:17:56.497290Z",
+        "updated_at": "2021-07-01T15:17:56.497304Z"
+    },
+    {
+        "id": 1440760901,
+        "room_id": 4,
+        "from_id": 1,
+        "to_id": 2,
+        "messages": "hah",
+        "attachments": { "disk": "local" },
+        "created_at": "2021-07-01T15:20:24.431456Z",
+        "updated_at": "2021-07-01T15:20:24.431487Z"
+    },
+    {
+        "id": 1708432474,
+        "room_id": 4,
+        "from_id": 1,
+        "to_id": 2,
+        "messages": "hello",
+        "attachments": 1,
+        "created_at": "2021-07-01T15:30:44.899537Z",
+        "updated_at": "2021-07-01T15:30:44.899551Z"
+    },
+    {
+        "id": 522578549,
+        "room_id": 4,
+        "from_id": 1,
+        "to_id": 2,
+        "messages": "aa",
+        "attachments": "C:\\Users\\arthaputra\\exova\\exova-v2\\storage\\app\\livewire-tmp/5Q4PiSYkYWIhE9vQeMszL3aDauAE8V-metadXAzLmpwZw==-.jpg",
+        "created_at": "2021-07-01T15:31:20.885381Z",
+        "updated_at": "2021-07-01T15:31:20.885395Z"
+    }
+]
