@@ -2,11 +2,29 @@
    <div class="header p-4 flex flex-col justify-center items-center flex-none mt-4">
       <div class="md:w-24 md:h-24 w-16 h-16 relative flex flex-shrink-0">
          <img class="rounded-full w-full h-full object-cover" alt="ravisankarchinnam"
-            src="{{ auth()->user()->profile_photo_url }}"/>
+            src="
+            @if($data['seller_id'] == auth()->user()->id) 
+               {{ $data['customer']['profile_photo_url'] }}
+            @else
+               {{ $data['seller']['profile_photo_url'] }}
+            @endif
+            "/>
       </div>
       <div>
-         <p class="text-md text-center font-bold hidden md:block group-hover:block pt-2">Artha</p>
-         <span class="text-sm hidden md:block text-gray-500">Your Clients</span>
+         <p class="text-md text-center font-bold hidden md:block group-hover:block pt-2">
+            @if($data['seller_id'] == auth()->user()->id) 
+               {{ $data['customer']['name'] }}
+            @else
+               {{ $data['seller']['name'] }}
+            @endif
+         </p>
+         <span class="text-sm text-center hidden md:block text-gray-500">
+            @if($data['seller_id'] == auth()->user()->id) 
+               {{ __('Your Client') }}
+            @else
+               {{ __('Your Seller') }}
+            @endif
+         </span>
       </div>
    </div>
    <div class="contacts p-2 flex-1 overflow-y-scroll">
@@ -20,6 +38,7 @@
             <p>Order Details</p>
          </div>
       </div>
+      @if($data['customer_id'] == auth()->user()->id) 
       <div wire:click="loadContent('edit')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,6 +49,7 @@
             <p>Edit Contract</p>
          </div>
       </div>
+      @endif
       <div wire:click="loadContent('chats')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

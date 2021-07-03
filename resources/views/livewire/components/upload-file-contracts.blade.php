@@ -1,0 +1,1 @@
+<x-file-pond-contract wire:model="files" />

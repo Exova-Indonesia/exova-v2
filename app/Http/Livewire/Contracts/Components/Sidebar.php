@@ -6,6 +6,11 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
+    public $data;
+    public function mount($data)
+    {
+        $this->data = $data;
+    }
     public function loadContent($content)
     {
         $this->emitUp('loadContent', $content);

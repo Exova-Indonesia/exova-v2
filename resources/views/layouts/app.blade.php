@@ -13,12 +13,14 @@
       <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
       <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
       <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+      @stack('styles')
       @livewireStyles
       <!-- Scripts -->
       <script
       src="https://maps.googleapis.com/maps/api/js?key={{ env('GMAPS_KEY') }}&libraries=places&v=weekly"
       async
       ></script>
+      <script src="{{ asset('js/upload.js') }}" defer></script>
       <script src="{{ asset('js/maps.js') }}" defer></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{{ mix('js/app.js') }}" defer></script>

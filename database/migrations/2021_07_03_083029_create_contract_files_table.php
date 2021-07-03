@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessagesTable extends Migration
+class CreateContractFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('contract_files', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('room_id')->unsigned();
-            $table->bigInteger('from_id')->unsigned();
-            $table->bigInteger('to_id')->unsigned();
-            $table->text('messages')->nullable();
-            $table->json('attachments')->nullable();
+            $table->bigInteger('contract_id')->unsigned();
+            $table->bigInteger('file_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('contract_files');
     }
 }

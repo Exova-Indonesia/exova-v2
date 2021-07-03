@@ -19,6 +19,7 @@ class OrderRequest extends Model
         'max_return',
         'is_meet_seller',
         'price',
+        'last_message_id',
         'due_at',
         'meet_at',
         'status',
@@ -27,6 +28,7 @@ class OrderRequest extends Model
 
     public const IS_REQUESTED = 0;
     public const IS_APPROVED = 1;
+    public const IS_DECLINED = 2;
 
     protected $dates = ["deleted_at", "meet_at", "due_at"];
 
@@ -35,8 +37,18 @@ class OrderRequest extends Model
         return $this->belongsTo(User::class, 'seller_id');
     }
 
+    public function locations()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
+
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id');
+    }
+
+    public function lastMessage()
+    {
+        return $this->belongsTo(Message::class, 'last_message_id');
     }
 }

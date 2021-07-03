@@ -2,27 +2,45 @@
 
 namespace App\Http\Livewire\Chats\Components;
 
+use Cache;
+use Carbon\Carbon;
 use App\Models\User;
 use Livewire\Component;
 use App\Http\Traits\Chat;
 use App\Events\MessageSent;
+use Illuminate\Support\Str;
 use App\Models\OrderRequest;
+use App\Http\Traits\Contract;
+use App\Http\Traits\Download;
 use Livewire\WithFileUploads;
 use App\Http\Traits\UploadFiles;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ChatsBar extends Component
 {
-    use Chat, WithFileUploads, UploadFiles;
+    use Chat, WithFileUploads, UploadFiles, Download, Contract;
+    public $isUpload = false;
+    public $session;
+    public $request;
+    public $ext;
+    public $seller;
+    public $size;
+    public $old_name;
     public $filesName;
+    public $files;
     public $picture;
+    public $directory = "messages/attachments";
     public $receipent;
     public $msgData;
     public $room_id;
     public $user;
     public $message;
+    public $idFiles;
     public $data = [];
     public $fetchMessages = [];
+
+    public $trollMsg = "Sabar ya, Lagi ngupload bentar aja kok";
 
     public function getListeners()
     {
@@ -32,33 +50,44 @@ class ChatsBar extends Component
         ];
     }
 
-    public function updatedPicture()
+    public function gamau()
     {
-        $validator = Validator::make(
-            ['picture' => $this->picture],
-            ['picture' => 'image|max:5120'],
-        );
+        $this->trollMsg = "Ih kok gamau lo?, Dibilangin tunggu bentar aja";
+    }
 
-        if($validator->fails()) {
-            $this->removePicture();
-            $this->dispatchBrowserEvent('notification', 
-            ['type' => 'error',
-            'title' => $validator->errors()->first('picture')]);
-        } else {
-            $this->filesName = Str::uuid();
-            $this->store();
-        }
+    public function yaudah()
+    {
+        $this->trollMsg = "Nah gitu dong, Bentar aja kok ga lama";
+    }
+
+    public function downloadFile($name)
+    {
+        $this->download($this->directory, $name);
+    }
+
+    // public function updatedPicture()
+    // {
+    //     $this->upPics();
+    // }
+
+    // public function updatedFiles()
+    // {
+    //     $this->upFls();
+    // }
+
+    public function approve()
+    {
+        $this->createContract();
     }
 
     private function removePicture()
     {
-        $this->picture = null;
-        $this->reset('picture');
+        $this->flsRemove();
     }
 
     public function deletePicture()
     {
-        $this->removePicture();
+        $this->flsRemove();
     }
 
     public function mount()
@@ -73,14 +102,27 @@ class ChatsBar extends Component
 
     public function sendMessage($id)
     {
+        if($this->picture) {
+            $this->upPics();
+        } elseif($this->files) {
+            $this->upFls();
+        }
         $this->send($id);
+        $this->emit('reloadList');
+    }
+
+    public function approveContract()
+    {
+        $this->createContract();
     }
 
     public function loadChats($id)
     {
         $this->fetchAll($id);
         $user = OrderRequest::where('id', explode('.', $id))->first();
+        $this->request = $user;
         if($user['seller']['id'] == $this->user) {
+            $this->seller = User::where('id', $user['seller_id'])->first();
             $this->receipent = User::where('id', $user['customer_id'])->first();
         } else {
             $this->receipent = User::where('id', $user['seller_id'])->first();
