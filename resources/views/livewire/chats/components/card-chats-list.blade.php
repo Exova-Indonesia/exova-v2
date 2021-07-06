@@ -42,12 +42,12 @@
          </div>
       </div>
       <div class="flex-auto min-w-0 ml-4 mr-6 hidden md:block group-hover:block">
-         <p>@if($item['customer']['id'] == $user) {{ $item['seller']['name'] }} @else {{ $item['customer']['name'] }} @endif</p>
+         <p>@if($item['customer']['id'] == $user) {{ $item['title'] . ' - ' . $item['seller']['name'] }} @else {{ $item['title'] . ' - ' . $item['customer']['name'] }} @endif</p>
          <div class="flex items-center justify-between text-sm text-gray-600">
             <div class="min-w-0">
                <p class="truncate">{{ $item['lastMessage']['messages'] }}</p>
             </div>
-            <p class="ml-2 whitespace-no-wrap text-xs">{{ $item['lastMessage']['created_at']->diffForHumans() }}</p>
+            <p class="ml-2 whitespace-no-wrap text-xs">{{ ($item['lastMessage']) ? $item['lastMessage']['created_at']->diffForHumans() : '' }}</p>
          </div>
       </div>
       <div class="bg-blue-700 w-3 h-3 rounded-full flex flex-shrink-0 hidden md:block group-hover:block"></div>

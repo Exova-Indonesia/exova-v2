@@ -5,10 +5,11 @@ namespace App\Http\Livewire\Offers;
 use Livewire\Component;
 use App\Models\Location;
 use App\Http\Traits\Cart;
+use App\Http\Traits\CreateOrderRequests;
 
 class Dashboard extends Component
 {
-    use Cart;
+    use Cart, CreateOrderRequests;
     public $data = array();
     public $namaproject;
     public $price;
@@ -27,8 +28,10 @@ class Dashboard extends Component
     public $job_description;
     public $meetSeller;
     public $location;
+    public $order;
+    public $isMuted = false;
 
-    protected $listeners = ["selectProduct", "saveToSession", "updateLocation"];
+    protected $listeners = ["selectProduct", "saveToSession", "updateLocation", "updateOrderRequest"];
 
     public function selectProduct($cartDetail)
     {
@@ -41,6 +44,23 @@ class Dashboard extends Component
         $this->job_description = $cartDetail['job_description'];
         $this->location = Location::where('id', $cartDetail['meet_location'])->first();
         $this->meet_location = $this->location['address'];
+        if($this->meetSeller) {
+            $this->dispatchBrowserEvent('maps:load');
+        }
+    }
+
+    public function mount($mute, $data = null)
+    {
+        $this->isMuted = $mute;
+        $this->order = $data;
+        $this->namaproject = $data['requests']['title'];
+        $this->meetSeller = $data['requests']['is_meet_seller'];
+        $this->meet_date = explode(' ', $data['requests']['meet_at'])[0] ?? '';
+        $this->meet_time = explode(' ', $data['requests']['meet_at'])[1] ?? '';
+        $this->job_description = $data['requests']['description'];
+        $this->location = Location::where('id', $data['requests']['location_id'])->first();
+        $this->meet_location = $this->location['address'];
+        $this->contract_end = explode(' ', $data['requests']['due_at'])[0];
         if($this->meetSeller) {
             $this->dispatchBrowserEvent('maps:load');
         }
@@ -68,12 +88,14 @@ class Dashboard extends Component
         }
     }
 
-    public function saveToSession($id)
+    public function updateOrderRequest()
     {
+
         $data = array(
+            "id" => $this->order['requests']['id'],
+            "location_id" => $this->order['requests']['location_id'],
             "title" => $this->namaproject,
             "job_description" => $this->job_description,
-            "price" => $this->price,
             "is_meet_seller" => $this->meetSeller,
             "contract_end" => $this->contract_end,
             "meet_date" => $this->meet_date,
@@ -88,8 +110,37 @@ class Dashboard extends Component
             "latitude" => $this->latitude,
             "longitude" => $this->longitude,
         );
-        $this->update($id, $data);
-        $this->emit("updateCart");
+        $this->updateOrder($data);
+    }
+
+    public function saveToSession($id)
+    {
+            if(empty($this->contract_end) || empty($this->namaproject)) {
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Form belum lengkap']);
+        } else {
+            $data = array(
+                "title" => $this->namaproject,
+                "job_description" => $this->job_description,
+                "price" => $this->price,
+                "is_meet_seller" => $this->meetSeller,
+                "contract_end" => $this->contract_end ?? now()->addDays(10),
+                "meet_date" => $this->meet_date,
+                "meet_time" => $this->meet_time,
+                "meet_location" => $this->meet_location,
+                "addr_name" => $this->addr_name,
+                "village" => $this->village,
+                "district" => $this->district,
+                "city" => $this->city,
+                "state" => $this->state,
+                "country" => $this->country,
+                "latitude" => $this->latitude,
+                "longitude" => $this->longitude,
+            );
+            $this->update($id, $data);
+            $this->emit("updateCart");
+        }
     }
 
     public function render()

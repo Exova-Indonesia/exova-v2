@@ -64,4 +64,28 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function banks()
+    {
+        return $this->hasOne(BankAccount::class, 'user_id');
+    }
+
+    public function revenue()
+    {
+        return $this->belongsTo(Revenue::class, 'user_id');
+    }
+
+    public function withdraw()
+    {
+        return $this->hasMany(Withdraw::class, 'user_id');
+    }
+
+    public function xpoints()
+    {
+        return $this->hasMany(Xpoint::class, 'user_id');
+    }
+
+    const IS_CUST = 1;
+    const IS_PHOTO = 2;
+    const IS_VIDEO = 3;
 }

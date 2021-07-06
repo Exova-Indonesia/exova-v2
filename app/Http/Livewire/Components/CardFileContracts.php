@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Components;
 
 use App\Models\Message;
 use Livewire\Component;
+use App\Http\Traits\Contract;
 use App\Http\Traits\Download;
 use Livewire\WithFileUploads;
 use App\Http\Traits\UploadFiles;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class CardFileContracts extends Component
 {
-    use WithFileUploads, UploadFiles, Download;
+    use WithFileUploads, UploadFiles, Download, Contract;
     public $data;
     public $directory;
     public $files;
@@ -19,7 +20,10 @@ class CardFileContracts extends Component
     public $old_name;
     public $size;
     public $ext;
+    public $return_description;
     public $revisionModal = false;
+
+    public $trollMsg = "Sabar ya, Lagi download bentar aja kok";
 
     protected $listeners = ["reloadData" => 'render'];
 
@@ -27,6 +31,16 @@ class CardFileContracts extends Component
     {
         $this->data = $data;
         $this->directory = 'contracts/' . $data['id'];
+    }
+
+    public function gamau()
+    {
+        $this->trollMsg = "Ih kok gamau lo?, Dibilangin tunggu bentar aja";
+    }
+
+    public function yaudah()
+    {
+        $this->trollMsg = "Nah gitu dong, Bentar aja kok ga lama";
     }
 
     public function submitFiles()
@@ -47,6 +61,16 @@ class CardFileContracts extends Component
     public function reqReturn()
     {
         $this->revisionModal = true;
+    }
+
+    public function approveFiles()
+    {
+        $this->approve();
+    }
+
+    public function sendRequest()
+    {
+        $this->requestReturn();
     }
 
     public function reloadData($data)

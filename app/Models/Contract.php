@@ -49,6 +49,16 @@ class Contract extends Model
         return $this->hasMany(ContractFile::class, 'contract_id');
     }
 
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class, 'contract_id');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'payment_id');
+    }
+
     public function returned()
     {
         return $this->hasMany(ContractFileReturned::class, 'contract_id');
@@ -58,6 +68,7 @@ class Contract extends Model
     const IS_STARTED = 1;
     const IS_REQUESTED = 2;
     const IS_RETURNED = 3;
-    const IS_FINISHED = 4;
-    const IS_CANCELED = 5;
+    const IS_APPROVED = 4;
+    const IS_FINISHED = 5;
+    const IS_CANCELED = 6;
 }

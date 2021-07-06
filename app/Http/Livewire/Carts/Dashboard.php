@@ -15,6 +15,7 @@ class Dashboard extends Component
     public $meetSeller;
     public $selectedProduct;
     public $isSelectedProduct = false;
+    public $isSaved = false;
     
     protected $listeners = ["updateCart"];
 
@@ -35,6 +36,7 @@ class Dashboard extends Component
 
     public function saveDetails($id)
     {
+        $this->isSaved = true;
         $this->emit('saveToSession', $id);
     }
 

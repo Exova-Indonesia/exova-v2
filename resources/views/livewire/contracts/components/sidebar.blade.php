@@ -38,7 +38,7 @@
             <p>Order Details</p>
          </div>
       </div>
-      @if($data['customer_id'] == auth()->user()->id) 
+      @if($data['customer_id'] == auth()->user()->id && !in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED]))
       <div wire:click="loadContent('edit')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,7 +70,7 @@
             <p>Files</p>
          </div>
       </div>
-      <div wire:click="loadContent('terms')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
+      {{-- <div wire:click="loadContent('terms')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -79,7 +79,7 @@
          <div class="flex-auto min-w-0 ml-4 mr-6 hidden md:block group-hover:block">
             <p>Ketentuan</p>
          </div>
-      </div>
+      </div> --}}
       <div wire:click="loadContent('feedback')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,15 +90,17 @@
             <p>Feedback</p>
          </div>
       </div>
+      @if(!in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED]))
       <div wire:click="loadContent('end')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
-<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-</svg>
+         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+         </svg>
          </div>
          <div class="flex-auto min-w-0 ml-4 mr-6 hidden md:block group-hover:block">
             <p>End Contract</p>
          </div>
       </div>
+      @endif
    </div>
 </div>

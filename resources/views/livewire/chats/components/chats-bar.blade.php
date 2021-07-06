@@ -67,71 +67,70 @@
                {{ __('Detail') }}
             </x-jet-button>
          </div>
+         @endif
       </div>
-
-      @endif
       @endif
    </div>
    <div class="chat-body p-4 flex-1 overflow-y-scroll flex flex-col-reverse">
       @foreach (array_reverse($fetchMessages) as $msg)
       @if($msg['to_id'] == $user)
-         <div class="my-1 flex flex-row justify-start">
-            <div class="messages text-sm text-gray-700 grid grid-flow-row gap-2">
-               @if(! empty(json_decode($msg['attachments'], true)['id']))
-               @if(in_array(json_decode($msg['attachments'], true)['type'], ['png', 'jpg', 'gif', 'jpeg']))
-               <div class="flex items-center group">
-                  <a class="block w-64 h-64 relative flex flex-shrink-0 max-w-xs lg:max-w-md" target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
-                     <img class="absolute shadow-md w-full h-full rounded-l-lg object-cover" src="{{ json_decode($msg['attachments'], true)['path'] }}" alt="photo"/>
+      <div class="my-1 flex flex-row justify-start">
+         <div class="messages text-sm text-gray-700 grid grid-flow-row gap-2">
+            @if(! empty(json_decode($msg['attachments'], true)['id']))
+            @if(in_array(json_decode($msg['attachments'], true)['type'], ['png', 'jpg', 'gif', 'jpeg']))
+            <div class="flex items-center group">
+               <a class="block w-64 h-64 relative flex flex-shrink-0 max-w-xs lg:max-w-md" target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
+               <img class="absolute shadow-md w-full h-full rounded-l-lg object-cover" src="{{ json_decode($msg['attachments'], true)['path'] }}" alt="photo"/>
+               </a>
+            </div>
+            @else
+            <div class="flex items-center group cursor-pointer">
+               <p class="text-blue-600 px-6 py-3 rounded-t-full rounded-r-full bg-gray-800 max-w-xs lg:max-w-md">
+                  <a target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
+                  {{ json_decode($msg['attachments'], true)['old_name'] }}
                   </a>
-               </div>
-               @else
-               <div class="flex items-center group cursor-pointer">
-                  <p class="text-blue-600 px-6 py-3 rounded-t-full rounded-r-full bg-gray-800 max-w-xs lg:max-w-md">
-                     <a target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
-                        {{ json_decode($msg['attachments'], true)['old_name'] }}
-                     </a>
-                  </p>
-               </div>
-               @endif
-               @endif
-               <div class="flex items-center group">
-                  <p class="px-6 py-3 rounded-t-full rounded-r-full bg-gray-800 max-w-xs lg:max-w-md text-gray-200">{{ $msg['messages'] }}</p>
-               </div>
+               </p>
+            </div>
+            @endif
+            @endif
+            <div class="flex items-center group">
+               <p class="px-6 py-3 rounded-t-full rounded-r-full bg-gray-800 max-w-xs lg:max-w-md text-gray-200">{{ $msg['messages'] }}</p>
             </div>
          </div>
+      </div>
       @endif
       @if($msg['from_id'] == $user)
-         <div class="my-1 flex flex-row justify-end">
-            <div class="messages text-sm text-white grid grid-flow-row gap-2">
-               @if(! empty(json_decode($msg['attachments'], true)['id']))
-               @if(in_array(json_decode($msg['attachments'], true)['type'], ['png', 'jpg', 'gif', 'jpeg']))
-               <div class="flex items-center group">
-                  <a class="block w-64 h-64 relative flex flex-shrink-0 max-w-xs lg:max-w-md" target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
-                     <img class="absolute shadow-md w-full h-full rounded-l-lg object-cover" src="{{ json_decode($msg['attachments'], true)['path'] }}" alt="photo"/>
+      <div class="my-1 flex flex-row justify-end">
+         <div class="messages text-sm text-white grid grid-flow-row gap-2">
+            @if(! empty(json_decode($msg['attachments'], true)['id']))
+            @if(in_array(json_decode($msg['attachments'], true)['type'], ['png', 'jpg', 'gif', 'jpeg']))
+            <div class="flex items-center group">
+               <a class="block w-64 h-64 relative flex flex-shrink-0 max-w-xs lg:max-w-md" target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
+               <img class="absolute shadow-md w-full h-full rounded-l-lg object-cover" src="{{ json_decode($msg['attachments'], true)['path'] }}" alt="photo"/>
+               </a>
+            </div>
+            @else
+            <div class="flex items-center flex-row-reverse group cursor-pointer">
+               <p class="text-blue-400 px-6 py-3 rounded-t-full rounded-l-full bg-blue-700 max-w-xs lg:max-w-md">
+                  <a target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
+                  {{ json_decode($msg['attachments'], true)['old_name'] }}
                   </a>
-               </div>
-               @else
-               <div class="flex items-center flex-row-reverse group cursor-pointer">
-                  <p class="text-blue-400 px-6 py-3 rounded-t-full rounded-l-full bg-blue-700 max-w-xs lg:max-w-md">
-                     <a target="_blank" href="{{ json_decode($msg['attachments'], true)['path'] }}">
-                        {{ json_decode($msg['attachments'], true)['old_name'] }}
-                     </a>
-                  </p>
-               </div>
-               @endif
-               @endif
-               <div class="flex items-center flex-row-reverse group">
-                  <p class="px-6 py-3 rounded-t-full rounded-l-full bg-blue-700 max-w-xs lg:max-w-md">{{ $msg['messages'] }}</p>
-               </div>
+               </p>
+            </div>
+            @endif
+            @endif
+            <div class="flex items-center flex-row-reverse group">
+               <p class="px-6 py-3 rounded-t-full rounded-l-full bg-blue-700 max-w-xs lg:max-w-md">{{ $msg['messages'] }}</p>
             </div>
          </div>
+      </div>
       @endif
       @endforeach
    </div>
    <div class="chat-footer flex-none">
       @if($picture)
       <div class="items-center py-4 px-8">
-         <x-delete-button wire:click="deletePicture" wire:loading.attr="disabled" class="absolute h-8 w-8 bg-red-500 hover:bg-red-600 flex items-start justify-start" />  
+         <x-delete-button wire:click="deletePicture" wire:loading.attr="disabled" class="absolute h-8 w-8 bg-red-500 hover:bg-red-600 flex items-start justify-start" />
          <div class="w-32 h-32">
             <img class="w-32 h-32 object-cover rounded-md" src="{{ $picture->temporaryUrl() }}" alt="">
          </div>
@@ -139,7 +138,7 @@
       @endif
       @if($files)
       <div class="items-center py-4 px-8">
-         <x-delete-button wire:click="deletePicture" wire:loading.attr="disabled" class="h-8 w-8 bg-red-500 hover:bg-red-600 flex items-start justify-start" />  
+         <x-delete-button wire:click="deletePicture" wire:loading.attr="disabled" class="h-8 w-8 bg-red-500 hover:bg-red-600 flex items-start justify-start" />
          <div class="w-32 h-12">
             {{ $this->idFiles['old_name'] }}
          </div>
@@ -181,23 +180,23 @@
    @if($isUpload)
    <!--code for notification starts-->
    <div role="alert" class="z-20 h-20 xl:w-4/12 mx-auto sm:mx-0 sm:w-6/12 md:w-6/12 justify-between w-10/12 bg-white dark:bg-gray-800 shadow-lg rounded flex fixed left-0 sm:left-auto right-0 sm:top-0 sm:mr-6 mt-16 sm:mt-6 mb-6 sm:mb-0 transition duration-150 ease-in-out" id="notification">
-       <div class="px-2 sm:px-4 border-r border-gray-300 dark:border-gray-700 flex items-center justify-center">
-           <div class="h-12 w-12 sm:h-10 sm:w-10 rounded-full">
-               <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce text-gray-600 h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="px-2 sm:px-4 border-r border-gray-300 dark:border-gray-700 flex items-center justify-center">
+         <div class="h-12 w-12 sm:h-10 sm:w-10 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce text-gray-600 h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-               </svg>
-           </div>
-       </div>
-       <div class="flex flex-col justify-center xl:-ml-6 pl-4 xl:pl-1 w-3/5">
-           <p tabindex="0" class="focus:outline-none text-sm text-gray-800 dark:text-gray-100 font-semibold">{{ explode(',', $trollMsg)[0] }}</p>
-           <p tabindex="0" class="focus:outline-none text-xs text-gray-600 dark:text-gray-400 font-normal">{{ explode(',', $trollMsg)[1] }}</p>
-       </div>
+            </svg>
+         </div>
+      </div>
+      <div class="flex flex-col justify-center xl:-ml-6 pl-4 xl:pl-1 w-3/5">
+         <p tabindex="0" class="focus:outline-none text-sm text-gray-800 dark:text-gray-100 font-semibold">{{ explode(',', $trollMsg)[0] }}</p>
+         <p tabindex="0" class="focus:outline-none text-xs text-gray-600 dark:text-gray-400 font-normal">{{ explode(',', $trollMsg)[1] }}</p>
+      </div>
       <div class="flex flex-col justify-center border-l items-center border-gray-300 dark:border-gray-700 w-1/3 sm:w-1/6">
          <div wire:click="yaudah" class="pt-2 pb-2 border-b border-gray-300 dark:border-gray-700 w-full flex justify-center">
-             <span tabindex="0" class="focus:outline-none focus:text-blue-800 hover:underline text-sm text-blue-700 font-bold cursor-pointer">Y udh si</span>
+            <span tabindex="0" class="focus:outline-none focus:text-blue-800 hover:underline text-sm text-blue-700 font-bold cursor-pointer">Y udh si</span>
          </div>
          <div wire:click="gamau" class="pt-2 pb-2 flex justify-center w-full cursor-pointer">
-             <span tabindex="0" class="focus:outline-none hover:underline focus:text-gray-400 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">Gamau</span>
+            <span tabindex="0" class="focus:outline-none hover:underline focus:text-gray-400 text-sm text-gray-600 dark:text-gray-400 cursor-pointer">Gamau</span>
          </div>
       </div>
    </div>

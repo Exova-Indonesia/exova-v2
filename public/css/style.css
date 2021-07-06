@@ -122,3 +122,50 @@ input:checked + .slider:before {
 .filepond--credits {
     display: none;
 }
+.input-rating .stars {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.input-rating .stars input[type="radio"] {
+    display: none;
+}
+
+.input-rating .stars > label {
+    float: right;
+    cursor: pointer;
+    padding: 0px 3px;
+    margin: 0px;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
+}
+
+.input-rating .stars > label:hover,
+.input-rating .stars > label:hover ~ label {
+    -webkit-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.input-rating .stars > label:before {
+    content: "\f006";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    color: #dadada;
+    font-size: 24px;
+    -webkit-transition: 0.3s all;
+    transition: 0.3s all;
+}
+
+.input-rating .stars > label:hover:before,
+.input-rating .stars > label:hover ~ label:before {
+    content: "\f005";
+    color: #ffb656;
+}
+
+.input-rating .stars > input:checked label:before,
+.input-rating .stars > input:checked ~ label:before {
+    content: "\f005";
+    color: #ffb656;
+}

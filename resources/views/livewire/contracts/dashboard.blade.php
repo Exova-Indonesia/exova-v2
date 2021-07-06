@@ -24,13 +24,13 @@
                      </a>
                   </div>
                </div>
-               @if($data['status'] == App\Models\Contract::IS_WAITING_PAYMENT)
+               @if(empty($data['payment_id']) || $data['status'] == App\Models\Contract::IS_WAITING_PAYMENT && !in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED]))
                <div class="chat-header bg-red-500 border-red-300 border-b px-6 py-4 flex flex-row flex-none justify-center items-center">
                   <div class="flex">
                      <div class="text-sm text-gray-100">
                         @if($data['customer_id'] == auth()->user()->id)
                         <p>{{ __('Ups, Kamu belum bayar kontrak, silahkan bayar terlebih dahulu') }}
-                           <x-jet-button type="button" class="mx-1 bg-red-600 hover:bg-red-400 focus:border-red-600 active:bg-red-900">
+                           <x-jet-button wire:click="pay" type="button" class="mx-1 bg-red-600 hover:bg-red-400 focus:border-red-600 active:bg-red-900">
                               {{ __('Disini') }}
                            </x-jet-button>
                         </p>
@@ -47,9 +47,9 @@
                   @livewire('contracts.components.details', ['data' => $data])
                   @endif
                   @if ($content == 'edit')
-                  @livewire('offers.dashboard')
+                  @livewire('offers.dashboard', ['mute' => true, 'data' => $data])
                   <div class="text-right">
-                     <x-jet-button type="button" class="my-2 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="negoAndnext" wire:loading.attr="disabled">
+                     <x-jet-button type="button" class="my-2 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="updateOrderRequest" wire:loading.attr="disabled">
                         {{ __('Kirim') }}
                      </x-jet-button>
                   </div>
@@ -58,7 +58,7 @@
                   @livewire('contracts.components.files', ['data' => $data])
                   @endif
                   @if ($content == 'feedback')
-                  @livewire('contracts.components.feedback')
+                  @livewire('contracts.components.feedback', ['data' => $data])
                   @endif
                </div>
             </div>
@@ -66,4 +66,31 @@
          </div>
       </div>
    </div>
+     <x-jet-dialog-modal wire:model="endContract">
+      <x-slot name="title">
+            <span class="text-gray-800">
+                {{ __('Konfirmasi akhiri kontrak') }}
+            </span>
+      </x-slot>
+      <x-slot name="content">
+          <span class="text-gray-600">
+            {{ __('Udah yakin mau berakhir sampe disini?') }}
+          </span>
+      </x-slot>
+      <x-slot name="footer">
+          <x-jet-secondary-button wire:click="$toggle('endContract')" wire:loading.attr="disabled">
+              {{ __('Gajadi') }}
+          </x-jet-secondary-button>
+          <x-jet-button class="ml-2 bg-red-500 hover:bg-red-600"
+                      wire:click="cancelContract"
+                      wire:loading.attr="disabled">
+              {{ __('Batalkan Kontrak') }}
+          </x-jet-button>
+          <x-jet-button class="ml-2"
+                      wire:click="finishContract"
+                      wire:loading.attr="disabled">
+              {{ __('Selesaikan Kontrak') }}
+          </x-jet-button>
+      </x-slot>
+  </x-jet-dialog-modal>
 </div>

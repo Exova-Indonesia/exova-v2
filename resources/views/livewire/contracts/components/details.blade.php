@@ -95,9 +95,9 @@
                Status
                </span>
             </div>
-            @if($data['customer_id'] == auth()->user()->id && empty($data['payment_id']))
+            @if($data['customer_id'] == auth()->user()->id && $data['status'] == 0 && !in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED]))
             <div>
-               <span class="cursor-pointer hover:bg-green-200 duration-500 py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
+               <span wire:click="pay" class="cursor-pointer hover:bg-green-200 duration-500 py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
                {{ __('Bayar') }}
                </span>
             </div>
@@ -140,10 +140,15 @@
                                 @break
                             @case(4)
                                 <span class="py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
-                                    Contract End
+                                    Project Approved
                                 </span>
                                 @break
                             @case(5)
+                                <span class="py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
+                                    Contract End
+                                </span>
+                                @break
+                            @case(6)
                                 <span class="py-2 px-4 text-xs leading-3 text-red-700 rounded-full bg-red-100">
                                     Contract Canceled
                                 </span>
@@ -158,9 +163,21 @@
                         Pembayaran
                      </td>
                      <td class="px-6 text-center whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                        @if($data['status'] == 0)
+                        @if($data['status'] == 0 && empty($data['payment_id']))
                         <span class="py-2 px-4 text-xs leading-3 text-red-700 rounded-full bg-red-100">
                             Payment haven't created yet
+                        </span>
+                        @elseif($data['payment']['status'] == \App\Models\Payment::IS_PENDING)
+                        <span class="py-2 px-4 text-xs leading-3 text-yellow-700 rounded-full bg-yellow-100">
+                            Payment pending
+                        </span>
+                        @elseif($data['payment']['status'] == \App\Models\Payment::IS_SUCCESS)
+                        <span class="py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
+                            Payment success
+                        </span>
+                        @else 
+                        <span class="py-2 px-4 text-xs leading-3 text-red-700 rounded-full bg-red-100">
+                            Payment failed
                         </span>
                         @endif
                      </td>

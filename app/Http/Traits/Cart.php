@@ -12,28 +12,34 @@ trait Cart {
     {
         try {
             $this->product = Product::where('id', $id)->first();
-            $this->cart = session()->get('cart');
-            $this->cart[$id] = array(
-                "id" => $id,
-                "seller_id" => $this->product['seller_id'],
-                "title" => $this->product['title'],
-                "subcategory" => $this->product['subcategory']['name'],
-                "price" => $this->product['price'],
-                "cover" => $this->product['cover']['getSmall']['path'],
-                "max_return" => 1,
-                "is_meet_seller" => false,
-                "contract_end" => null,
-                "meet_date" => null,
-                "meet_time" => null,
-                "meet_location" => null,
-                "job_description" => null,
-            );
-
-            $this->set($this->cart);
-
-            $this->dispatchBrowserEvent('notification', 
-            ['type' => 'success',
-            'title' => 'Produk telah ditambah ke troli']);
+            if($this->product['seller_id'] != auth()->user()->id) {
+                $this->cart = session()->get('cart');
+                $this->cart[$id] = array(
+                    "id" => $id,
+                    "seller_id" => $this->product['seller_id'],
+                    "title" => $this->product['title'],
+                    "subcategory" => $this->product['subcategory']['name'],
+                    "price" => $this->product['price'],
+                    "cover" => $this->product['cover']['getSmall']['path'],
+                    "max_return" => 1,
+                    "is_meet_seller" => false,
+                    "contract_end" => null,
+                    "meet_date" => null,
+                    "meet_time" => null,
+                    "meet_location" => null,
+                    "job_description" => null,
+                );
+    
+                $this->set($this->cart);
+    
+                $this->dispatchBrowserEvent('notification', 
+                ['type' => 'success',
+                'title' => 'Produk telah ditambah ke troli']);
+            } else {
+                $this->dispatchBrowserEvent('notification', 
+                ['type' => 'error',
+                'title' => 'Mana bisa beli produk sendiri']);
+            }
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',

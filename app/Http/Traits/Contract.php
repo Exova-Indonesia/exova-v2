@@ -1,9 +1,15 @@
 <?php 
 namespace App\Http\Traits;
 
-use App\Models\Contract as Cntr;
+use App\Models\User;
+use App\Models\Xpoint;
+use App\Models\Revenue;
 use Illuminate\Support\Str;
 use App\Models\OrderRequest;
+use App\Models\ContractSuccess;
+use App\Models\Contract as Cntr;
+use App\Models\ContractCanceled;
+use App\Models\ContractFileReturned;
 /**
  * 
  */
@@ -36,6 +42,9 @@ trait Contract
                 'start_at' => null,
                 'end_at' => null,
             ]);
+
+            // Event Notifications
+
             return redirect(url('contracts/' . $this->contract['uuid']));
         } catch (\Throwable $th) {
             throw $th;
@@ -45,6 +54,82 @@ trait Contract
     public function updateContract($id)
     {
         // 
+    }
+
+    public function finish()
+    {
+        ContractSuccess::create([
+            'customer_id' => $this->data['customer_id'],
+            'seller_id' => $this->data['seller_id'],
+            'contract_id' => $this->data['id'],
+        ]);
+        Revenue::create([
+            'user_id' => $this->data['seller_id'],
+            'contract_id' => $this->data['id'],
+            'amount' => $this->data['earn'],
+        ]);
+        User::where('id', $this->data['seller_id'])
+        ->update([
+            'balance' => $this->data['seller']['balance'] + $this->data['earn'],
+        ]);
+        Xpoint::create([
+            'user_id' => $this->data['seller_id'],
+            'value' => 5,
+        ]);
+    }
+
+    public function cancel()
+    {
+        ContractCanceled::create([
+            'customer_id' => $this->data['customer_id'],
+            'seller_id' => $this->data['seller_id'],
+            'contract_id' => $this->data['id'],
+        ]);
+    }
+
+    public function requestReturn()
+    {
+        try {
+            ContractFileReturned::create([
+                'contract_id' => $this->data['id'],
+                'description' => $this->return_description,
+            ]);
+            Cntr::where('id', $this->data['id'])->update([
+                'status' => Cntr::IS_RETURNED,
+            ]);
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'success',
+            'title' => 'Berhasil mengirim permintaan revisi']);
+            $this->revisionModal = false;
+
+            // Event Notifications
+
+            $this->emit('reloadContract');
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Gagal mengirim permintaan revisi']);
+        }
+    }
+
+    public function approve()
+    {
+        try {
+            Cntr::where('id', $this->data['id'])->update([
+                'status' => Cntr::IS_APPROVED,
+                'earn' => $this->data['deal_price'] - $this->data['fees'],
+            ]);
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'success',
+            'title' => 'Berhasil']);
+            $this->emit('reloadContract');
+        } catch (\Throwable $th) {
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Gagal']);
+        }
+        
+        // Event Notifications
     }
 
     public function updateDetails($id)

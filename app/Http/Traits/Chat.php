@@ -45,11 +45,11 @@ trait Chat {
     public function send($id) {
         try {
             $attachments = [ 
-                "id" => $this->idFiles['id'],
-                "path" => $this->idFiles['path'],
-                "type" => $this->idFiles['type'],
-                "old_name" => $this->idFiles['old_name'],
-                "new_name" => $this->idFiles['new_name'],
+                "id" => $this->idFiles['id'] ?? null,
+                "path" => $this->idFiles['path'] ?? null,
+                "type" => $this->idFiles['type'] ?? null,
+                "old_name" => $this->idFiles['old_name'] ?? null,
+                "new_name" => $this->idFiles['new_name'] ?? null,
             ];
             $this->data = [
                 "id" => rand(),
@@ -66,7 +66,9 @@ trait Chat {
             ]);
             $this->reset('message');
             broadcast(new MessageSent($this->user, $msg));
-            $this->flsRemove();
+            if(isset($this->picture) || isset($this->files)) {
+                $this->flsRemove();
+            }
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',

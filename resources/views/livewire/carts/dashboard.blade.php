@@ -41,7 +41,7 @@
                      <div class="p-5 bg-gray-800 rounded overflow-visible">
                         <span class="text-xl font-medium text-gray-100 block pb-3">Detail Penawaran</span>
                         @if($isSelectedProduct)
-                            @livewire('offers.dashboard')
+                            @livewire('offers.dashboard', ['mute' => false])
                             @else
                             <div class="text-center items-center pb-48 pt-36">
                                 <span class="text-gray-400">
@@ -56,7 +56,7 @@
                                 {{ __('Save') }}
                             </x-jet-button>
                             @endif
-                            @if(! empty($dataCart))
+                            @if(! empty($dataCart) && $isSaved)
                             <x-jet-button type="button" class="my-2 mx-1 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="negoAndnext" wire:loading.attr="disabled">
                                 {{ __('Lanjutkan & Nego') }}
                             </x-jet-button>

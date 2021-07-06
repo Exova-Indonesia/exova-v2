@@ -10,16 +10,19 @@
          <label class="text-xs text-gray-400 ">Mau ketemu penjualnya?</label>
          <x-switch-button wire:model="meetSeller" />
       </div>
+      @if(!$isMuted)
       <div class="flex justify-center flex-col pt-3">
          <label class="text-xs text-gray-400 ">Harga yang kamu inginkan</label> 
          <x-jet-input type="text" class="mt-1 block w-full border-gray-600 bg-gray-800 text-gray-400"
             x-ref="price"
             wire:model="price" />
       </div>
+      @endif
       <div class="flex justify-center flex-col pt-3">
          <label class="text-xs text-gray-400 ">Kapan kamu pengen kontrak ini berakhir?</label> 
          <x-jet-input type="date" class="mt-1 block w-full border-gray-600 bg-gray-800 text-gray-400"
             x-ref="contract_end"
+            min="{{ now()->addDays(2)->format('Y-m-d') }}"
             wire:model="contract_end" />
       </div>
    </div>
@@ -29,6 +32,7 @@
          <label class="text-xs text-gray-400 ">Kapan mau ketemu penjualnya?</label> 
          <x-jet-input type="date" class="mt-1 block w-full border-gray-600 bg-gray-800 text-gray-400"
             x-ref="meet_date"
+            min="{{ now()->addDays(2)->format('Y-m-d') }}"
             wire:model="meet_date" />
       </div>
       <div class="flex justify-center flex-col pt-3">

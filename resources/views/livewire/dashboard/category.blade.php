@@ -1,5 +1,5 @@
 <div>
-<section id="kategori" class="bg-gray-900 py-20 rounded-4xl">
+<section id="kategori" class="bg-pink-700 py-20 rounded-4xl">
    <div class="container items-center max-w-6xl px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
       <h2 class="text-3xl text-white font-bold leading-tight tracking-tight sm:text-4xl font-heading">Kategori Exova</h2>
    </div>
@@ -10,7 +10,7 @@
                <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
                   <div class="grid gap-10 lg:grid-cols-2">
                      <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
-                        <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-teal-accent-400">
+                        <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full">
                            <svg class="text-white w-7 h-7" viewBox="0 0 24 24">
                               <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points=" 8,5 8,1 16,1 16,5" stroke-linejoin="round"></polyline>
                               <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="9,15 1,15 1,5 23,5 23,15 15,15" stroke-linejoin="round"></polyline>

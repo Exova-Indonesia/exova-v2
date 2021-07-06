@@ -66,11 +66,44 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
+        <!-- Bio -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="bio" value="{{ __('Bio') }}" />
+            <x-simple-textarea-field type="text" class="mt-1 block w-full"
+                rows="5"
+                id="bio"
+                maxlength="200"
+                wire:model.defer="state.description">
+            </x-simple-textarea-field>
+            <x-jet-input-error for="bio" class="mt-2" />
+        </div>
+
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
+        </div>
+
+        <!-- Alamat -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="alamat" value="{{ __('Alamat') }}" />
+            <x-jet-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="state.locations" />
+            <x-jet-input-error for="alamat" class="mt-2" />
+        </div>
+
+        <!-- Roles -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="roles" value="{{ __('Keahlian') }}" />
+            <x-simple-select-field type="text" class="mt-1 block w-full"
+            placeholder="{{ __('Keahlian') }}"
+            id="roles"
+            wire:model.defer="state.role_id">
+            <option hidden selected>Pilih Keahlian</option>
+            <option value="2">Photographer</option>
+            <option value="3">Videographer</option>
+            </x-simple-select-field>
+            <x-jet-input-error for="roles" class="mt-2" />
         </div>
     </x-slot>
 

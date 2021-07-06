@@ -23,6 +23,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'alpha_dash',
             Rule::unique('users')->ignore($user->id)],
             'name' => ['required', 'string', 'max:255'],
+            'role_id' => ['integer'],
+            'description' => ['string', 'max:255'],
+            'locations' => ['string', 'max:125'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
@@ -37,8 +40,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'username' => $input['username'],
+                'description' => $input['description'],
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'role_id' => $input['role_id'] ?? 3,
+                'locations' => $input['locations'] ?? null,
             ])->save();
         }
     }
@@ -54,8 +60,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
+            'description' => $input['description'],
             'email' => $input['email'],
             'email_verified_at' => null,
+            'role_id' => $input['role_id'] ?? 3,
+            'locations' => $input['locations'] ?? null,
         ])->save();
 
         $user->sendEmailVerificationNotification();
