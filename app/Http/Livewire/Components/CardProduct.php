@@ -12,12 +12,18 @@ class CardProduct extends Component
 {
     use Cart, Wishlist;
     public $product;
+    public $reviews = 0;
     public $cart = array();
     protected $listeners = ["updateCardProduct" => 'render'];
 
     public function mount($product)
     {
         $this->product = $product;
+        foreach($this->product['requests'] as $item) {
+            if (! empty($item['contract']['feedback'])) {
+                $this->reviews += 1;
+            }
+        }
     }
 
     public function addToWish($id)

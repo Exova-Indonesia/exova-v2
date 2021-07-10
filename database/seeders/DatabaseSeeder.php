@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\PriceType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,21 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($data as $key => $value) {
             Role::create($value);
+        }
+
+        $data = [
+            [
+                "name" => "Per Project",
+            ],
+            [
+                "name" => "Per Jam",
+            ],
+            [
+                "name" => "Per Sesi",
+            ],
+        ];
+        foreach ($data as $key => $value) {
+            PriceType::create($value);
         }
     }
 }

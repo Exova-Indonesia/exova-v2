@@ -23,9 +23,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'alpha_dash',
             Rule::unique('users')->ignore($user->id)],
             'name' => ['required', 'string', 'max:255'],
-            'role_id' => ['integer'],
-            'description' => ['string', 'max:255'],
-            'locations' => ['string', 'max:125'],
+            'role_id' => ['nullable','integer'],
+            'description' => ['nullable','string', 'max:255'],
+            'locations' => ['nullable','string', 'max:125'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
@@ -33,7 +33,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
-
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);

@@ -13,10 +13,10 @@
         @if($title == 'notifikasi')
             @livewire('studios.components.notifikasi')
         @endif
-        @if($title == 'products')
+        @if($title == 'upload jasa')
             @livewire('studios.components.products')
         @endif
-        @if($title == 'orderan')
+        @if($title == 'kontrak')
             @livewire('studios.components.orders')
         @endif
         @if($title == 'invoices')

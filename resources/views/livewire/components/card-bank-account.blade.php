@@ -138,11 +138,13 @@
          <x-jet-secondary-button wire:click="$toggle('isOpenWd')" wire:loading.attr="disabled">
             {{ __('Cancel') }}
          </x-jet-secondary-button>
+        @if($isBtnActive)
          <x-jet-button class="ml-2"
             wire:click="setWithdraw"
             wire:loading.attr="disabled">
             {{ __('Tarik') }}
          </x-jet-button>
+        @endif
       </x-slot>
    </x-jet-dialog-modal>
 </div>

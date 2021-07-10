@@ -11,7 +11,7 @@ class Register extends Component
     {
         if(! in_array(auth()->user()->role_id, [User::IS_PHOTO, User::IS_VIDEO])) {
             $this->dispatchBrowserEvent('notification', 
-            ['type' => 'success',
+            ['type' => 'error',
             'title' => 'Kamu harus melengkapi semua kolom terlebih dahulu']);
         } else {
             return redirect(route('studio.dashboard', auth()->user()->username));

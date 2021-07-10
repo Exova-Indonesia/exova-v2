@@ -43,7 +43,9 @@ class Details extends Component
         $this->namaproject = $this->product['title'] ?? '';
         $this->deskripsi = $this->product['description'] ?? '';
         $this->tags = $this->product['tags'] ?? '';
-        $this->style = $this->product['style'] ?? '';
+        $this->style = $this->product['style_id'] ?? '';
+        // $this->kategori = $this->product['subcategory']['category']['id'] ?? '';
+        // $this->subkategori = $this->product['subcategory_id'] ?? '';
     }
 
     public function updatedKategori()
@@ -60,7 +62,7 @@ class Details extends Component
                 "seller_id" => auth()->user()->id,
             ],[
                 "uuid" => $this->uuid,
-                "slug" => Str::slug($this->namaproject),
+                "slug" => Str::slug($this->namaproject) . '-' . rand(0, 999),
                 "seller_id" => auth()->user()->id,
                 "subcategory_id" => $this->subkategori,
                 "style_id" => $this->style,

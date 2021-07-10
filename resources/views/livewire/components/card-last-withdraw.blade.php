@@ -22,10 +22,10 @@
             @foreach ($data['withdraw'] as $item)
             <tr tabindex="0" class="focus:outline-none h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
                <td class="pl-4 cursor-pointer">
-                  <p class="font-medium">{{ $item['created_at'] }}</p>
+                  <p class="font-medium">{{ $item['created_at']->format('F j, Y h:i a') }}</p>
                </td>
                <td class="pl-12">
-                  <p class="text-sm font-medium leading-none text-gray-800">{{ $item['amount'] }}</p>
+                  <p class="text-sm font-medium leading-none text-gray-800">{{ 'Rp' . number_format($item['amount'], 0, ',', '.') }}</p>
                </td>
                <td class="pl-12">
                 @if($item['status'])

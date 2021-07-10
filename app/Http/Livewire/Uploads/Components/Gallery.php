@@ -32,7 +32,7 @@ class Gallery extends Component
                 "uuid" => $this->uuid,
                 "seller_id" => auth()->user()->id,
             ],[
-                "youtube_url" => $this->urlyoutube,
+                "youtube_url" => $this->parsedUrlyoutube,
             ]);
             $this->emit("nextPage");
         } catch (\Throwable $th) {

@@ -70,9 +70,24 @@ class User extends Authenticatable
         return $this->hasOne(BankAccount::class, 'user_id');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'seller_id');
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class, 'seller_id');
+    }
+
+    public function contractSuccess()
+    {
+        return $this->hasMany(ContractSuccess::class, 'seller_id');
+    }
+
     public function revenue()
     {
-        return $this->belongsTo(Revenue::class, 'user_id');
+        return $this->hasMany(Revenue::class, 'user_id');
     }
 
     public function withdraw()

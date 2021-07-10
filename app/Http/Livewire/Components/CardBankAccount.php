@@ -12,6 +12,7 @@ class CardBankAccount extends Component
 {
     public $isOpen = false;
     public $isOpenWd = false;
+    public $isBtnActive = false;
     public $data;
     public $bank;
     public $banks;
@@ -59,6 +60,9 @@ class CardBankAccount extends Component
 
     public function setWithdraw()
     {
+        $this->validate([
+            'amount' => 'required|integer'
+        ]);
         try {
             $balance = $this->data['balance'] - (int) $this->amount;
             Withdraw::create([
@@ -82,9 +86,12 @@ class CardBankAccount extends Component
     {
         $this->data = auth()->user();
         if($this->amount > $this->data['balance'] && $this->isOpenWd) {
+            $this->isBtnActive = false;
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',
             'title' => 'Saldo kamu tidak cukup']);
+        } else {
+            $this->isBtnActive = true;
         }
         return view('livewire.components.card-bank-account');
     }

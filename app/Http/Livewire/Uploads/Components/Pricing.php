@@ -22,7 +22,6 @@ class Pricing extends Component
     protected $rules = [
         'harga' => 'required',
         'tipeharga' => 'required',
-        'hargaRevisian' => 'required',
         'jumlahrevisian' => 'required',
     ];
 
@@ -80,20 +79,20 @@ class Pricing extends Component
             ],[
                 "price" => $this->harga,
                 "price_type_id" => $this->tipeharga,
-                "revision_price" => $this->hargaRevisian,
+                // "revision_price" => $this->hargaRevisian,
                 "revision_amount" => $this->jumlahrevisian,
             ]);
-            foreach ($this->tambahan as $key => $value) {
-                $product = new ProductAdditional;
-                $product->updateOrCreate([
-                    'id' => $value['id'],
-                    'product_id' => $this->product['id'],
-                ],[
-                    'title' => $value['namatambahan'],
-                    'description' => $value['deskripsitambahan'],
-                    'price' => $value['hargatambahan'],
-                ]);
-            }
+            // foreach ($this->tambahan as $key => $value) {
+            //     $product = new ProductAdditional;
+            //     $product->updateOrCreate([
+            //         'id' => $value['id'],
+            //         'product_id' => $this->product['id'],
+            //     ],[
+            //         'title' => $value['namatambahan'],
+            //         'description' => $value['deskripsitambahan'],
+            //         'price' => $value['hargatambahan'],
+            //     ]);
+            // }
             $this->emit('nextPage');
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 

@@ -2,14 +2,16 @@
    <div class="mx-auto container bg-white dark:bg-gray-800 dark:bg-gray-800 shadow rounded">
       <div class="flex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full">
          <div class="w-full lg:w-1/3 flex flex-col lg:flex-row items-start lg:items-center">
+            @if(count($selectedProducts) > 0)
             <div class="flex items-center">
-               <x-delete-button class="bg-red-500 hover:bg-red-600 focus:border-red-600 active:bg-red-900" >
+               <x-delete-button class="bg-red-500 hover:bg-red-600 focus:border-red-600 active:bg-red-900" wire:click="deleteProduct">
                   {{ __('Delete') }}
                </x-delete-button>
             </div>
+            @endif
          </div>
          <div class="w-full lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-end">
-            <div class="flex items-center lg:border-l lg:border-r border-gray-300 py-3 lg:py-0 lg:px-6">
+            {{-- <div class="flex items-center lg:border-l lg:border-r border-gray-300 py-3 lg:py-0 lg:px-6">
                <p class="text-base text-gray-600 dark:text-gray-400" id="page-view">Viewing 1 - 20 of 60</p>
                <button class="text-gray-600 dark:text-gray-400 ml-2 border-transparent border cursor-pointer rounded focus:outline-none focus:ring-2 focus:ring-gray-500 " onclick="pageView(false)" aria-label="Goto previous page " role="button">
                   <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -23,7 +25,7 @@
                      <polyline points="9 6 15 12 9 18" />
                   </svg>
                </button>
-            </div>
+            </div> --}}
             <div class="lg:ml-6 flex items-center">
                <x-upload-button wire:click="openModal" class="ml-2 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900" >
                   {{ __('Upload') }}
@@ -31,7 +33,7 @@
             </div>
          </div>
       </div>
-      <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
+      <div class="w-full overflow-x-scroll overflow-y-scroll h-96 xl:overflow-x-hidden">
          <table class="min-w-full bg-white dark:bg-gray-800">
             <thead>
                <tr class="w-full h-16 border-gray-300 border-b py-8">

@@ -43,6 +43,15 @@ class TableProducts extends Component
         }
     }
 
+    public function deleteProduct()
+    {
+        try {
+            Product::whereIn('id', $this->selectedProducts)->delete();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
     public function render()
     {
         $this->product = Product::with('cover.getSmall')->where('seller_id', auth()->user()->id)->get();

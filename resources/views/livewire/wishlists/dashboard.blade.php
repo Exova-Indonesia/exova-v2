@@ -11,10 +11,20 @@
                <div class="flex flex-col w-screen min-h-screen p-10 bg-gray-100 text-gray-800">
                   <div class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-6 gap-y-12 w-full mt-6">
                      @forelse ($product as $item)
+                     @if(! empty($item['product']))
                      <!-- Product Tile Start -->
                      <livewire:components.card-product :product="$item['product']" :wire:key="$item->id">
                      <!-- Product Tile End -->
+                     @endif
                      @empty
+                        <div class="flex flex-col">
+                            <div class="m-auto">
+                            <img src="{{ asset('/icons/emtproduct.svg') }}" alt="">
+                            </div>
+                            <div>
+                            <p class="py-2 text-center">Sepertinya kamu belum memiliki wishlist</p>
+                            </div>
+                        </div>
                      @endforelse
                   </div>
                   <!-- Component End  -->

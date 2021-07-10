@@ -3,7 +3,6 @@
                       <div class="chat-header bg-red-500 border-red-300 border-b px-6 py-4 flex flex-row flex-none justify-center items-center">
                   <div class="flex">
                      <div class="text-sm text-gray-100">
-
                         <p>{{ __('Good news! Khusus untuk kamu, boleh bayar banyak kontrak dalam sekali klik') }}
                         </p>
                      </div>
@@ -27,7 +26,6 @@
                                     <th role="columnheader" class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">Price</th>
                                     <th role="columnheader" class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">Meet Seller</th>
                                     <th role="columnheader" class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">Due Date</th>
-                                    <th role="columnheader" class="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">Meet Date</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -61,7 +59,6 @@
                                         @endif
                                     </td>
                                     <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">{{ $item['requests']['due_at']->format('F j, h:i a') }}</td>
-                                    <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">{{ $item['requests']['meet_at']->format('F j, h:i a') }}</td>
                                 </tr>
                                 @endforeach
                               </tbody>
@@ -93,7 +90,7 @@
                                    <span class="text-md font-medium text-gray-400 block">Kupon</span>
                                </div>
                                <div>
-                                   <span class="cursor-pointer text-md font-medium text-blue-400 hover:text-blue-500 duration-500 block">Pilih Kupon</span>
+                                   <span wire:click="$toggle('couponModal')" class="cursor-pointer text-md font-medium text-blue-400 hover:text-blue-500 duration-500 block">Pilih Kupon</span>
                                </div>
                            </div>
                            <div class="py-4 border-t border-gray-600 flex justify-between">
@@ -155,4 +152,31 @@
          </div>
       </div>
    </div>
+     <x-jet-dialog-modal wire:model="couponModal">
+      <x-slot name="title">
+            <span class="text-gray-800">
+                {{ __('Input Kode Kupon') }}
+            </span>
+      </x-slot>
+      <x-slot name="content">
+          <div class="mt-4">
+            {{-- Kode Kupon --}}
+            <x-jet-label for="name" value="{{ __('Kode Kupon') }}" />
+            <x-jet-input type="text" class="mt-1 block w-full"
+               id="coupon"
+               wire:model="coupon" />
+            <x-jet-input-error for="coupon" class="mt-2" />
+          </div>
+      </x-slot>
+      <x-slot name="footer">
+          <x-jet-secondary-button wire:click="$toggle('couponModal')" wire:loading.attr="disabled">
+              {{ __('Cancel') }}
+          </x-jet-secondary-button>
+          <x-jet-button class="ml-2"
+                wire:click="setCoupon"
+                wire:loading.attr="disabled">
+            {{ __('Pakai') }}
+          </x-jet-button>
+      </x-slot>
+  </x-jet-dialog-modal>
 </div>

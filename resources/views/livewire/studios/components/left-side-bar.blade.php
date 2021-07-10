@@ -47,7 +47,6 @@
                      </svg>
                      <span class="text-sm ml-2">Dashboard</span>
                   </a>
-                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">5</div>
                </li>
                <li wire:click="loadContent('notifikasi')"  class="flex w-full justify-between  @if($title == 'notifikasi') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
                   <a class="flex items-center focus:outline-none ">
@@ -65,18 +64,18 @@
                      </svg>
                      <span class="text-sm ml-2">Pesan</span>
                   </a>
-                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">8</div>
+                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">{{ $messages }}</div>
                </li>
-               <li wire:click="loadContent('products')"  class="flex w-full justify-between  @if($title == 'products') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
+               <li wire:click="loadContent('upload jasa')"  class="flex w-full justify-between  @if($title == 'products') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
                   <a class="flex items-center focus:outline-none ">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                      </svg>
-                     <span class="text-sm ml-2">Products</span>
+                     <span class="text-sm ml-2">Upload Jasa</span>
                   </a>
-                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">8</div>
+                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">{{ $products }}</div>
                </li>
-               <li wire:click="loadContent('tools')"  class="flex w-full justify-between  @if($title == 'tools') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
+               {{-- <li wire:click="loadContent('tools')"  class="flex w-full justify-between  @if($title == 'tools') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
                   <a class="flex items-center focus:outline-none ">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -84,16 +83,17 @@
                      </svg>
                      <span class="text-sm ml-2">Tools</span>
                   </a>
-               </li>
-               <li wire:click="loadContent('orderan')"  class="flex w-full justify-between  @if($title == 'orderan') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
+               </li> --}}
+               <li wire:click="loadContent('kontrak')"  class="flex w-full justify-between  @if($title == 'orderan') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
                   <a class="flex items-center focus:outline-none " >
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                      </svg>
-                     <span class="text-sm ml-2">Orderan</span>
+                     <span class="text-sm ml-2">Kontrak</span>
                   </a>
+                  <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">{{ $contracts }}</div>
                </li>
-               <li wire:click="loadContent('invoices')"  class="flex w-full justify-between  @if($title == 'invoices') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
+               {{-- <li wire:click="loadContent('invoices')"  class="flex w-full justify-between  @if($title == 'invoices') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
                   <a class="flex items-center focus:outline-none ">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -101,7 +101,7 @@
                      <span class="text-sm ml-2">Invoices</span>
                   </a>
                   <div class="py-1 px-3 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">25</div>
-               </li>
+               </li> --}}
                <li wire:click="loadContent('pendapatan')"  class="flex w-full justify-between  @if($title == 'pendapatan') text-gray-300 @else text-gray-400 hover:text-gray-300 @endif cursor-pointer items-center mb-6">
                   <a class="flex items-center focus:outline-none ">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -144,13 +144,13 @@
          <div class="px-8 border-t border-gray-700">
             <ul class="w-full flex items-center justify-between bg-gray-900">
                <li class="cursor-pointer text-white pt-5 pb-3">
-                  <button aria-label="show notifications" class="focus:outline-none  rounded ">
+                  <a href="{{ url('/dashboard') }}" aria-label="back" class="focus:outline-none  rounded ">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                      </svg>
-                  </button>
+                  </a>
                </li>
-               <li class="cursor-pointer text-white pt-5 pb-3">
+               {{-- <li class="cursor-pointer text-white pt-5 pb-3">
                   <button aria-label="open logs" class="focus:outline-none  rounded ">
                      <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z"></path>
@@ -159,7 +159,7 @@
                         <line x1="10" y1="12" x2="14" y2="12"></line>
                      </svg>
                   </button>
-               </li>
+               </li> --}}
             </ul>
          </div>
       </div>

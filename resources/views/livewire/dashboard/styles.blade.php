@@ -4,7 +4,7 @@
       <h2 class="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading">Styles Exova</h2>
       <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6">
          <div class="rounded transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-            <div class="w-full h-64 flex flex-col justify-between bg-purple-600 rounded-3xl mb-6 py-5 px-4">
+            <div class="w-full h-64 flex flex-col justify-between bg-purple-600 rounded-t-lg rounded-l-lg mb-6 py-5 px-4">
                <div>
                   <h4 class="text-gray-50 dark:text-gray-100 font-bold mb-3">Balinese Style</h4>
                   <p class="text-gray-50 dark:text-gray-100 text-sm">Our interior design experts work with you to create the space that you have been dreaming about.</p>
@@ -22,7 +22,7 @@
             </div>
          </div>
          <div class="rounded transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-            <div class="w-full h-64 flex flex-col justify-between bg-indigo-600 rounded-3xl mb-6 py-5 px-4">
+            <div class="w-full h-64 flex flex-col justify-between bg-indigo-600 rounded-t-lg rounded-l-lg mb-6 py-5 px-4">
                <div>
                   <h4 class="text-gray-50 dark:text-gray-100 font-bold mb-3">Casual Style</h4>
                   <p class="text-gray-50 dark:text-gray-100 text-sm">Our interior design experts work with you to create the space that you have been dreaming about.</p>
@@ -40,7 +40,7 @@
             </div>
          </div>
          <div class="rounded transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
-            <div class="w-full h-64 flex flex-col justify-between bg-pink-600 rounded-3xl  mb-6 py-5 px-4">
+            <div class="w-full h-64 flex flex-col justify-between bg-pink-600 rounded-t-lg rounded-l-lg  mb-6 py-5 px-4">
                <div>
                   <h4 class="text-gray-50 dark:text-gray-100 font-bold mb-3">Javanese Style</h4>
                   <p class="text-gray-50 dark:text-gray-100 text-sm">Our interior design experts work with you to create the space that you have been dreaming about.</p>

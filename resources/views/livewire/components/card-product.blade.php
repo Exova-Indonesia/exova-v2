@@ -4,7 +4,7 @@
          <img src="{{ $product['cover']['getSmall']['path'] }}" alt=" random imgee" class="w-full h-60 object-cover rounded-lg shadow-md">    
          <div class="relative -mt-6 transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
             <div class="p-4 bg-white rounded-3xl shadow-lg">
-               <a href="{{ url('product/details/' . $product['slug']) }}">
+               <a href="{{ url('products/' . $product['slug']) }}">
                   <span class="inline-block px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{ $product['subcategory']['name'] }}</span>
                   <h2 class="mt-2 mb-2  font-bold">{{ substr($product['title'], 0, 25) }} {{  (strlen($product['title']) > 25) ? '. . .' : '' }}</h2>
                   <p class="text-sm">{{ substr($product['description'], 0, 30) }} {{  (strlen($product['description']) > 30) ? '. . .' : '' }}</p>
@@ -36,7 +36,7 @@
                   </div>
                   <div class="mt-3">
                      <span class="text-sm font-semibold">
-                     0 Reviews
+                     {{ $reviews }} Feedbacks
                      </span>
                   </div>
                </div>

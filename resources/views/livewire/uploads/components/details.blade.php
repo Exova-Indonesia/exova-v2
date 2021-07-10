@@ -66,11 +66,11 @@
          </div>
       </div>
    </div>
-   <div class="mt-2 flex flex-col w-full lg:col-span-2">
+   {{-- <div class="mt-2 flex flex-col w-full lg:col-span-2">
       <x-jet-label for="tags" value="{{ __('Tags') }}" />
       <x-jet-input type="text" class="mt-1 block w-full"
          placeholder="{{ __('Tags') }}"
          x-ref="tags"
          wire:model="tags" />
-   </div>
+   </div> --}}
 </div>

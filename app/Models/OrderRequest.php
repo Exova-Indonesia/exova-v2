@@ -42,6 +42,11 @@ class OrderRequest extends Model
         return $this->belongsTo(Location::class, 'location_id');
     }
 
+    public function contract()
+    {
+        return $this->hasOne(Contract::class, 'request_id');
+    }
+
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id');

@@ -51,8 +51,23 @@ class Product extends Model
         return $this->belongsTo(ProductImageDimension::class, 'cover_id');
     }
 
+    public function seller()
+    {
+        return $this->belongsTo(User::class, 'seller_id');
+    }
+
+    public function pricetype()
+    {
+        return $this->belongsTo(PriceType::class, 'price_type_id');
+    }
+
     public function tambahan()
     {
         return $this->hasMany(ProductAdditional::class, 'product_id');
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(OrderRequest::class, 'product_id');
     }
 }

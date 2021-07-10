@@ -6,6 +6,7 @@ use App\Models\Xpoint;
 use App\Models\Revenue;
 use Illuminate\Support\Str;
 use App\Models\OrderRequest;
+use App\Events\ContractEvent;
 use App\Models\ContractSuccess;
 use App\Models\Contract as Cntr;
 use App\Models\ContractCanceled;
@@ -39,11 +40,11 @@ trait Contract
                 'deal_price' => $fetchRequest->price,
                 'fees' => $this->f,
                 'status' => Cntr::IS_WAITING_PAYMENT,
-                'start_at' => null,
+                'start_at' => now(),
                 'end_at' => null,
             ]);
 
-            // Event Notifications
+            event(new ContractEvent($this->contract));
 
             return redirect(url('contracts/' . $this->contract['uuid']));
         } catch (\Throwable $th) {
@@ -76,6 +77,8 @@ trait Contract
             'user_id' => $this->data['seller_id'],
             'value' => 5,
         ]);
+
+        event(new ContractEvent($this->data));
     }
 
     public function cancel()
@@ -85,6 +88,8 @@ trait Contract
             'seller_id' => $this->data['seller_id'],
             'contract_id' => $this->data['id'],
         ]);
+
+        event(new ContractEvent($this->data));
     }
 
     public function requestReturn()
@@ -102,9 +107,8 @@ trait Contract
             'title' => 'Berhasil mengirim permintaan revisi']);
             $this->revisionModal = false;
 
-            // Event Notifications
-
             $this->emit('reloadContract');
+            event(new ContractEvent($this->data));
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',
@@ -123,13 +127,12 @@ trait Contract
             ['type' => 'success',
             'title' => 'Berhasil']);
             $this->emit('reloadContract');
+            event(new ContractEvent($this->data));
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',
             'title' => 'Gagal']);
         }
-        
-        // Event Notifications
     }
 
     public function updateDetails($id)

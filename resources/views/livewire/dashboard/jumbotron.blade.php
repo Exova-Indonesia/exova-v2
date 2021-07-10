@@ -16,8 +16,8 @@
                         Exova Indonesia is the first platform which cover all things related to Traditional & Culture Documentation
                      </p>
                      <div>
-                        <a class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full transition delay-150 duration-300 ease-in-out lg:w-auto py-2 px-6 leading-loose bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-l-xl rounded-t-xl transition duration-200" href="{{ url('products') }}">Cari Jasa</a>
-                        <a class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full transition delay-150 duration-300 ease-in-out lg:w-auto py-2 px-6 leading-loose bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-l-xl rounded-t-xl transition duration-200" href="{{ url('user/studio/' . auth()->user()->username) }}">Jual Jasa</a>
+                        <a class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full transition delay-150 duration-300 ease-in-out lg:w-auto py-2 px-6 leading-loose bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-t-full rounded-l-full transition duration-200" href="{{ url('products') }}">Cari Jasa</a>
+                        <a class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full transition delay-150 duration-300 ease-in-out lg:w-auto py-2 px-6 leading-loose bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-t-full rounded-l-full transition duration-200" href="{{ url('user/studio/' . auth()->user()->username) }}">Jual Jasa</a>
                      </div>
                   </div>
                </div>

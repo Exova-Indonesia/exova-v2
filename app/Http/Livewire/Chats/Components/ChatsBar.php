@@ -21,6 +21,9 @@ class ChatsBar extends Component
 {
     use Chat, WithFileUploads, UploadFiles, Download, Contract;
     public $isUpload = false;
+    public $detailModal = false;
+    public $declineModal = false;
+    public $sendTawaranModal = false;
     public $session;
     public $request;
     public $ext;
@@ -60,6 +63,12 @@ class ChatsBar extends Component
         $this->trollMsg = "Nah gitu dong, Bentar aja kok ga lama";
     }
 
+    public function updateRequest()
+    {
+        $this->emit('updateDbRequest');
+        $this->sendTawaranModal = false;
+    }
+
     public function downloadFile($name)
     {
         $this->download($this->directory, $name);
@@ -78,6 +87,35 @@ class ChatsBar extends Component
     public function approve()
     {
         $this->createContract();
+    }
+
+    public function decline()
+    {
+        $this->declineOrder($this->request['id']);
+    }
+
+    public function fetchOrderReq()
+    {
+        $this->sendTawaranModal = true;
+        $this->emit('fetchOrderReq', $this->request);
+    }
+
+    
+    private function declineOrder($id)
+    {
+        try {
+            OrderRequest::where('id', $id)->update([
+                'status' => OrderRequest::IS_DECLINED,
+            ]);
+            $this->declineModal = false;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function ruangKontrak($id)
+    {
+        return redirect(url('contracts/' . $id));
     }
 
     private function removePicture()

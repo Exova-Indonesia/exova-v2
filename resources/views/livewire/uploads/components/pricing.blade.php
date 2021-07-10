@@ -10,14 +10,14 @@
                 x-ref="harga" />
             @error('harga') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror
             </div>
-            <div class="mt-2 flex flex-col mt-4">
+            {{-- <div class="mt-2 flex flex-col mt-4">
             <x-jet-label for="hargaRevisian" value="{{ __('Harga Revisian') }}" />
             <x-jet-input type="text" class="my-1 block w-full"
                 placeholder="{{ __('Rp') }}"
                 x-ref="hargaRevisian"
                 wire:model="hargaRevisian" />
                 @error('hargaRevisian') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror
-            </div>
+            </div> --}}
         </div>
         <div class="w-full">
             <div class="mt-2 flex flex-col mt-4">
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    @if (count($tambahan) < 3)
+    {{-- @if (count($tambahan) < 3)
     <div class="flex justify-end">
         <x-jet-button wire:click="AddTambahan" class="mt-4 justify-end flex bg-green-500 hover:bg-green-600 focus:border-green-300 active:bg-green-900">
             {{ __('Tambahan') }}
@@ -91,5 +91,5 @@
         </div>
 
     </div>
-    @endforeach
+    @endforeach --}}
 </div>

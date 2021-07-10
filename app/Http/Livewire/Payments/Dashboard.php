@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Payments;
 
 use Midtrans\Config;
+use App\Models\Coupon;
 use Livewire\Component;
 use App\Models\Contract;
 use App\Http\Traits\Payment;
@@ -19,8 +20,10 @@ class Dashboard extends Component
     public $payment_id;
     public $selectedProducts = [];
     public $selectAll = false;
+    public $couponModal = false;
     public $contract;
     public $totalContract;
+    public $coupon;
     public $subtotal;
     public $adminfee;
     public $discount;
@@ -64,9 +67,20 @@ class Dashboard extends Component
         $this->adminfee = $this->subtotal * 0.02;
     }
 
-    public function couponRedemtion()
+    public function setCoupon()
     {
-        # code...
+        $coupon = Coupon::where('code', $this->coupon)->first();
+        if(! empty($coupon)) {
+            $this->discount = $coupon->amount;
+            $this->couponModal = false;
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'success',
+            'title' => 'Selamat! kamu mendapatkan potongan sebesar' . 'Rp' . number_format($coupon->amount, 0, ',', '.')]);
+        } else {
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Kupon tidak valid atau telah kedaluarsa']);
+        }
     }
 
     public function setPayment()

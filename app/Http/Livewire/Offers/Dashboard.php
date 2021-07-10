@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Offers;
 use Livewire\Component;
 use App\Models\Location;
 use App\Http\Traits\Cart;
+use App\Models\OrderRequest;
 use App\Http\Traits\CreateOrderRequests;
 
 class Dashboard extends Component
@@ -28,10 +29,11 @@ class Dashboard extends Component
     public $job_description;
     public $meetSeller;
     public $location;
+    public $orderreq;
     public $order;
     public $isMuted = false;
 
-    protected $listeners = ["selectProduct", "saveToSession", "updateLocation", "updateOrderRequest"];
+    protected $listeners = ["fetchOrderReq", "updateDbRequest", "selectProduct", "saveToSession", "updateLocation", "updateOrderRequest"];
 
     public function selectProduct($cartDetail)
     {
@@ -47,6 +49,47 @@ class Dashboard extends Component
         if($this->meetSeller) {
             $this->dispatchBrowserEvent('maps:load');
         }
+    }
+
+    public function fetchOrderReq($data)
+    {
+        $this->orderreq = $data;
+        $this->namaproject = $data['title'];
+        $this->meetSeller = $data['is_meet_seller'];
+        $this->price = $data['price'];
+        $this->meet_date = explode('T', $data['meet_at'])[0] ?? '';
+        $this->meet_time = explode('T',explode('.', $data['meet_at'])[0])[1] ?? '';
+        $this->job_description = $data['description'];
+        $this->location = Location::where('id', $data['location_id'])->first();
+        $this->meet_location = $this->location['address'];
+        $this->contract_end = explode('T', $data['due_at'])[0];
+        if($this->meetSeller) {
+            $this->dispatchBrowserEvent('maps:load');
+        }
+    }
+
+    public function updateDbRequest() {
+        $data = array(
+            "id" => $this->orderreq['id'],
+            "location_id" => $this->orderreq['location_id'],
+            "title" => $this->namaproject,
+            "job_description" => $this->job_description,
+            "is_meet_seller" => $this->meetSeller,
+            "price" => $this->price,
+            "contract_end" => $this->contract_end ?? now()->addDays(10)->format('Y-m-d H:i:s'),
+            "meet_date" => $this->meet_date ?? now()->addDays(10)->format('Y-m-d'),
+            "meet_time" => $this->meet_time ?? now()->addDays(10)->format('H:i:s'),
+            "meet_location" => $this->meet_location,
+            "addr_name" => $this->addr_name,
+            "village" => $this->village,
+            "district" => $this->district,
+            "city" => $this->city,
+            "state" => $this->state,
+            "country" => $this->country,
+            "latitude" => $this->latitude,
+            "longitude" => $this->longitude,
+        );
+        $this->updateRequest($data);
     }
 
     public function mount($mute, $data = null)

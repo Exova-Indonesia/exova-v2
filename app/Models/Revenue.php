@@ -13,4 +13,9 @@ class Revenue extends Model
         'contract_id',
         'amount',
     ];
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class, 'contract_id');
+    }
 }

@@ -89,7 +89,7 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="alamat" value="{{ __('Alamat') }}" />
             <x-jet-input id="alamat" type="text" class="mt-1 block w-full" wire:model.defer="state.locations" />
-            <x-jet-input-error for="alamat" class="mt-2" />
+            <x-jet-input-error for="locations" class="mt-2" />
         </div>
 
         <!-- Roles -->
@@ -103,7 +103,7 @@
             <option value="2">Photographer</option>
             <option value="3">Videographer</option>
             </x-simple-select-field>
-            <x-jet-input-error for="roles" class="mt-2" />
+            <x-jet-input-error for="role_id" class="mt-2" />
         </div>
     </x-slot>
 

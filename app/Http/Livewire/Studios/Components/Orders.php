@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Studios\Components;
 
 use Livewire\Component;
+use App\Models\Contract;
+use App\Models\OrderRequest;
 
 class Orders extends Component
 {
@@ -13,6 +15,9 @@ class Orders extends Component
     }
     public function render()
     {
-        return view('livewire.studios.components.orders');
+        return view('livewire.studios.components.orders', [
+            'orders' => OrderRequest::where('seller_id', auth()->user()->id)->get(),
+            'contracts' => Contract::where('seller_id', auth()->user()->id)->get(),
+        ]);
     }
 }

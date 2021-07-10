@@ -19,18 +19,18 @@
                <path d="M11.1735916,16.8264084 C7.57463481,15.3079672 4.69203285,12.4253652 3.17359164,8.82640836 L5.29408795,6.70591205 C5.68612671,6.31387329 6,5.55641359 6,5.00922203 L6,0.990777969 C6,0.45097518 5.55237094,3.33066907e-16 5.00019251,3.33066907e-16 L1.65110039,3.33066907e-16 L1.00214643,8.96910337e-16 C0.448676237,1.13735153e-15 -1.05725384e-09,0.445916468 -7.33736e-10,1.00108627 C-7.33736e-10,1.00108627 -3.44283713e-14,1.97634814 -3.44283713e-14,3 C-3.44283713e-14,12.3888407 7.61115925,20 17,20 C18.0236519,20 18.9989137,20 18.9989137,20 C19.5517984,20 20,19.5565264 20,18.9978536 L20,18.3488996 L20,14.9998075 C20,14.4476291 19.5490248,14 19.009222,14 L14.990778,14 C14.4435864,14 13.6861267,14.3138733 13.2940879,14.7059121 L11.1735916,16.8264084 Z"/>
             </svg>
          </a>
-         <a href="#" class="block rounded-full hover:bg-gray-700 bg-gray-800 w-10 h-10 p-3 ml-4">
-            <svg viewBox="0 0 20 20" class="w-full h-full fill-current text-blue-500">
-               <path d="M2.92893219,17.0710678 C6.83417511,20.9763107 13.1658249,20.9763107 17.0710678,17.0710678 C20.9763107,13.1658249 20.9763107,6.83417511 17.0710678,2.92893219 C13.1658249,-0.976310729 6.83417511,-0.976310729 2.92893219,2.92893219 C-0.976310729,6.83417511 -0.976310729,13.1658249 2.92893219,17.0710678 Z M9,11 L9,10.5 L9,9 L11,9 L11,15 L9,15 L9,11 Z M9,5 L11,5 L11,7 L9,7 L9,5 Z"/>
+         <a href="{{ url('/dashboard') }}" class="block rounded-full hover:bg-gray-700 bg-gray-800 w-10 h-10 p-3 ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full fill-current text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
             </svg>
          </a>
       </div>
    </div>
    <div class="cursor-pointer bg-blue-600 duration-500 px-6 py-2 flex flex-row flex-none justify-between items-center shadow">
-      @if($seller)
       <div class="flex justify-end">
-         Tawaran
+         Tawaran {{ ($request['status'] == App\Models\OrderRequest::IS_DECLINED) ? ' Ditolak' : '' }}
       </div>
+      @if($seller)
       <div class="flex justify-start">
          @if($request['status'] == App\Models\OrderRequest::IS_REQUESTED)
          <div class="flex">
@@ -39,34 +39,45 @@
             </x-jet-button>
          </div>
          <div class="flex">
-            <x-jet-button wire:click="decline" type="button" class="my-2 mx-1 bg-red-500 hover:bg-red-600 focus:border-red-600 active:bg-red-900">
+            <x-jet-button wire:click="$toggle('declineModal')" type="button" class="my-2 mx-1 bg-red-500 hover:bg-red-600 focus:border-red-600 active:bg-red-900">
                {{ __('Decline') }}
             </x-jet-button>
          </div>
          @endif
          <div class="flex">
-            <x-jet-button wire:click="detail" type="button" class="my-2 mx-1 bg-yellow-500 hover:bg-yellow-600 focus:border-yellow-600 active:bg-yellow-900">
+            <x-jet-button wire:click="$toggle('detailModal')" type="button" class="my-2 mx-1 bg-yellow-500 hover:bg-yellow-600 focus:border-yellow-600 active:bg-yellow-900">
                {{ __('Detail') }}
             </x-jet-button>
          </div>
+         @if(! empty($request['contract']))
+         <div class="flex">
+            <x-jet-button wire:click="ruangKontrak('{{ $request['contract']['uuid'] }}')" type="button" class="my-2 mx-1 bg-purple-500 hover:bg-purple-600 focus:border-red-600 active:bg-red-900">
+               {{ __('Ruang Kontrak') }}
+            </x-jet-button>
+         </div>
+         @endif
       </div>
       @else
-      <div class="flex justify-end">
-         Tawaran
-      </div>
       <div class="flex justify-start">
          @if($request['status'] == App\Models\OrderRequest::IS_REQUESTED)
          <div class="flex">
-            <x-jet-button type="button" class="my-2 mx-1 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900">
+            <x-jet-button wire:click="fetchOrderReq" type="button" class="my-2 mx-1 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900">
                {{ __('Kirim Tawaran') }}
             </x-jet-button>
          </div>
          @else
          <div class="flex">
-            <x-jet-button wire:click="detail" type="button" class="my-2 mx-1 bg-yellow-500 hover:bg-yellow-600 focus:border-yellow-600 active:bg-yellow-900">
+            <x-jet-button wire:click="$toggle('detailModal')" type="button" class="my-2 mx-1 bg-yellow-500 hover:bg-yellow-600 focus:border-yellow-600 active:bg-yellow-900">
                {{ __('Detail') }}
             </x-jet-button>
          </div>
+         @if(! empty($request['contract']))
+         <div class="flex">
+            <x-jet-button wire:click="ruangKontrak('{{ $request['contract']['uuid'] }}')" type="button" class="my-2 mx-1 bg-purple-500 hover:bg-purple-600 focus:border-red-600 active:bg-red-900">
+               {{ __('Ruang Kontrak') }}
+            </x-jet-button>
+         </div>
+         @endif
          @endif
       </div>
       @endif
@@ -202,4 +213,122 @@
    </div>
    <!--code for notification ends-->
    @endif
+   
+   <x-jet-dialog-modal wire:model="detailModal">
+      <x-slot name="title">
+         <span class="text-gray-800">
+             {{ __('Detail Tawaran Kontrak') }}
+         </span>
+      </x-slot>
+      
+      <x-slot name="content">
+         <div class="mt-4">
+            <table class="w-full text-gray-800">
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Project</td>
+                  <td class="text-right p-2">{{ $request['title'] }}</td>
+               </tr>
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Deskripsi</td>
+                  <td class="text-right p-2">{{ $request['description'] }}</td>
+               </tr>
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Maksimal Revisi</td>
+                  <td class="text-right p-2">{{ $request['max_return'] .' Kali' }}</td>
+               </tr>
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Ketemu Seller?</td>
+                  <td class="text-right p-2">
+                     @if($request['is_meet_seller'])
+                     <div>
+                        <span class="cursor-pointer duration-500 py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
+                        Ya
+                        </span>
+                     </div>
+                     @else
+                     <div>
+                        <span class="cursor-pointer duration-500 py-2 px-4 text-xs leading-3 text-red-700 rounded-full bg-red-100">
+                        Tidak
+                        </span>
+                     </div>
+                     @endif
+                  </td>
+               </tr>
+               @if($request['is_meet_seller'])
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Ketemu Kapan?</td>
+                  <td class="text-right p-2">{{ $request['meet_at']->format('F j, Y h:i a') }}</td>
+               </tr>
+               @endif
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Harga</td>
+                  <td class="text-right p-2">{{ 'Rp' . number_format($request['price'], 0, ',', '.') }}</td>
+               </tr>
+               @if($detailModal)
+               <tr class="border-b border-gray-200">
+                  <td class="p-2">Deadline</td>
+                  <td class="text-right p-2">{{ $request['due_at']->format('F j, Y h:i a') }}</td>
+               </tr>
+               @endif
+            </table>
+         </div>
+      </x-slot>
+      <x-slot name="footer">
+         <x-jet-secondary-button wire:click="$toggle('detailModal')" wire:loading.attr="disabled">
+             {{ __('Tutup') }}
+         </x-jet-secondary-button>
+      </x-slot>
+  </x-jet-dialog-modal>
+
+   <x-jet-dialog-modal wire:model="declineModal">
+      <x-slot name="title">
+         <span class="text-gray-800">
+             {{ __('Detail Tawaran Kontrak') }}
+         </span>
+      </x-slot>
+      
+      <x-slot name="content">
+         <span class="text-gray-600">
+           {{ __('Udah yakin mau ditolak begitu saja?') }}
+         </span>
+      </x-slot>
+      <x-slot name="footer">
+         <x-jet-secondary-button wire:click="$toggle('declineModal')" wire:loading.attr="disabled">
+             {{ __('Tutup') }}
+         </x-jet-secondary-button>
+         <x-jet-button class="ml-2 bg-red-500 hover:bg-red-600"
+            wire:click="decline"
+            wire:loading.attr="disabled">
+            {{ __('Yakin') }}
+         </x-jet-button>
+      </x-slot>
+  </x-jet-dialog-modal>
+
+   <x-jet-dialog-modal wire:model="sendTawaranModal">
+      <x-slot name="title">
+         <span class="text-gray-800">
+             {{ __('Detail Tawaran Kontrak') }}
+         </span>
+      </x-slot>
+      
+      <x-slot name="content">
+         <span class="text-gray-600">
+           {{ __('Lengkapi semua kolom dengan baik dan benar') }}
+         </span>
+         <div class="mt-4">
+            @livewire('offers.dashboard', ['mute' => false])
+         </div>
+      </x-slot>
+      <x-slot name="footer">
+         <x-jet-secondary-button wire:click="$toggle('sendTawaranModal')" wire:loading.attr="disabled">
+             {{ __('Tutup') }}
+         </x-jet-secondary-button>
+         <x-jet-button class="ml-2 bg-gray-500 hover:bg-gray-600"
+            wire:click="updateRequest"
+            wire:loading.attr="disabled">
+            {{ __('Kirim') }}
+         </x-jet-button>
+      </x-slot>
+  </x-jet-dialog-modal>
+  
 </div>

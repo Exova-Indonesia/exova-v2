@@ -1,12 +1,12 @@
 <div>
 <section class="relative bg-purple-700 rounded-4xl -mt-16 w-full">
-   <div class="container items-center max-w-6xl py-20 px-4 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
-      <h2 class="mb-4 text-3xl text-white font-bold leading-tight tracking-tight sm:text-4xl font-heading">Testimonials</h2>
+   <div class="container items-center max-w-6xl py-20 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
+      <h2 class="mb-4 text-lg text-white font-bold leading-tight tracking-tight sm:text-4xl font-heading">Testimonials</h2>
       <figure class="visible">
          <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-            <div class="w-full bg-white -rotate-2 rounded-3xl transform hover:-translate-y-1 hover:rotate-3 transition duration-500 ease-in-out">
-               <div class="shadow-lg">
-                  <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-3xl">
+            <div class="w-full bg-white -rotate-2 rounded-lg transform hover:-translate-y-1 hover:rotate-3 transition duration-500 ease-in-out">
+               <div class="">
+                  <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-lg">
                      <h1 class="text-xl text-white pb-1">Alex Parkinson</h1>
                      <p class="text-base text-indigo-200">AlphaSquad LLC</p>
                   </div>
@@ -28,9 +28,9 @@
                   </div>
                </div>
             </div>
-            <div class="w-full bg-white rounded-3xl rotate-2 rounded-3xl transform hover:-translate-y-1 hover:-rotate-3 transition duration-500 ease-in-out">
-               <div class="shadow-lg">
-                  <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-3xl">
+            <div class="w-full bg-white rounded-lg rotate-2  transform hover:-translate-y-1 hover:-rotate-3 transition duration-500 ease-in-out">
+               <div class="">
+                  <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-lg">
                      <h1 class="text-xl text-white pb-1">Ashley Wilson</h1>
                      <p class="text-base text-indigo-200">i-Intellect Inc</p>
                   </div>
@@ -52,9 +52,9 @@
                   </div>
                </div>
             </div>
-            <div class="w-full bg-white rounded-3xl -rotate-2 rounded-3xl transform hover:-translate-y-1 hover:rotate-3 transition duration-500 ease-in-out">
-               <div class="shadow-lg">
-                  <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-3xl">
+            <div class="w-full bg-white rounded-lg -rotate-2  transform hover:-translate-y-1 hover:rotate-3 transition duration-500 ease-in-out">
+               <div class="">
+                  <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-lg">
                      <h1 class="text-xl text-white pb-1">Richard Clark</h1>
                      <p class="text-base text-indigo-200">Apple Inc</p>
                   </div>
