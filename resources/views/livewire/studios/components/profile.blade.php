@@ -44,7 +44,7 @@
             <a href="{{ url('user/studio/' . $user['username']) }}" tabindex="0" class="focus:outline-none hover:bg-blue-200 transistion ease-in-out duration-200 hover:text-blue-900 cursor-pointer mx-2 rounded-full bg-blue-100 text-blue-700 text-sm px-6 py-2 flex justify-center items-center">Kelola Studio</a>
             <div tabindex="0" class="focus:outline-none hover:bg-green-200 transistion ease-in-out duration-200 hover:text-green-900 cursor-pointer mx-2 rounded-full bg-green-100 text-green-700 text-sm px-6 py-2 flex justify-center items-center">Promosikan</div>
             @else
-            <div tabindex="0" class="focus:outline-none hover:bg-blue-200 transistion ease-in-out duration-200 hover:text-blue-900 cursor-pointer mx-2 rounded-full bg-blue-100 text-blue-700 text-sm px-6 py-2 flex justify-center items-center">Tawarkan Pekerjaan</div>
+            {{-- <div tabindex="0" class="focus:outline-none hover:bg-blue-200 transistion ease-in-out duration-200 hover:text-blue-900 cursor-pointer mx-2 rounded-full bg-blue-100 text-blue-700 text-sm px-6 py-2 flex justify-center items-center">Tawarkan Pekerjaan</div> --}}
             @endif
           </div>
       </div>

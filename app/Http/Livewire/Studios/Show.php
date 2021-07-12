@@ -15,8 +15,12 @@ class Show extends Component
 
     public function render()
     {
+        $user = User::where('username', $this->username)->first();
+        if(!$user) {
+            abort(404);
+        }
         return view('livewire.studios.show', [
-            'user' => User::where('username', $this->username)->first(),
+            'user' => $user,
         ]);
     }
 }

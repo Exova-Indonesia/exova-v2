@@ -27,6 +27,18 @@ class Pricing extends Component
 
     protected $listeners = ['updatePricing' => 'updatePrice'];
 
+
+    public function updatedHarga()
+    {
+        try {
+            $this->harga = str_replace(['.', 'Rp'], '', $this->harga);
+            $this->harga = 'Rp' . number_format($this->harga, 0, ',', '.');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+
     public function mount()
     {
         $this->uuid = session()->get('products.uuid');
@@ -71,6 +83,7 @@ class Pricing extends Component
 
     public function updatePrice()
     {
+        $this->harga = str_replace(['.', 'Rp'], '', $this->harga);
         $this->validate();
         try {
             Product::updateOrCreate([

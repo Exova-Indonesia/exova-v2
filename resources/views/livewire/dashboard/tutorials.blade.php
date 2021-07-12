@@ -2,7 +2,7 @@
    <div class="text-center bg-white py-4">
       <h2 class="mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading">Cara Kerja</h2>
       <p class="font-medium tracking-tight text-gray-400">Exova sangat simpel digunakan cuma dengan 4 langkah berikut</p>
-      <x-jet-button type="button" class="rounded-full my-2 mx-1 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900" wire:click="continue" wire:loading.attr="disabled">
+      <x-jet-button type="button" class="rounded-full my-2 mx-1 bg-blue-500 hover:bg-blue-600 focus:border-blue-600 active:bg-blue-900">
          <a href="{{ url('products') }}">
             {{ __('Coba yuk') }}
          </a>

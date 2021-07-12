@@ -5,7 +5,7 @@
             <x-jet-label for="harga" value="{{ __('Harga Project') }}" />
             <x-jet-input type="text" class="my-1 block w-full"
                 placeholder="{{ __('Rp') }}"
-                type-currency="IDR"
+                id="harga"
                 wire:model="harga"
                 x-ref="harga" />
             @error('harga') <span class="error text-sm text-red-600">{{ $message }}</span> @enderror

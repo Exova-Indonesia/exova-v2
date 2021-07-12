@@ -4,6 +4,7 @@ use App\Http\Livewire\Studios\Show;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Studios\Register;
 use App\Http\Livewire\Studios\Dashboard;
+use App\Http\Controllers\SocialController;
 use App\Http\Livewire\Products\Show as PS;
 use App\Http\Livewire\Contracts\Show as SC;
 use App\Http\Livewire\Carts\Dashboard as Cart;
@@ -26,6 +27,8 @@ use App\Http\Livewire\Notifications\Dashboard as Notif;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('auth/{provider}', [SocialController::class, 'redirectToProvider']);
+Route::get('auth/{provider}/callback', [SocialController::class, 'handleProviderCallback']);
 
 Route::get('/', function () {
     return redirect('dashboard');

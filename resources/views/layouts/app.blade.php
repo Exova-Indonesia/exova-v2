@@ -5,6 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>{{ config('app.name', 'Laravel') }}</title>
+      <link rel="icon" href="{{ url('/icons/exova.png') }}">
       <!-- Fonts -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
       <!-- Styles -->
@@ -25,6 +26,7 @@
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{{ mix('js/app.js') }}" defer></script>
       <script src="{{ asset('js/main.js') }}" defer></script>
+      <script src="{{ asset('js/currency.js') }}" defer></script>
       <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>

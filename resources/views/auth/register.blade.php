@@ -1,14 +1,20 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
+<div class="text-center flex justify-center py-2">
+          <x-jet-authentication-card-logo />
+      </div>
+      <p class="text-xl text-center text-gray-600 dark:text-gray-200">Welcome to Exova!</p>
+      <div class="flex items-center justify-between mt-4">
+         <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
+         <a class="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline">sign up with email</a>
+         <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
+      </div>
+      <form method="POST" action="{{ route('register') }}">
+         @csrf
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -45,16 +51,16 @@
                     </x-jet-label>
                 </div>
             @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </div>
-        </form>
+         <div class="mt-8">
+            <button class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+            Register
+            </button>
+         </div>
+      </form>
+      <div class="flex items-center justify-between mt-4">
+         <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+         <a href="{{ url('login') }}" class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline">Sign In</a>
+         <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+      </div>
     </x-jet-authentication-card>
 </x-guest-layout>

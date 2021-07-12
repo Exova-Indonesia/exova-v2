@@ -3,7 +3,7 @@
       <div class="flex flex-col overflow-y-auto h-64 lg:flex-col w-full items-start rounded bg-white shadow p-4">
          <div class="text-xl text-gray-900">
             <span>
-            Description
+            Deskripsi
             </span>
          </div>
          <div class="text-gray-500 text-sm">
@@ -30,7 +30,7 @@
             @endif
             <div class="mt-4 text-xl text-gray-900">
                <span>
-               Deal at
+               Harga
                </span>
             </div>
             <div>
@@ -38,7 +38,7 @@
             </div>
             <div class="mt-4 text-xl text-gray-900">
                <span>
-               Location
+               Lokasi
                </span>
             </div>
             <div>
@@ -65,7 +65,7 @@
                <tbody>
                   <tr class="h-12 border-gray-300 border-b">
                      <td class="px-6 text-center whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                        Due Date
+                        Batas Akhir
                      </td>
                      <td class="px-6 text-center whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                         {{ $data['requests']['due_at']->format('F j, Y h:i a') }}
@@ -114,7 +114,7 @@
                <tbody>
                   <tr class="h-12 border-gray-300 border-b">
                      <td class="px-6 text-center whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                        Contract
+                        Kontrak
                      </td>
                      <td class="px-6 text-center whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                         @switch($data['status'])

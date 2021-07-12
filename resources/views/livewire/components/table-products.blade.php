@@ -69,7 +69,7 @@
                       {{ $item['style']['name'] }}
                    </td>
                    <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">{{ 'Rp' . number_format($item['price'], 0, ',', '.') }}</td>
-                   <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">02.03.20</td>
+                   <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">{{ $item['viewers'] }}</td>
                    <td class="text-sm pr-6 whitespace-no-wrap text-gray-800 dark:text-gray-100 tracking-normal leading-4">
                       <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full @if ($item['is_active']) bg-green-100 text-green-800 @else bg-red-100 text-red-800 @endif">
                         @if ($item['is_active'])

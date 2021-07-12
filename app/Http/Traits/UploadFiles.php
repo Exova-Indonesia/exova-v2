@@ -3,6 +3,7 @@ namespace App\Http\Traits;
 
 use Storage;
 use App\Models\File;
+use App\Models\Contract;
 use Illuminate\Support\Str;
 use App\Models\ContractFile;
 use Illuminate\Support\Facades\Validator;
@@ -94,6 +95,9 @@ trait UploadFiles
         ContractFile::create([
             'contract_id' => $this->data['id'],
             'file_id' => $this->idFiles['id'],
+        ]);
+        Contract::where('id', $this->data['id'])->update([
+            'status' => Contract::IS_REQUESTED,
         ]);
         $this->emit('reloadContract');
         $this->dispatchBrowserEvent('pondReset');

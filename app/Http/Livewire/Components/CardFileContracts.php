@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Components;
 
 use App\Models\Message;
 use Livewire\Component;
+use App\Models\Contract as Cntr;
 use App\Http\Traits\Contract;
+use App\Events\ContractEvent;
 use App\Http\Traits\Download;
 use Livewire\WithFileUploads;
 use App\Http\Traits\UploadFiles;
@@ -51,6 +53,8 @@ class CardFileContracts extends Component
             $this->size = $this->files->getSize();
             $this->ext = $this->files->getClientOriginalExtension();
             $this->storeFilesContract();
+            $cntr = Cntr::where('id', $this->data['id'])->first();
+            event(new ContractEvent($cntr));
         } else {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',

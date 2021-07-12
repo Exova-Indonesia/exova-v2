@@ -70,16 +70,18 @@
             <p>Files</p>
          </div>
       </div>
-      {{-- <div wire:click="loadContent('terms')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
+      @if($data['status'] == \App\Models\Contract::IS_CANCELED && $data['customer_id'] == auth()->user()->id)
+      <div wire:click="loadContent('refund')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
          </div>
          <div class="flex-auto min-w-0 ml-4 mr-6 hidden md:block group-hover:block">
-            <p>Ketentuan</p>
+            <p>Refund</p>
          </div>
-      </div> --}}
+      </div>
+      @endif
       <div wire:click="loadContent('feedback')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

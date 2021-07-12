@@ -77,8 +77,8 @@ trait Contract
             'user_id' => $this->data['seller_id'],
             'value' => 5,
         ]);
-
-        event(new ContractEvent($this->data));
+        $cntr = Cntr::where('id', $this->data['id'])->first();
+        event(new ContractEvent($cntr));
     }
 
     public function cancel()
@@ -102,13 +102,14 @@ trait Contract
             Cntr::where('id', $this->data['id'])->update([
                 'status' => Cntr::IS_RETURNED,
             ]);
+            $cntr = Cntr::where('id', $this->data['id'])->first();
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'success',
             'title' => 'Berhasil mengirim permintaan revisi']);
             $this->revisionModal = false;
 
             $this->emit('reloadContract');
-            event(new ContractEvent($this->data));
+            event(new ContractEvent($cntr));
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',
@@ -127,7 +128,8 @@ trait Contract
             ['type' => 'success',
             'title' => 'Berhasil']);
             $this->emit('reloadContract');
-            event(new ContractEvent($this->data));
+            $cntr = Cntr::where('id', $this->data['id'])->first();
+            event(new ContractEvent($cntr));
         } catch (\Throwable $th) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',

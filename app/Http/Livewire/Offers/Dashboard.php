@@ -69,13 +69,14 @@ class Dashboard extends Component
     }
 
     public function updateDbRequest() {
+        $this->price = str_replace(['.', 'Rp'], '', $this->price);
         $data = array(
             "id" => $this->orderreq['id'],
             "location_id" => $this->orderreq['location_id'],
             "title" => $this->namaproject,
             "job_description" => $this->job_description,
             "is_meet_seller" => $this->meetSeller,
-            "price" => $this->price,
+            "price" => (int) $this->price,
             "contract_end" => $this->contract_end ?? now()->addDays(10)->format('Y-m-d H:i:s'),
             "meet_date" => $this->meet_date ?? now()->addDays(10)->format('Y-m-d'),
             "meet_time" => $this->meet_time ?? now()->addDays(10)->format('H:i:s'),
@@ -156,9 +157,20 @@ class Dashboard extends Component
         $this->updateOrder($data);
     }
 
+    public function updatedPrice()
+    {
+        try {
+            $this->price = str_replace(['.', 'Rp'], '', $this->price);
+            $this->price = 'Rp' . number_format($this->price, 0, ',', '.');
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
     public function saveToSession($id)
     {
-            if(empty($this->contract_end) || empty($this->namaproject)) {
+        $this->price = str_replace(['.', 'Rp'], '', $this->price);
+        if(empty($this->contract_end) || empty($this->namaproject)) {
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',
             'title' => 'Form belum lengkap']);
@@ -166,7 +178,7 @@ class Dashboard extends Component
             $data = array(
                 "title" => $this->namaproject,
                 "job_description" => $this->job_description,
-                "price" => $this->price,
+                "price" => (int) $this->price,
                 "is_meet_seller" => $this->meetSeller,
                 "contract_end" => $this->contract_end ?? now()->addDays(10),
                 "meet_date" => $this->meet_date,

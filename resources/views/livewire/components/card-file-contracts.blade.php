@@ -24,7 +24,7 @@
         @endif
     </div>
     @else
-    @if($data['payment']['status'] == \App\Models\Payment::IS_SUCCESS  && !in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED, \App\Models\Contract::IS_WAITING_PAYMENT]))
+    @if($data['payment']['status'] == \App\Models\Payment::IS_SUCCESS  && !in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED, \App\Models\Contract::IS_APPROVED, \App\Models\Contract::IS_WAITING_PAYMENT]))
     <div class="text-xl text-gray-900 mb-2">
         <span>
             {{ __('Submit Kerjaan') }}

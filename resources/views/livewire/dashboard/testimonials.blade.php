@@ -1,20 +1,20 @@
 <div>
-<section class="relative bg-purple-700 rounded-4xl -mt-16 w-full">
+<section class="relative bg-white rounded-4xl -mt-16 w-full">
    <div class="container items-center max-w-6xl py-20 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
-      <h2 class="mb-4 text-lg text-white font-bold leading-tight tracking-tight sm:text-4xl font-heading">Testimonials</h2>
+      <h2 class="mb-6 text-lg text-black text-center font-bold leading-tight tracking-tight sm:text-4xl font-heading">Testimonials</h2>
       <figure class="visible">
          <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
             <div class="w-full bg-white -rotate-2 rounded-lg transform hover:-translate-y-1 hover:rotate-3 transition duration-500 ease-in-out">
-               <div class="">
+               <div class="shadow md rounded-lg">
                   <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-lg">
-                     <h1 class="text-xl text-white pb-1">Alex Parkinson</h1>
-                     <p class="text-base text-indigo-200">AlphaSquad LLC</p>
+                     <h1 class="text-xl text-white pb-1">Deddy Wirawan</h1>
+                     <p class="text-base text-indigo-200">Model Photographer</p>
                   </div>
                   <div class="pl-6 pr-6 pt-10 relative h-64">
                      <div class="h-16 w-16 rounded-full bg-cover border-4 border-white absolute top-0 right-0 -mt-8 mr-6">
                         <img src="https://cdn.tuk.dev/assets/photo-1566753323558-f4e0952af115.jfif" alt="Display Avatar of Alex Parkinson" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
                      </div>
-                     <p class="text-base text-gray-600 leading-8">It really saves me time and effort. Chamer is exactly what our business has been lacking. Chamer was worth a fortune to my company.</p>
+                     <p class="text-base text-gray-600 leading-8">Enaknya Exova tu, bisa revisi pas ada suatu hal mendadak. Jadinya kalau ada kenapa2 kita gampang ngaturnya biar gak rugi satu sama lain antara client dan seller. Best pokoknya Exova!</p>
                      <div class="flex justify-end mt-2">
                         <svg width="44" height="37" xmlns="http://www.w3.org/2000/svg">
                            <path
@@ -29,16 +29,16 @@
                </div>
             </div>
             <div class="w-full bg-white rounded-lg rotate-2  transform hover:-translate-y-1 hover:-rotate-3 transition duration-500 ease-in-out">
-               <div class="">
+               <div class="shadow md rounded-lg">
                   <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-lg">
-                     <h1 class="text-xl text-white pb-1">Ashley Wilson</h1>
-                     <p class="text-base text-indigo-200">i-Intellect Inc</p>
+                     <h1 class="text-xl text-white pb-1">Agus Pranatha</h1>
+                     <p class="text-base text-indigo-200">Youtuber</p>
                   </div>
                   <div class="pl-6 pr-6 pt-10 relative h-64">
                      <div class="h-16 w-16 rounded-full bg-cover border-4 border-white absolute top-0 right-0 -mt-8 mr-6">
                         <img src="https://cdn.tuk.dev/assets/photo-1548958921-c5c0fe1b307d.jfif" alt="Display Avatar of Ashley Wilson" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
                      </div>
-                     <p class="text-base text-gray-600 leading-8">It really saves me time and effort. Chamer is exactly what our business has been lacking. Chamer was worth a fortune to my company.</p>
+                     <p class="text-base text-gray-600 leading-8">Kemarin baru request kontrak eh dah langsung diapprove, padahal duit belum siap. Kecepetan banget Exova tapi keren!</p>
                      <div class="flex justify-end mt-2">
                         <svg width="44" height="37" xmlns="http://www.w3.org/2000/svg">
                            <path
@@ -53,16 +53,16 @@
                </div>
             </div>
             <div class="w-full bg-white rounded-lg -rotate-2  transform hover:-translate-y-1 hover:rotate-3 transition duration-500 ease-in-out">
-               <div class="">
+               <div class="shadow md rounded-lg">
                   <div class="bg-indigo-700 pt-6 pb-6 pl-6 rounded-t-lg">
-                     <h1 class="text-xl text-white pb-1">Richard Clark</h1>
-                     <p class="text-base text-indigo-200">Apple Inc</p>
+                     <h1 class="text-xl text-white pb-1">Umbara</h1>
+                     <p class="text-base text-indigo-200">Filmmaker</p>
                   </div>
                   <div class="pl-6 pr-6 pt-10 relative h-64">
                      <div class="h-16 w-16 rounded-full bg-cover border-4 border-white absolute top-0 right-0 -mt-8 mr-6">
                         <img src="https://cdn.tuk.dev/assets/photo-1564061170517-d3907caa96ea.jfif" alt="Display Avatar of Richard Clark" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
                      </div>
-                     <p class="text-base text-gray-600 leading-8">It really saves me time and effort. Chamer is exactly what our business has been lacking. Chamer was worth a fortune to my company.</p>
+                     <p class="text-base text-gray-600 leading-8">Iseng banget kemarin ikut jual jasa di Exova. Baru tak tinggal rebahan bentar, eh tiba - tiba ada order masuk di Exova</p>
                      <div class="flex justify-end mt-2">
                         <svg width="44" height="37" xmlns="http://www.w3.org/2000/svg">
                            <path

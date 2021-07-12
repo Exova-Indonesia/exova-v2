@@ -13,6 +13,7 @@ use App\Notifications\ContractStartedNotification;
 use App\Notifications\ContractApprovedNotification;
 use App\Notifications\ContractCanceledNotification;
 use App\Notifications\ContractReturnedNotification;
+use App\Notifications\ContractReqApproveNotification;
 
 class ContractListener
 {
@@ -46,6 +47,10 @@ class ContractListener
             
             case Contract::IS_STARTED:
                 $seller->notify(new ContractStartedNotification($customer, $event->contract, $requests));
+                break;
+            
+            case Contract::IS_REQUESTED:
+                $seller->notify(new ContractReqApproveNotification($customer, $event->contract, $requests));
                 break;
             
             case Contract::IS_RETURNED:

@@ -1,10 +1,28 @@
 <div>
    <x-app-layout>
       <x-slot name="header">
-         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Freelancer') }}
-         </h2>
+         <div class="flex justify-between">
+            <div>
+               <a href="{{ url('/') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+               </a>
+            </div>
+            <div>
+               <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                  {{ __('Freelancer') }}
+               </h2>
+            </div>
+         </div>
       </x-slot>
+      <div class="overflow-x-hidden">
+         <div class="p-10 text-center lg:w-3/5 w-full m-auto">
+            <x-jet-input type="text" class="mt-1 block w-full"
+            placeholder="{{ __('Cari Freelancer') }}"
+            x-ref="search"
+            wire:model="search" />
+      </div>
       <div>
          <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 grid lg:grid-cols-2 grid-cols-1 gap-2">
             @foreach ($data as $item)
@@ -21,7 +39,7 @@
                                  <div class="py-1 mx-1 px-4 text-xs leading-3 text-grey-700 rounded-full bg-pink-100 justify-between flex">
                                     <div class="p-1 text-pink-500">
                                        <span>
-                                       120 Project
+                                       {{ count($item['contracts']) }} Project
                                        </span>
                                     </div>
                                  </div>
@@ -35,9 +53,9 @@
                               </div>
                            </div>
                         </a>
-                        <div role="img" aria-label="bookmark">
+                        {{-- <div role="img" aria-label="bookmark">
                            <div class="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100 hover:bg-indigo-200 cursor-pointer duration-500">Kontrak</div>
-                        </div>
+                        </div> --}}
                      </div>
                   </div>
                </div>

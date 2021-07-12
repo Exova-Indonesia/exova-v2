@@ -13,12 +13,12 @@
                   <div class="flex">
                      <div class="text-sm text-gray-900">
                         <p class="font-bold">{{ $data['requests']['title'] }}</p>
-                        <p>Due Date : {{ $data['requests']['due_at']->diffForHumans() }}</p>
+                        <p>Batas Akhir : {{ $data['requests']['due_at']->diffForHumans() }}</p>
                      </div>
                   </div>
                   <div class="flex">
-                     <a href="{{ url('/dashboard') }}" class="block rounded-full hover:bg-gray-700 bg-gray-800 w-10 h-10 p-3 ml-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full fill-current" viewBox="0 0 20 20" fill="currentColor">
+                     <a href="{{ url('/dashboard') }}" class="block rounded-full hover:bg-gray-100 duration-500 bg-gray-200 w-10 h-10 p-3 ml-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full text-gray-900 fill-current" viewBox="0 0 20 20" fill="currentColor">
                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                         </svg>
                      </a>
@@ -45,6 +45,9 @@
                <div class="p-4 flex-1 overflow-y-scroll">
                   @if ($content == 'details')
                   @livewire('contracts.components.details', ['data' => $data])
+                  @endif
+                  @if ($content == 'refund')
+                  @livewire('contracts.components.refund', ['data' => $data])
                   @endif
                   @if ($content == 'edit')
                   @livewire('offers.dashboard', ['mute' => true, 'data' => $data])
@@ -81,11 +84,13 @@
           <x-jet-secondary-button wire:click="$toggle('endContract')" wire:loading.attr="disabled">
               {{ __('Gajadi') }}
           </x-jet-secondary-button>
+         @if($data['status'] < \App\Models\Contract::IS_APPROVED)
           <x-jet-button class="ml-2 bg-red-500 hover:bg-red-600"
                       wire:click="cancelContract"
                       wire:loading.attr="disabled">
               {{ __('Batalkan Kontrak') }}
           </x-jet-button>
+         @endif
           <x-jet-button class="ml-2"
                       wire:click="finishContract"
                       wire:loading.attr="disabled">
