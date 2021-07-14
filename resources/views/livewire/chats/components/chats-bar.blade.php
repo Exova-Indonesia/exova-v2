@@ -173,7 +173,7 @@
          <div class="relative flex-grow">
             <label>
             <input class="rounded-full py-2 pl-3 pr-10 w-full border border-gray-800 focus:border-gray-700 bg-gray-800 focus:bg-gray-900 focus:outline-none text-gray-200 focus:shadow-md transition duration-300 ease-in"
-               type="text" wire:model="message" wire:keydown.enter="sendMessage({{ $this->receipent['id'] }})" placeholder="Aa"/>
+               type="text" wire:model.defer="message" wire:keydown.enter="sendMessage({{ $this->receipent['id'] }})" placeholder="Aa"/>
             </label>
          </div>
          <button type="button" wire:click="sendMessage({{ $this->receipent['id'] }})" class="flex flex-shrink-0 focus:outline-none mx-2 block text-blue-600 rounded-full hover:bg-gray-700 bg-gray-800 w-10 h-10 p-3">

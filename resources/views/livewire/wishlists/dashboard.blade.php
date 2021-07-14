@@ -35,7 +35,7 @@
                   @else
                   <div class="flex flex-col">
                      <div class="m-auto">
-                        <img src="{{ asset('/icons/emtproduct.svg') }}" alt="">
+                        <img src="{{ Storage::disk('s3')->url('icons/emtproduct.svg') }}" alt="">
                      </div>
                      <div>
                         <p class="py-2 text-center">Sepertinya kamu belum memiliki wishlist</p>

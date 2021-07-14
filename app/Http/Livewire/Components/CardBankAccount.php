@@ -32,7 +32,7 @@ class CardBankAccount extends Component
         $this->bank = $this->data['banks']['code'];
         $this->name = $this->data['banks']['name'];
         $this->number = $this->data['banks']['number'];
-        $this->collect = Storage::disk('local')->get('banks.json');
+        $this->collect = file_get_contents('js/banks.json');
         $this->banks = json_decode($this->collect, true);
     }
 

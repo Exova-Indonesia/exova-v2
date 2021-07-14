@@ -49,7 +49,7 @@
                            </div>
                            @else
                            <div class="text-center items-center">
-                               <img class="my-4" src="{{ asset('icons/cart.svg') }}" alt="">
+                               <img class="my-4" src="{{ Storage::disk('s3')->url('icons/cart.svg') }}" alt="">
                                <span>Troli kamu masih kosong</span>
                            </div>
                            @endif

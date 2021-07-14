@@ -128,4 +128,30 @@
          </div>
       </section>
    </x-app-layout>
+   @push('styles')
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+   @endpush
+   @push('scripts')
+      <script>
+      var mySwiper = new Swiper ('.swiper-container', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+         })
+   </script>
+   @endpush
 </div>

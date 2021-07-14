@@ -14,11 +14,11 @@
       </div>
    </div>
    <div class="flex items-center w-full">
-      <div class="flex flex-col w-full p-2 items-start max-h-96 bg-white shadow rounded-lg">
+      <div class="flex flex-col w-full items-start max-h-96 bg-white shadow rounded-lg">
          @if(! empty($data['banks']))
          <section class="flex w-full h-72">
             <div class="flex w-full justify-between">
-               <div class="relative w-full rounded-2xl shadow-lg overflow-hidden">
+               <div class="relative w-full rounded-lg shadow-lg overflow-hidden">
                   <div class="flex flex-col">
                      <header class="flex justify-between p-4 text-white z-10">
                         <span class="h-16 w-16">
@@ -64,7 +64,7 @@
          @else 
          <div class="m-auto flex flex-col">
             <div>
-               <img src="{{ asset('/icons/bank.svg') }}" alt="">
+               <img src="{{ Storage::disk('s3')->url('icons/bank.svg') }}" alt="">
             </div>
             <div>
                <p class="py-2 text-center">Tambahkan akun bank untuk melakukan penarikan</p>

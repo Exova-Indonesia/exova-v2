@@ -5,14 +5,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>{{ config('app.name', 'Laravel') }}</title>
-      <link rel="icon" href="{{ url('/icons/exova.png') }}">
+      <link rel="icon" href="{{ Storage::disk('s3')->url('icons/exova.png') }}">
       <!-- Fonts -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
       <!-- Styles -->
       <link rel="stylesheet" href="{{ mix('css/app.css') }}">
       <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
       <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
       @stack('styles')
       @livewireStyles
@@ -57,26 +55,6 @@
       @livewireScripts
       @stack('scripts')
       <div>
-   <script>
-      var mySwiper = new Swiper ('.swiper-container', {
-            // Optional parameters
-            direction: 'horizontal',
-            loop: true,
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            // And if we need scrollbar
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-         })
-   </script>
    <script>
       window.addEventListener('notification', event => {
          const Toast = Swal.mixin({

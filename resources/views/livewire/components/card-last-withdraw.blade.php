@@ -45,7 +45,7 @@
         @else 
         <div class="flex flex-col">
             <div>
-                <img src="{{ asset('/icons/payment.svg') }}" alt="">
+                <img src="{{ Storage::disk('s3')->url('icons/payment.svg') }}" alt="">
             </div>
             <div>
                 <p class="text-center">Belum ada penarikan</p>

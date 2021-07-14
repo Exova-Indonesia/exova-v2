@@ -60,12 +60,12 @@ trait Chat {
                 "attachments" => json_encode($attachments),
             ];
             $msg = Message::create($this->data);
+            broadcast(new MessageSent($this->user, $msg))->toOthers();
             OrderRequest::where('id', (int) session()->get('chat.room'))
             ->update([
                 "last_message_id" => $msg->id,
             ]);
             $this->reset('message');
-            broadcast(new MessageSent($this->user, $msg));
             if(isset($this->picture) || isset($this->files)) {
                 $this->flsRemove();
             }

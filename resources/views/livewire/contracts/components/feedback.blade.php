@@ -34,7 +34,7 @@
          @else
          <div class="flex flex-col m-auto text-gray-700">
             <div>
-               <img src="{{ asset('icons/empty.svg') }}" alt="">
+               <img src="{{ Storage::disk('s3')->url('icons/empty.svg') }}" alt="">
             </div>
             <div>
                <p class="text-center py-3">Belum ada feedback</p>

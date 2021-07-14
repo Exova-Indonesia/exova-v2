@@ -26,11 +26,11 @@ Retrieve an instance of Firebase Messaging so that it can handle background mess
 const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
     // Customize notification here
+    // console.log(payload);
     const notificationTitle = payload.notification.title;
     const notificationOptions = {
         body: payload.notification.body,
         icon: payload.notification.icon,
     };
-
     self.registration.showNotification(notificationTitle, notificationOptions);
 });

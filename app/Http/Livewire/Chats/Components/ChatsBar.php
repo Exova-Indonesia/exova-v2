@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Chats\Components;
 use Cache;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Message;
 use Livewire\Component;
 use App\Http\Traits\Chat;
 use App\Events\MessageSent;
@@ -136,6 +137,7 @@ class ChatsBar extends Component
     public function newMessage($data)
     {
         $this->new($data);
+        // $this->fetchMessages = json_decode(Message::where('room_id', (int) session()->get('chat.room'))->get(), true);
     }
 
     public function sendMessage($id)
@@ -147,6 +149,7 @@ class ChatsBar extends Component
         }
         $this->send($id);
         $this->emit('reloadList');
+        $this->fetchMessages = json_decode(Message::where('room_id', (int) session()->get('chat.room'))->get(), true);
     }
 
     public function approveContract()
