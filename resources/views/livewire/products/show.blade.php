@@ -16,6 +16,13 @@
             </div>
          </div>
       </x-slot>
+      @if($share && !auth()->check())
+      <div class="cursor-pointer bg-red-600 duration-500 px-6 py-2 flex flex-row flex-none justify-center items-center shadow">
+         <p class="text-center text-white my-4">
+            Kamu sedang berada dalam mode berbagi, <a class="bg-blue-600 border-0 py-2 px-6 focus:outline-none rounded" href="{{ route('login') }}">Login</a> untuk menikmati lebih banyak fitur
+         </p>
+      </div>
+      @endif
       <section class="body-font overflow-hidden">
          <div class="px-5 py-24">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -57,10 +64,12 @@
                   </div>
                   <div class="flex">
                     <span class="title-font font-medium text-2xl text-gray-900">{{ 'Rp' . number_format($product['price'], 0, ',', '.') }} <span class="text-xs">{{ $product['pricetype']['name'] }}</span></span>
-                    @if($product['seller_id'] == auth()->user()->id)
-                    <a href="{{ url('user/studio/' . auth()->user()->username) }}" class="flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none rounded duration-500">Edit di Studio</a>
-                    @else
-                    <button class="flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none rounded duration-500" wire:click="setOrder">Chat & Nego</button>
+                    @if(auth()->check())
+                     @if($product['seller_id'] == auth()->user()->id)
+                     <a href="{{ url('user/studio/' . auth()->user()->username) }}" class="flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none rounded duration-500">Edit di Studio</a>
+                     @else
+                     <button class="flex ml-auto text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none rounded duration-500" wire:click="setOrder">Chat & Nego</button>
+                     @endif
                     @endif
                     </div>
                </div>
@@ -80,6 +89,7 @@
             <!-- Slider main container -->
             <div class="swiper-container">
                <h1 class="text-gray-900 text-center mt-16 text-3xl title-font font-medium">Feedbacks</h1>
+               @if($this->reviews > 0)
                <!-- Additional required wrapper -->
                <div class="swiper-wrapper">
                    @foreach ($product['requests'] as $item)
@@ -124,7 +134,17 @@
                <!-- If we need navigation buttons -->
                <div class="swiper-button-prev"></div>
                <div class="swiper-button-next"></div>
+               @else
             </div>
+               <div class="flex flex-col mt-16">
+                  <div class="m-auto">
+                     <img src="{{ Storage::disk('s3')->url('icons/emtproduct.svg') }}" alt="">
+                  </div>
+                  <div>
+                     <p class="py-2 text-center">Belum ada feedback</p>
+                  </div>
+               </div>
+            @endif
          </div>
       </section>
    </x-app-layout>

@@ -7,11 +7,14 @@ use App\Http\Livewire\Studios\Dashboard;
 use App\Http\Controllers\SocialController;
 use App\Http\Livewire\Products\Show as PS;
 use App\Http\Livewire\Contracts\Show as SC;
+use App\Http\Livewire\Events\Pages\Webinar;
 use App\Http\Livewire\Carts\Dashboard as Cart;
 use App\Http\Livewire\Chats\Dashboard as Chat;
 use App\Http\Livewire\Studios\ListFreelancers;
+use App\Http\Livewire\Events\Dashboard as Event;
 use App\Http\Livewire\Wishlists\Dashboard as WS;
 use App\Http\Controllers\PaymentHandlerController;
+use App\Http\Livewire\Events\Pages\WebinarAttendant;
 use App\Http\Livewire\Payments\Dashboard as Payment;
 use App\Http\Livewire\Products\Dashboard as Product;
 use App\Http\Livewire\Contracts\Dashboard as Contract;
@@ -35,22 +38,32 @@ Route::get('/', function () {
     // return now()->addDays(10)->format('Y-m-d H:i:s');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 Route::post('/payments/handling', [PaymentHandlerController::class, 'index']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/notifications', Notif::class)->name('notif.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/wishlists', WS::class)->name('wishlist.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/payments', Payment::class)->name('payments.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/contracts', SC::class)->name('contracts.show');
-Route::middleware(['auth:sanctum', 'verified'])->get('/contracts/{id}', Contract::class)->name('contracts.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/chats', Chat::class)->name('chat.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/user/{id}', Show::class)->name('studio.show');
+Route::middleware(['auth:sanctum'])->group(function() {
+    Route::get('/notifications', Notif::class)->name('notif.dashboard');
+    Route::get('/wishlists', WS::class)->name('wishlist.dashboard');
+    Route::get('/chats', Chat::class)->name('chat.dashboard');
+    Route::get('/user/{id}', Show::class)->name('studio.show');
+    Route::get('/freelancers', ListFreelancers::class)->name('studio.lists');
+    Route::get('/products', Product::class)->name('product.dashboard');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::get('/payments', Payment::class)->name('payments.dashboard');
+    Route::get('/contracts', SC::class)->name('contracts.show');
+    Route::get('/contracts/{id}', Contract::class)->name('contracts.dashboard');
+    Route::get('/cart', Cart::class)->name('cart.dashboard');
+});
+
+Route::get('/products/{id}', PS::class)->name('product.show');
 Route::middleware(['auth:sanctum', 'verified', 'isCustomer'])->get('/studio/register', Register::class)->name('studio.register');
 Route::middleware(['auth:sanctum', 'verified', 'isFreelancer'])->get('/user/studio/{id}', Dashboard::class)->name('studio.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/freelancers', ListFreelancers::class)->name('studio.lists');
-Route::middleware(['auth:sanctum', 'verified'])->get('/products', Product::class)->name('product.dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/products/{id}', PS::class)->name('product.show');
-Route::get('/cart', Cart::class)->name('cart.dashboard');
+
+Route::get('/event', Event::class)->name('event.dashboard');
+Route::get('/event/webinar', Webinar::class)->name('webinar.dashboard');
+Route::get('/event/webinar/attend/{id}', WebinarAttendant::class)->name('webinar.attend');

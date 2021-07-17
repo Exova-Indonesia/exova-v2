@@ -4,30 +4,63 @@ namespace App\Http\Livewire\Products;
 
 use App\Models\Product;
 use Livewire\Component;
+use App\Http\Traits\Cart;
+use App\Http\Traits\Wishlist;
+use App\Models\Wishlist as WS;
 use App\Http\Traits\CreateOrderRequests;
 
 class Show extends Component
 {
-    use CreateOrderRequests;
+    use CreateOrderRequests, Cart, Wishlist;
+    public $share = false;
     public $slug;
     public $product;
     public $cover;
     public $reviews = 0;
 
+    protected $queryString = ['share'];
+
     public function mount($id)
     {
+        if(! auth()->check() && $this->share == false) {
+            return redirect(route('login'));
+        }
         $this->slug = $id;
         Product::where('slug', $id)->increment('viewers', 1);
     }
 
     public function setToCart()
     {
-        $this->emit('addToCart', $this->product['id']);
+        if(!auth()->check()) {
+            return redirect(route('login'));
+        }
+        $this->add($this->product['id']);
     }
 
     public function setToWishlist()
     {
-        $this->emit('addToWish', $this->product['id']);
+        if(!auth()->check()) {
+            return redirect(route('login'));
+        }
+        $data = WS::where([
+            ['user_id', auth()->user()->id],
+            ['product_id', $this->product['id']],
+        ])->first();
+        $product = Product::where([
+            ['id', $this->product['id']],
+            ['seller_id', auth()->user()->id],
+        ])->first();
+        if(! $product) {
+            if(! $data) {
+                $this->addWish($this->product['id']);
+            } else {
+                $this->removeWish($this->product['id']);
+            }
+        } else {
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Mana boleh wishlist produk sendiri']);
+        }
     }
 
     public function setOrder()

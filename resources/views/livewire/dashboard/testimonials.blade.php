@@ -1,5 +1,5 @@
 <div>
-<section class="relative bg-white rounded-4xl -mt-16 w-full">
+<section class="relative bg-white -mt-16 w-full">
    <div class="container items-center max-w-6xl py-20 px-10 mx-auto sm:px-20 md:px-32 lg:px-16">
       <h2 class="mb-6 text-lg text-black text-center font-bold leading-tight tracking-tight sm:text-4xl font-heading">Testimonials</h2>
       <figure class="visible">
@@ -12,7 +12,7 @@
                   </div>
                   <div class="pl-6 pr-6 pt-10 relative h-64">
                      <div class="h-16 w-16 rounded-full bg-cover border-4 border-white absolute top-0 right-0 -mt-8 mr-6">
-                        <img src="https://cdn.tuk.dev/assets/photo-1566753323558-f4e0952af115.jfif" alt="Display Avatar of Alex Parkinson" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
+                        <img src="{{ asset('images/testimonials/dedy.png') }}" alt="Display Avatar of Alex Parkinson" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
                      </div>
                      <p class="text-base text-gray-600 leading-8">Enaknya Exova tu, bisa revisi pas ada suatu hal mendadak. Jadinya kalau ada kenapa2 kita gampang ngaturnya biar gak rugi satu sama lain antara client dan seller. Best pokoknya Exova!</p>
                      <div class="flex justify-end mt-2">
@@ -36,7 +36,7 @@
                   </div>
                   <div class="pl-6 pr-6 pt-10 relative h-64">
                      <div class="h-16 w-16 rounded-full bg-cover border-4 border-white absolute top-0 right-0 -mt-8 mr-6">
-                        <img src="https://cdn.tuk.dev/assets/photo-1548958921-c5c0fe1b307d.jfif" alt="Display Avatar of Ashley Wilson" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
+                        <img src="{{ asset('images/testimonials/agus.jpg') }}" alt="Display Avatar of Ashley Wilson" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
                      </div>
                      <p class="text-base text-gray-600 leading-8">Kemarin baru request kontrak eh dah langsung diapprove, padahal duit belum siap. Kecepetan banget Exova tapi keren!</p>
                      <div class="flex justify-end mt-2">
@@ -60,7 +60,7 @@
                   </div>
                   <div class="pl-6 pr-6 pt-10 relative h-64">
                      <div class="h-16 w-16 rounded-full bg-cover border-4 border-white absolute top-0 right-0 -mt-8 mr-6">
-                        <img src="https://cdn.tuk.dev/assets/photo-1564061170517-d3907caa96ea.jfif" alt="Display Avatar of Richard Clark" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
+                        <img src="{{ asset('images/testimonials/um.png') }}" alt="Display Avatar of Richard Clark" role="img" class="h-full w-full object-cover rounded-full overflow-hidden" />
                      </div>
                      <p class="text-base text-gray-600 leading-8">Iseng banget kemarin ikut jual jasa di Exova. Baru tak tinggal rebahan bentar, eh tiba - tiba ada order masuk di Exova</p>
                      <div class="flex justify-end mt-2">

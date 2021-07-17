@@ -10,6 +10,8 @@ class Dashboard extends Component
 {
     public $search = '';
     public $amount = 10;
+    public $product;
+    public $productAmount;
     public $filter;
     public $newFilter = ['updated_at', 'asc'];
 
@@ -26,7 +28,7 @@ class Dashboard extends Component
         if($this->filter == 'price') {
             $this->newFilter = [
                 'price',
-                'DESC'
+                'ASC'
             ];
         } else if($this->filter == 'view') {
             $this->newFilter = [
@@ -35,8 +37,8 @@ class Dashboard extends Component
             ];
         } else if($this->filter == 'new') {
             $this->newFilter = [
-                'updated_at',
-                'ASC'
+                'created_at',
+                'DESC'
             ];
         } else if($this->filter == 'trends') {
             $this->newFilter = [
@@ -48,12 +50,11 @@ class Dashboard extends Component
 
     public function render()
     {
-        return view('livewire.products.dashboard', [
-            'productAmount' => Product::count(),
-            'product' => Product::with('cover.getSmall')->where([
+        $this->productAmount = Product::count();
+        $this->product = Product::with('cover.getSmall')->where([
                 ['title', 'LIKE', '%' . $this->search . '%'],
                 ['is_active', true],
-                ])->orWhere('subcategory_id', $this->filter)->take($this->amount)->orderby($this->newFilter[0], $this->newFilter[1])->get()
-        ]);
+                ])->orWhere('subcategory_id', $this->filter)->take($this->amount)->orderby($this->newFilter[0], $this->newFilter[1])->get();
+        return view('livewire.products.dashboard');
     }
 }

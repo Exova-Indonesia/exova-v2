@@ -47,15 +47,15 @@
    <div>
       <div class="rating-star my-4">
          <div class="form-group text-center">
-            <div class="input-rating">
-               <div class="stars">
-                  <input type="radio" wire:model="value" id="star5" name="rating" value="5" /><label for="star5"></label>
-               </div>
-               @error('rating')
-               <div class="alert alert-danger">{{ $message }}</div>
-               @enderror
+            <span class="mx-4 text-gray-800">Buruk</span>
+            @for ($i = 1; $i <= 5; $i++)
+            <input type="radio" wire:model="value" id="star{{ $i }}" name="rating" value="{{ $i }}" /><label class="text-gray-800 mx-1 align-middle" for="star5">{{ $i }}</label>
+            @endfor
+            <span class="mx-4 text-gray-800">Sangat Bagus</span>
             </div>
-         </div>
+            @error('value')
+            <div class="text-red-600">{{ $message }}</div>
+            @enderror
       </div>
       <x-simple-textarea-field type="text" class="mt-1 block w-full text-gray-400"
          rows="5"
@@ -64,6 +64,9 @@
          maxlength="200"
          wire:model="comment">
       </x-simple-textarea-field>
+      @error('comment')
+         <div class="text-red-600">{{ $message }}</div>
+      @enderror
    </div>
    <div class="text-right">
       <x-jet-button class=""

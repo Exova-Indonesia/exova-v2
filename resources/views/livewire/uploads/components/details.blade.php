@@ -14,7 +14,7 @@
             placeholder="{{ __('Style') }}"
             x-ref="style"
             wire:model="style">
-            <option hidden selected>Select Style</option>
+            <option hidden selected>Pilih Style</option>
             @foreach ($allStyles as $item)
             <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
             @endforeach
@@ -42,7 +42,7 @@
                placeholder="{{ __('Kategori') }}"
                x-ref="kategori"
                wire:model="kategori" >
-               <option hidden selected>Select Category</option>
+               <option hidden selected>Pilih Kategori</option>
                @foreach ($allCategory as $item)
                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                @endforeach
@@ -56,7 +56,7 @@
                x-ref="subkategori"
                wire:model="subkategori" >
                @if(! empty($segmentedSubcategory))
-               <option hidden selected>Select SubCategory</option>
+               <option hidden selected>Pilih Sub Kategori</option>
                @foreach ($segmentedSubcategory as $item)
                <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                @endforeach

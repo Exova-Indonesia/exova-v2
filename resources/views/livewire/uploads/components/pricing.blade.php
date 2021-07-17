@@ -38,7 +38,7 @@
             <x-simple-select-field type="text" class="my-1 block w-full"
                 x-ref="jumlahrevisian"
                 wire:model="jumlahrevisian">
-                <option value="">Select Jumlah Revisian</option>
+                <option value="">Pilih Maksimal Revisi</option>
                 @for ($i = 1; $i <= 10; $i++)
                     <option value="{{ $i }}">{{ $i }} Kali</option>
                 @endfor

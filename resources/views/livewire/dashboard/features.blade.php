@@ -54,21 +54,10 @@
             </div>
          </div>
          <div class="w-full px-3 py-16 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
-            <div class="flex flex-wrap">
-               <div class="flex items-center justify-center -mx-4 lg:pl-8">
-                  <div class="flex flex-col items-end px-3">
-                     <img
-                        class="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out"
-                        src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                        alt=""
-                        />
-                     <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
-                        " src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
-                  </div>
-                  <div class="px-3">
-                     <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
-                        " src="https://images.pexels.com/photos/3182739/pexels-photo-3182739.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="" />
-                  </div>
+            <div class="flex items-center justify-center -mx-4 lg:pl-8">
+               <div class="px-3">
+                  <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
+                     "src="{{ asset('images/startup.svg') }}" alt="" />
                </div>
             </div>
          </div>

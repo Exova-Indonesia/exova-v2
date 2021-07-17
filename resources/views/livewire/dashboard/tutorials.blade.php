@@ -9,8 +9,8 @@
       </x-jet-button>
 
    </div>
-   <div tabindex="0" class="focus:outline-none items-end px-8">
-      <div class="grid lg:grid-cols-4 grid-cols-1 gap-2 bg-white">
+   <div tabindex="0" class="focus:outline-none items-end bg-white px-8">
+      <div class="grid lg:grid-cols-4 grid-cols-1 gap-2">
          <div class="mb-8 py-6 pl-6 pr-4 shadow rounded-t-lg rounded-l-lg bg-blue-600 transform rotate-1 hover:rotate-0 transition duration-500 ease-in-out">
             <span class="mb-4 inline-block p-3 rounded-t-md rounded-l-md bg-blue-100">
                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

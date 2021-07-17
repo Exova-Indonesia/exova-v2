@@ -154,7 +154,12 @@
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/contracts') }}">@lang('navigation.menu.contract')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/user/studio/' , auth()->user()->username) }}">@lang('navigation.menu.studio')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/wishlists') }}">@lang('navigation.menu.wishlist')</a></li>
-            </ul>
+               <form method="POST" action="{{ route('logout') }}">
+               @csrf
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" onclick="event.preventDefault();
+                        this.closest('form').submit();">{{ __('Log Out') }}</a></li>
+               </form>
+         </ul>
          </div>
          <div class="mt-auto">
             <center>

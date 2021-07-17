@@ -12,6 +12,15 @@ class Feedback extends Component
     public $value;
     public $comment;
 
+    protected $rules = [
+        'value' => 'required|integer',
+        'comment' => 'required',
+    ];
+    protected $validationAttributes = [
+        'value' => 'Rating',
+        'comment' => 'Komentar',
+    ];
+
     public function mount($data)
     {
         $this->data = $data;
@@ -19,11 +28,12 @@ class Feedback extends Component
 
     public function sendfeedback()
     {
+        $this->validate();
         try {
             FB::create([
                 'user_id' => auth()->user()->id,
                 'contract_id' => $this->data['id'],
-                'value' => $this->value ?? 0,
+                'value' => $this->value ?? 1,
                 'comment' => $this->comment,
             ]);
             $this->dispatchBrowserEvent('notification', 
