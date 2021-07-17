@@ -21,9 +21,11 @@
       <div aria-label="group of cards" class="w-full">
          <div class="flex lg:flex-row flex-col mx-auto dark:bg-gray-800 shadow rounded">
             @livewire('studios.components.profile', ['user' => $user])
-            @foreach ($user['products'] as $item)
-            @livewire('studios.components.feeds', ['product' => $item], key($item->id))
-            @endforeach
+            <div>
+               @foreach ($user['products'] as $item)
+               @livewire('studios.components.feeds', ['product' => $item], key($item->id))
+               @endforeach
+            </div>
          </div>
       </div>
    </div>

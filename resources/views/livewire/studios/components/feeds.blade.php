@@ -1,5 +1,5 @@
-<div class="items-center justify-center lg:w-3/5 w-full">
-   <div tabindex="0" aria-label="card 1" class="focus:outline-none lg:mb-0 mb-7 p-6 shadow rounded">
+<div class="items-center justify-center w-full">
+   <div tabindex="0" aria-label="card 1" class="focus:outline-none lg:mb-0 mb-7 p-6 rounded">
       <a href="{{ url('products/' . $product['slug']) }}" class="flex flex-col lg:flex-row items-center border-gray-200 pb-2">
          <img src="{{ $product['cover']['getSmall']['path'] }}" alt="Pictures" class="object-cover w-full h-48 lg:w-56 lg:h-32 rounded-lg" />
          <div class="flex items-start justify-between w-full">

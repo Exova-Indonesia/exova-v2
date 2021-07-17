@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Dashboard extends Component
 {
     public $search = '';
-    public $amount = 10;
+    public $amount = 12;
     public $product;
     public $productAmount;
     public $filter;
@@ -19,7 +19,7 @@ class Dashboard extends Component
 
     public function loadMore()
     {
-        $this->amount += 10;
+        $this->amount += 12;
     }
 
     public function updatedFilter()

@@ -26,7 +26,7 @@
       <div class="flex flex-col w-screen min-h-screen p-10 bg-gray-100 text-gray-800">
           <!-- Component Start -->
           <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between mt-6">
-              <span class="text-sm font-semibold">1-{{ $product->count() }} of {{ $productAmount }} Products</span>
+              <span class="text-sm font-semibold">1-{{ $product->count() }} of {{ $productAmount }} Jasa</span>
               <div class="lg:w-48 w-full">
               <x-simple-select-field type="text" class="mt-1 block w-full"
                   x-ref="filter"
