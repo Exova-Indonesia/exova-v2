@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Withdraw;
 use App\Models\BankAccount;
+use App\Events\WithDrawEvent;
 
 class CardBankAccount extends Component
 {
@@ -65,12 +66,13 @@ class CardBankAccount extends Component
         ]);
         try {
             $balance = $this->data['balance'] - (int) $this->amount;
-            Withdraw::create([
+            $withdraw = Withdraw::create([
                 'user_id' => $this->data['id'],
                 'bank_id' => $this->data['banks']['id'],
                 'amount' => (int) $this->amount,
                 'status' => Withdraw::IS_PENDING,
             ]);
+            event(new WithDrawEvent($withdraw));
             User::where('id', $this->data['id'])->update(['balance' => $balance]);
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'success',

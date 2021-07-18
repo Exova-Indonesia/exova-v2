@@ -1,4 +1,21 @@
 <div>
+    <x-app-layout>
+        <x-slot name="header">
+         <div class="flex justify-between">
+            <div>
+               <a href="{{ url('/') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+               </a>
+            </div>
+            <div>
+               <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                  @lang('navigation.menu.payments')
+               </h2>
+            </div>
+         </div>
+      </x-slot>
    <div class="">
                       <div class="chat-header bg-red-500 border-red-300 border-b px-6 py-4 flex flex-row flex-none justify-center items-center">
                   <div class="flex">
@@ -179,4 +196,6 @@
           </x-jet-button>
       </x-slot>
   </x-jet-dialog-modal>
+</div>
+</x-app-layout>
 </div>

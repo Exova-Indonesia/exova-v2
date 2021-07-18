@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\MessageSent;
 use App\Events\ContractEvent;
+use App\Events\WithDrawEvent;
 use App\Listeners\MessageListener;
 use App\Listeners\ContractListener;
+use App\Listeners\WithdrawListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ContractEvent::class => [
             ContractListener::class,
+        ],
+        WithDrawEvent::class => [
+            WithdrawListener::class,
         ]
     ];
 

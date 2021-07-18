@@ -1,7 +1,7 @@
 <div>
    <nav class="relative py-6 bg-gray-900">
       <div class="container mx-auto px-4 flex justify-between items-center">
-         <a class="text-white text-3xl font-bold leading-none" href="#"><img src="https://assets.exova.id/img/logo.png" alt="" width="120"></a>
+         <a class="text-white text-3xl font-bold leading-none" href="#"><img src="{{ asset('images/exova.png') }}" alt="" width="120"></a>
          <div class="lg:hidden">
             <button class="navbar-burger flex items-center text-white p-3">
                <svg class="block h-4 w-4 fill-current" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +152,7 @@
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('freelancers') }}">@lang('navigation.menu.menu-5')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/profile') }}">@lang('navigation.menu.profile')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('contracts') }}">@lang('navigation.menu.contract')</a></li>
-               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/studio/' , auth()->user()->username) }}">@lang('navigation.menu.studio')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/studio' , auth()->user()->username) }}">@lang('navigation.menu.studio')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('wishlists') }}">@lang('navigation.menu.wishlist')</a></li>
                <form method="POST" action="{{ route('logout') }}">
                @csrf

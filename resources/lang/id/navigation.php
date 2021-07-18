@@ -11,7 +11,8 @@
             'profile' => 'Profil',
             'contract' => 'Kontrak',
             'studio' => 'Studio',
-            'wishlist' => 'Wishlist'
+            'wishlist' => 'Wishlist',
+            'payments' => 'Pembayaran',
         ]
     ]
 ?>
