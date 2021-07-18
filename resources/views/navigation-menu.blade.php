@@ -149,11 +149,11 @@
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/') }}">@lang('navigation.menu.menu-1')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="#kategori">@lang('navigation.menu.menu-2')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('products?filter=trends') }}">@lang('navigation.menu.menu-3')</a></li>
-               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/freelancers') }}">@lang('navigation.menu.menu-5')</a></li>
-               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/user/profile') }}">@lang('navigation.menu.profile')</a></li>
-               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/contracts') }}">@lang('navigation.menu.contract')</a></li>
-               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/user/studio/' , auth()->user()->username) }}">@lang('navigation.menu.studio')</a></li>
-               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('/wishlists') }}">@lang('navigation.menu.wishlist')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('freelancers') }}">@lang('navigation.menu.menu-5')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/profile') }}">@lang('navigation.menu.profile')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('contracts') }}">@lang('navigation.menu.contract')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/studio/' , auth()->user()->username) }}">@lang('navigation.menu.studio')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('wishlists') }}">@lang('navigation.menu.wishlist')</a></li>
                <form method="POST" action="{{ route('logout') }}">
                @csrf
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" onclick="event.preventDefault();

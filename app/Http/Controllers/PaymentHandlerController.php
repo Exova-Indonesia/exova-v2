@@ -36,7 +36,8 @@ class PaymentHandlerController extends Controller
             }
         } else if ($transaction == 'settlement') {
             Payment::where('id', $order_id)->update([
-                'status' => Payment::IS_SUCCESS
+                'status' => Payment::IS_SUCCESS,
+                'paid' => $notif->gross_amount,
             ]);
             Contract::where('payment_id', $order_id)->update([
                 'status' => Contract::IS_STARTED,
