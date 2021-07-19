@@ -1,35 +1,34 @@
-<div>
-<section class="bg-gray-900 ">
-   <div class="pt-12 lg:pt-20">
-      <div class="container mx-auto px-4">
-         <div class="flex flex-wrap -mx-4">
-            <div class="w-full lg:w-1/2 px-4  md:mb-20 lg:mb-0 flex items-center">
-               <div class="w-full text-center lg:text-left">
-                  <div class="max-w-md mx-auto lg:mx-0">
-                     <h2 class="mb-3 text-4xl lg:text-5xl text-white font-bold">
-                        <span>Jepret Momen</span>
-                        <span class="text-blue-600">Anti Ribet</span>
-                     </h2>
-                  </div>
-                  <div class="max-w-sm mx-auto lg:mx-0">
-                     <p class="mb-6 text-gray-400 leading-loose">
-                        @lang('navigation.description')
-                     </p>
-                     <div>
-                        <a class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full transition delay-150 duration-300 ease-in-out lg:w-auto py-2 px-6 leading-loose bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-t-full rounded-l-full transition duration-200" href="{{ url('products') }}">Cari Jasa</a>
-                        <a class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full transition delay-150 duration-300 ease-in-out lg:w-auto py-2 px-6 leading-loose bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-t-full rounded-l-full transition duration-200" href="{{ url('user/studio/' . auth()->user()->username) }}">Jual Jasa</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="w-full absolute top-36 right-10 hidden lg:w-1/3 px-4 lg:block items-center justify-center">
-               <img class="w-96 h-96" src="{{ asset('images/team.svg') }}" alt="">
-            </div>
-         </div>
+<div class="relative bg-white flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0">
+  <div class="hidden lg:block inset-y-0 top-0 right-0 z-0 w-full max-w-xl px-4 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
+    <img
+      class="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none md:h-96 lg:h-full"
+      src="{{ asset('images/banner.jpg') }}"
+      alt=""
+    />
+  </div>
+  <div class="relative flex flex-col items-start w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:max-w-screen-xl">
+    <div class="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
+        <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+         Cari Jasa Dokumentasi?<br class="hidden md:block" />
+          <span class="inline-block text-blue-600">Exova Aja!</span>
+        </h2>
+      <p class="pr-5 mb-5 text-base text-gray-700 md:text-lg">
+        Exova siap membantu kebutuhan dokumentasi acara kamu! Mulai dari Rp500k kamu bisa mendapatkan freelancer terbaik di bidangnya 
+      </p>
+      <div class="flex items-center">
+        <a
+          href="{{ url('products') }}"
+          class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-blue-600 rounded-t-full rounded-l-full hover:bg-blue-700 focus:shadow-outline focus:outline-none"
+        >
+         Cari Jasa <span class="hidden lg:block">/Freelancer</span>
+        </a>
+        <a
+          href="{{ url('user/studio', auth()->user()->username) }}"
+          class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 rounded-t-full rounded-l-full hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+        >
+         Jual Jasa
+        </a>
       </div>
-   </div>
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="#ffffff" fill-opacity="1" d="M0,64L40,90.7C80,117,160,171,240,186.7C320,203,400,181,480,165.3C560,149,640,139,720,144C800,149,880,171,960,160C1040,149,1120,107,1200,96C1280,85,1360,107,1400,117.3L1440,128L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
-   </svg>
-</section>
+    </div>
+  </div>
 </div>
