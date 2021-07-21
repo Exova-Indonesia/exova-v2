@@ -28,6 +28,15 @@
       <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       <script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DZV6LVHTJ"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9DZV6LVHTJ');
+      </script>
    </head>
    <body class="font-sans antialiased">
       <x-jet-banner />

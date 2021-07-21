@@ -8,53 +8,18 @@ use Livewire\WithPagination;
 
 class Dashboard extends Component
 {
-    public $search = '';
-    public $amount = 12;
-    public $product;
-    public $productAmount;
-    public $filter;
-    public $newFilter = ['updated_at', 'asc'];
+    public $search;
+    public $type = 'jasa';
 
-    protected $queryString = ["filter"];
+    protected $queryString = ["search", "type"];
 
-    public function loadMore()
+    public function updatedSearch()
     {
-        $this->amount += 12;
-    }
-
-    public function updatedFilter()
-    {
-        $this->newFilter = [];
-        if($this->filter == 'price') {
-            $this->newFilter = [
-                'price',
-                'ASC'
-            ];
-        } else if($this->filter == 'view') {
-            $this->newFilter = [
-                'viewers',
-                'DESC'
-            ];
-        } else if($this->filter == 'new') {
-            $this->newFilter = [
-                'created_at',
-                'DESC'
-            ];
-        } else if($this->filter == 'trends') {
-            $this->newFilter = [
-                'viewers',
-                'DESC'
-            ];
-        }
+        $this->emit('setSearch', $this->search);
     }
 
     public function render()
     {
-        $this->productAmount = Product::count();
-        $this->product = Product::with('cover.getSmall')->where([
-                ['title', 'LIKE', '%' . $this->search . '%'],
-                ['is_active', true],
-                ])->orWhere('subcategory_id', $this->filter)->take($this->amount)->orderby($this->newFilter[0], $this->newFilter[1])->get();
         return view('livewire.products.dashboard');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 use App\Models\User;
 use App\Models\Xpoint;
 use App\Models\Revenue;
+use App\Http\Traits\Chat;
 use Illuminate\Support\Str;
 use App\Models\OrderRequest;
 use App\Events\ContractEvent;
@@ -16,8 +17,11 @@ use App\Models\ContractFileReturned;
  */
 trait Contract
 {
+    use Chat;
     public $contract;
     public $fees;
+    public $user;
+    public $message;
     public $uuid;
     public $f = 0;
     public function createContract()
@@ -78,6 +82,11 @@ trait Contract
             'value' => 5,
         ]);
         $cntr = Cntr::where('id', $this->data['id'])->first();
+
+        $this->user = auth()->user()->id;
+        $this->message = "Halo, saya baru saja mengakhiri kontrak. Terima kasih atas waktu dan kerjasamanya";
+        $this->send((auth()->user()->id == $cntr->seller_id) ? $cntr->customer_id : $cntr->seller_id);
+
         event(new ContractEvent($cntr));
     }
 
@@ -88,8 +97,13 @@ trait Contract
             'seller_id' => $this->data['seller_id'],
             'contract_id' => $this->data['id'],
         ]);
+        $cntr = Cntr::where('id', $this->data['id'])->first();
 
-        event(new ContractEvent($this->data));
+        $this->user = auth()->user()->id;
+        $this->message = "Halo, saya baru saja membatalkan kontrak. Terima kasih atas waktunya, semoga kita bisa bekerjasama di lain waktu";
+        $this->send((auth()->user()->id == $cntr->seller_id) ? $cntr->customer_id : $cntr->seller_id);
+
+        event(new ContractEvent($cntr));
     }
 
     public function requestReturn()

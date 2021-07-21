@@ -95,13 +95,6 @@
                Status
                </span>
             </div>
-            @if($data['customer_id'] == auth()->user()->id && $data['status'] == 0 && !in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED]))
-            <div>
-               <span wire:click="pay" class="cursor-pointer hover:bg-green-200 duration-500 py-2 px-4 text-xs leading-3 text-green-700 rounded-full bg-green-100">
-               {{ __('Bayar') }}
-               </span>
-            </div>
-            @endif
          </div>
          <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
             <table class="min-w-full bg-white">

@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\Contracts\Components;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Storage;
+use App\Events\RefundSent;
 use App\Models\Refund as RF;
+use Illuminate\Support\Facades\Storage;
 
 class Refund extends Component
 {
@@ -30,8 +31,9 @@ class Refund extends Component
     public function mount($data)
     {
         $this->data = $data;
-        $this->collect = Storage::disk('local')->get('banks.json');
+        $this->collect = file_get_contents('js/banks.json');
         $this->banks = json_decode($this->collect, true);
+        $this->bank = $this->banks[0]['code'];
     }
 
     public function setRefund()
@@ -40,7 +42,7 @@ class Refund extends Component
 
         $collection = collect($this->banks);
         $filter = $collection->where('code', $this->bank)->first();
-        RF::updateOrCreate([
+        $rf = RF::updateOrCreate([
             'contract_id' => $this->data['id'],
         ],[
             'contract_id' => $this->data['id'],
@@ -51,11 +53,12 @@ class Refund extends Component
             'amount' => $this->data['payment']['total'] - $this->data['payment']['admin_fees'],
             'status' => RF::IS_PENDING,
         ]);
+        event(new RefundSent($rf));
     }
 
     public function deleteRefund($id)
     {
-        RF::where('id', $id)->delete();
+        // RF::where('id', $id)->delete();
     }
 
     public function render()

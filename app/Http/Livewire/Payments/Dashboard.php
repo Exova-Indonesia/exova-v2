@@ -41,6 +41,11 @@ class Dashboard extends Component
         $this->payment_id = now()->timestamp . rand(0, 1000);
     }
 
+    public function openModal()
+    {
+        $this->couponModal = true;
+    }
+
     public function updatedSelectAll($value)
     {
         if($value) {
@@ -103,7 +108,7 @@ class Dashboard extends Component
         return view('livewire.payments.dashboard', [
             'data' => Contract::where([
                 ['customer_id', auth()->user()->id],
-                ['status', Contract::IS_WAITING_PAYMENT],
+                ['payment_id', null],
                 ])->get(),
         ]);
     }

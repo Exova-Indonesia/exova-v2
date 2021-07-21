@@ -86,7 +86,6 @@ trait Payment
             Contract::whereIn('id', $this->selectedProducts)
             ->update([
                 'payment_id' => $this->payment_id,
-                'status' => Contract::IS_STARTED,
             ]);
         } catch (\Throwable $th) {
             throw $th;

@@ -59,18 +59,18 @@
       </div>
       @else
       <div class="flex justify-start">
-         @if($request['status'] == App\Models\OrderRequest::IS_REQUESTED)
-         <div class="flex">
-            <x-jet-button wire:click="fetchOrderReq" type="button" class="my-2 mx-1 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900">
-               {{ __('Kirim Tawaran') }}
-            </x-jet-button>
-         </div>
-         @else
          <div class="flex">
             <x-jet-button wire:click="$toggle('detailModal')" type="button" class="my-2 mx-1 bg-yellow-500 hover:bg-yellow-600 focus:border-yellow-600 active:bg-yellow-900">
                {{ __('Detail') }}
             </x-jet-button>
          </div>
+         @if($request['status'] == App\Models\OrderRequest::IS_REQUESTED)
+         <div class="flex">
+            <x-jet-button wire:click="fetchOrderReq" type="button" class="my-2 mx-1 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900">
+               {{ __('Edit Tawaran') }}
+            </x-jet-button>
+         </div>
+         @else
          @if(! empty($request['contract']))
          <div class="flex">
             <x-jet-button wire:click="ruangKontrak('{{ $request['contract']['uuid'] }}')" type="button" class="my-2 mx-1 bg-purple-500 hover:bg-purple-600 focus:border-red-600 active:bg-red-900">

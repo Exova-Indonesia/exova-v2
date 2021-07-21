@@ -8,8 +8,8 @@
                @foreach ($banks as $item)
                <option value="{{ $item['code'] }}">{{ $item['name'] }}</option>
                @endforeach
-               <x-jet-input-error for="bank" class="mt-2" />
             </x-simple-select-field>
+            <x-jet-input-error for="bank" class="mt-2" />
             {{-- Nama Pemilik --}}
             <x-jet-label for="name" value="{{ __('Nama Pemilik') }}" />
             <x-jet-input type="text" class="mt-1 text-gray-800 block w-full"
@@ -21,9 +21,9 @@
             <x-jet-input type="text" class="mt-1 text-gray-800 block w-full"
                id="number"
                wire:model="number" />
+               <x-jet-input-error for="number" class="mt-2" />
                <div class="text-right">
-                   <x-jet-input-error for="number" class="mt-2" />
-                            <x-jet-button class="m-2"
+                <x-jet-button class="m-2"
                    wire:click="setRefund"
                    wire:loading.attr="disabled">
                    {{ __('Minta Refund') }}
@@ -40,7 +40,7 @@
                             <th class="font-normal text-left pl-12">No. Acc</th>
                             <th class="font-normal text-left pl-20">Amount</th>
                             <th class="font-normal text-left pl-20">Status</th>
-                            <th class="font-normal text-left pl-16">Action</th>
+                            {{-- <th class="font-normal text-left pl-16">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody class="w-full">
@@ -82,9 +82,9 @@
                                 </div>
                                 @endif
                             </td>
-                            <td class="pl-16">
+                            {{-- <td class="pl-16">
                                 <x-delete-button wire:click="deleteRefund({{ $refund['id'] }})" wire:loading.attr="disabled" class="h-8 w-8 bg-red-500 hover:bg-red-600 mt-1 flex items-start justify-start" />
-                            </td>
+                            </td> --}}
                         </tr>
                     </tbody>
                 </table>

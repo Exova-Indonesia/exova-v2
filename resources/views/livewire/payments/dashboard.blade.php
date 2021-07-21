@@ -1,6 +1,6 @@
 <div>
     <x-app-layout>
-        <x-slot name="header">
+        <x-slot name="navbar">
          <div class="flex justify-between">
             <div>
                <a href="{{ url('/') }}">
@@ -95,11 +95,15 @@
                         <div class="p-5 bg-gray-800 rounded overflow-visible">
                            <span class="text-xl font-medium text-gray-100 block pb-4">Pembayaran</span>
                            <div class="py-4 border-t border-gray-600 flex flex-row justify-center">
-                               <div>
-                                   <span wire:click="bankTransfer" class="cursor-pointer mx-2 text-md font-medium text-blue-400 block">Bank Transfer</span>
+                               <div class="mx-2">
+                                   <x-jet-button wire:click="bankTransfer" type="button" class="w-full justify-center my-2 mx-2 bg-blue-600 hover:bg-blue-700 focus:border-blue-600 active:bg-blue-900" wire:loading.attr="disabled">
+                                       {{ __('Bank Transfer') }}
+                                   </x-jet-button>
                                </div>
-                               <div>
-                                   <span wire:click="qris" class="cursor-pointer mx-2 text-md font-medium text-blue-400 duration-500 block">QRIS</span>
+                                <div class="mx-2">
+                                   <x-jet-button wire:click="qris" type="button" class="w-full justify-center my-2 mx-2 bg-purple-600 hover:bg-purple-700 focus:border-purple-600 active:bg-purple-900" wire:loading.attr="disabled">
+                                       {{ __('QRIS') }}
+                                   </x-jet-button>
                                </div>
                            </div>
                            <div class="py-4 border-t border-gray-600 flex justify-between">
@@ -107,7 +111,9 @@
                                    <span class="text-md font-medium text-gray-400 block">Kupon</span>
                                </div>
                                <div>
-                                   <span wire:click="$toggle('couponModal')" class="cursor-pointer text-md font-medium text-blue-400 hover:text-blue-500 duration-500 block">Pilih Kupon</span>
+                                    <x-jet-button wire:click="openModal" type="button" class="w-full justify-center bg-pink-600 hover:bg-pink-700 focus:border-pink-600 active:bg-pink-900" wire:loading.attr="disabled">
+                                       {{ __('Pilih Kupon') }}
+                                   </x-jet-button>
                                </div>
                            </div>
                            <div class="py-4 border-t border-gray-600 flex justify-between">

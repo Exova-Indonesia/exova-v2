@@ -1,13 +1,6 @@
-<div class="relative bg-white flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0">
-  <div class="hidden lg:block inset-y-0 top-0 right-0 z-0 w-full max-w-xl px-4 mx-auto md:px-0 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-7/12 lg:max-w-full lg:absolute xl:px-0">
-    <img
-      class="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none md:h-96 lg:h-full"
-      src="{{ asset('images/banner.jpg') }}"
-      alt=""
-    />
-  </div>
-  <div class="relative flex flex-col items-start w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:max-w-screen-xl">
-    <div class="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
+<div class="relative bg-cover bg-white flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0" style="background-image: url({{ asset('images/banner.jpg') }});">
+  <div class="relative flex flex-col items-start w-full px-4 mx-auto md:px-0">
+    <div class="lg:m-16 lg:my-40 lg:max-w-lg lg:pr-5">
         <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
          Cari Jasa Dokumentasi?<br class="hidden md:block" />
           <span class="inline-block text-blue-600">Exova Aja!</span>

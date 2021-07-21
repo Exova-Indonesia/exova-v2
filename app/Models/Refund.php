@@ -18,6 +18,11 @@ class Refund extends Model
         'amount',
     ];
 
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class, 'contract_id');
+    }
+
     const IS_PENDING = 0;
     const IS_SUCCESS = 1;
     const IS_DECLINED = 2;

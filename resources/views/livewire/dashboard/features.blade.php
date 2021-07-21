@@ -12,7 +12,7 @@
                      <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
                      </svg>
-                     <span class="font-medium text-gray-500">Lebih mudah mencari jasa dokumentasi di bidang traditionl & culture</span>
+                     <span class="font-medium text-gray-500">Lebih mudah mencari jasa dokumentasi di bidang traditional & culture</span>
                   </li>
                   <li class="flex items-center py-2 space-x-4 xl:py-3">
                      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,8 +44,8 @@
          <div class="w-full px-3 py-16 lg:w-1/2 order-0 lg:order-1 lg:mb-0">
             <div class="flex items-center justify-center -mx-4 lg:pl-8">
                <div class="px-3">
-                  <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
-                     "src="https://exova-v2.s3.us-east-2.amazonaws.com/users/1/products/60dtgyhd5656/250/1626541058-15" alt="" />
+                  <img class="object-cover rounded shadow-lg h-80 w-80 transform hover:-translate-y-1 hover:scale-125 transition duration-500 ease-in-out
+                     "src="{{ asset('images/benefits.jpg') }}" alt="" />
                </div>
             </div>
          </div>

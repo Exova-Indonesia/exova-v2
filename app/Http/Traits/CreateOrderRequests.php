@@ -45,7 +45,10 @@ trait CreateOrderRequests {
     {
         try {
             $loc = Location::where('id', $data['location_id'])->first();
-            Location::where('id', $data['location_id'])->update([
+            $newloc = Location::updateOrCreate([
+                'id' => $data['location_id'],
+            ],
+            [
                 'name' => $data['addr_name'],
                 'village' => $data['village'] ? : $loc['village'],
                 'district' => $data['district'] ? : $loc['district'],
@@ -58,10 +61,11 @@ trait CreateOrderRequests {
             ]);
             OrderRequest::where('id', $data['id'])->update([
                 'title' => $data['title'],
-                'description' => $data['job_description'],
+                'location_id' => $data['location_id'] ?? $newloc['id'],
+                'description' => $data['job_description'] ?? null,
                 'is_meet_seller' => $data['is_meet_seller'] ?? false,
-                'due_at' => $data['contract_end'],
-                'meet_at' => $data['meet_date'] . ' ' . $data['meet_time'],
+                'due_at' => $data['contract_end'] ?? now()->addDays(10),
+                'meet_at' => (! empty($data['meet_date']) && ! empty($data['meet_time'])) ? $data['meet_date'] . ' ' . $data['meet_time'] : null,
             ]);
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'success',
@@ -95,10 +99,10 @@ trait CreateOrderRequests {
                 'title' => $data['title'],
                 'price' => $data['price'],
                 'location_id' => $loc['id'],
-                'description' => $data['job_description'],
+                'description' => $data['job_description'] ?? '',
                 'is_meet_seller' => $data['is_meet_seller'] ?? false,
-                'due_at' => $data['contract_end'],
-                'meet_at' => $data['meet_date'] . ' ' . $data['meet_time'],
+                'due_at' => $data['contract_end'] ?? now()->addDays(10),
+                'meet_at' => (! empty($data['meet_date']) && ! empty($data['meet_time'])) ? $data['meet_date'] . ' ' . $data['meet_time'] : now()->addDays(10),
             ]);
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'success',

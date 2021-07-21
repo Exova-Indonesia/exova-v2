@@ -1,5 +1,5 @@
 <x-app-layout>
-      <x-slot name="header">
+      <x-slot name="navbar">
          <div class="flex justify-between">
             <div>
                <a href="{{ url('/') }}">

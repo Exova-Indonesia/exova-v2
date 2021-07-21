@@ -7,7 +7,7 @@
             'menu-2' => 'Kategori',
             'menu-3' => 'Trends',
             'menu-4' => 'Feed',
-            'menu-5' => 'Freelancers',
+            'menu-5' => 'Xplore',
             'profile' => 'Profil',
             'contract' => 'Kontrak',
             'studio' => 'Studio',

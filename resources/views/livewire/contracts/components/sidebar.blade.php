@@ -82,6 +82,7 @@
          </div>
       </div>
       @endif
+      @if($data['status'] == \App\Models\Contract::IS_FINISHED)
       <div wire:click="loadContent('feedback')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,6 +93,7 @@
             <p>Feedback</p>
          </div>
       </div>
+      @endif
       @if(!in_array($data['status'], [\App\Models\Contract::IS_FINISHED, \App\Models\Contract::IS_CANCELED]))
       <div wire:click="loadContent('end')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">

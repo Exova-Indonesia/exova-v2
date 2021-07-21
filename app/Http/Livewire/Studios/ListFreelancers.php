@@ -10,6 +10,18 @@ class ListFreelancers extends Component
     public $data;
     public $search = '';
 
+    protected $listeners = ["setSearch"];
+    
+    public function mount($search)
+    {
+        $this->search = $search;
+    }
+
+    public function setSearch($search)
+    {
+        $this->search = $search;
+    }
+
     public function setTawaran($id)
     {
         # code...

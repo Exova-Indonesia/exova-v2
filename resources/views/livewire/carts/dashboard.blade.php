@@ -1,6 +1,6 @@
 <div>
    <x-app-layout>
-      <x-slot name="header">
+      <x-slot name="navbar">
          <div class="flex justify-between">
             <div>
                <a href="{{ url('/') }}">
@@ -18,7 +18,7 @@
       </x-slot>
       <div class="">
          <div class="py-12">
-            <div class="max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg md:max-w-7xl">
+            <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg md:max-w-7xl">
                <div class="md:flex ">
                   <div class="w-full p-4 px-5 py-5">
                      <div class="md:grid md:grid-cols-3 gap-2 ">
@@ -55,8 +55,8 @@
                            @endif
                         </div>
                         <div class="col-span-2">
-                        <div class="p-5 bg-gray-800 rounded overflow-visible">
-                           <span class="text-xl font-medium text-gray-100 block pb-3">Detail Penawaran</span>
+                        <div class="p-5 rounded overflow-visible">
+                           <span class="text-xl font-medium text-gray-800 block pb-3">Detail Penawaran</span>
                            @if($isSelectedProduct)
                                @livewire('offers.dashboard', ['mute' => false])
                                @else

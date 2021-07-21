@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\RefundSent;
 use App\Events\MessageSent;
 use App\Events\ContractEvent;
 use App\Events\WithDrawEvent;
+use App\Listeners\RefundListener;
 use App\Listeners\MessageListener;
 use App\Listeners\ContractListener;
 use App\Listeners\WithdrawListener;
@@ -32,7 +34,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         WithDrawEvent::class => [
             WithdrawListener::class,
-        ]
+        ],
+        RefundSent::class => [
+            RefundListener::class,
+        ],
     ];
 
     /**

@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Contracts;
 
 use App\Models\Payment;
 use Livewire\Component;
-use App\Http\Traits\Contract as Ctr;
 use App\Models\Contract;
+use App\Http\Traits\Contract as Ctr;
 
 class Dashboard extends Component
 {
@@ -79,7 +79,11 @@ class Dashboard extends Component
 
     public function pay()
     {
-        $this->emit('pay');
+        if(empty($this->data['payment_id'])) {
+            $this->emit('pay');
+        } else {
+            return redirect($this->data['payment']['path']);
+        }
     }
 
     public function render()
