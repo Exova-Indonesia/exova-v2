@@ -2,7 +2,7 @@
    <div class="w-full">
       <div class="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
          <div class="sm:flex items-center justify-between">
-            <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Order Masuk</p>
+            <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Tawaran Masuk</p>
          </div>
       </div>
       <div class="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 h-96 overflow-y-auto">

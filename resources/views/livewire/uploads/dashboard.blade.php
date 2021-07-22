@@ -69,7 +69,7 @@
             <!-- One big close button.  --->
             <div class="mt-5 sm:mt-6">
                <span class="flex w-full justify-between rounded-md shadow-sm">
-                  <x-jet-button class="bg-pink-500 hover:bg-pink-600 focus:border-pink-600 active:bg-pink-900" wire:click="closeModal" wire:loading.attr="disabled">
+                  <x-jet-button class="bg-pink-500 hover:bg-pink-600 focus:border-pink-600 active:bg-pink-900" wire:click="saveAsDraf" wire:loading.attr="disabled">
                   @if ($page > 1)
                      {{ __('Save as Draf') }}
                   @else

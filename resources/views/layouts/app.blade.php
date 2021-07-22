@@ -4,7 +4,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="csrf-token" content="{{ csrf_token() }}">
-      <title>{{ config('app.name', 'Laravel') }}</title>
+      <meta name="description" content="Exova adalah platform jual - beli jasa di bidang dokumentasi. Khusus di Exova yaitu bidang Traditional & Budaya seperti. Prewedding, Wedding, Upacara Keagamaan, Upacara Adat, Event Budaya, dll">
+      <meta name="keywords" content="Prewedding, Wedding, Upacara Keagamaan, Upacara Adat, Event Budaya, Exova, Exova ID, Exova Indonesia, Freelancer, Dokumentasi, Traditional, Culture, E-commerce, Undangan Online, Marketplace, Nikah">
+      <meta name="author" content="{{ env('APP_NAME') }}">
+      <title>{{ __('Exova - Traditional & Culture Documentation Marketplace') }}</title>
       <link rel="icon" href="{{ Storage::disk('s3')->url('icons/exova.png') }}">
       <!-- Fonts -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
@@ -37,9 +40,25 @@
 
       gtag('config', 'G-9DZV6LVHTJ');
       </script>
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-5NDFH6Q');</script>
+      <!-- End Google Tag Manager -->
    </head>
    <body class="font-sans antialiased">
+         <!-- Google Tag Manager (noscript) -->
+         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NDFH6Q"
+         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+         <!-- End Google Tag Manager (noscript) -->
       <x-jet-banner />
+      <div wire:offline class="bg-red-600 p-4">
+      <p class="text-center text-red-50 text-base uppercase font-semibold">
+         Tidak ada koneksi
+      </p>
+      </div>
       <div class="min-h-screen bg-gray-100">
          @if(isset($navbar))
          @livewire('navigation-menu')

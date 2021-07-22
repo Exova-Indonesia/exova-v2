@@ -5,7 +5,7 @@
                     {{ __($orders->count()) }}
                 </x-slot>
                 <x-slot name="title">
-                    {{ __('Order Masuk') }}
+                    {{ __('Tawaran Masuk') }}
                 </x-slot>
             </x-box-bar>
             <x-box-bar wire:click="loadTable('order-diproses')" class="bg-purple-600">

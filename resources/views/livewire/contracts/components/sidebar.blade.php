@@ -70,7 +70,7 @@
             <p>Files</p>
          </div>
       </div>
-      @if($data['status'] == \App\Models\Contract::IS_CANCELED && $data['customer_id'] == auth()->user()->id)
+      @if($data['status'] == \App\Models\Contract::IS_CANCELED && $data['payment']['status'] == \App\Models\Payment::IS_SUCCESS && $data['customer_id'] == auth()->user()->id)
       <div wire:click="loadContent('refund')" class="flex justify-between items-center px-6 p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
          <div class="relative flex flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

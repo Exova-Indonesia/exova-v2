@@ -50,7 +50,7 @@ class Refund extends Component
             'code' => $filter['code'],
             'number' => $this->number,
             'channel' => $filter['name'],
-            'amount' => $this->data['payment']['total'] - $this->data['payment']['admin_fees'],
+            'amount' => $this->data['payment']['paid'] - $this->data['payment']['admin_fees'],
             'status' => RF::IS_PENDING,
         ]);
         event(new RefundSent($rf));

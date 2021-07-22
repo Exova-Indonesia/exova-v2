@@ -8,6 +8,7 @@ use App\Http\Traits\Cart;
 use App\Http\Traits\Wishlist;
 use App\Models\Wishlist as WS;
 use App\Http\Traits\CreateOrderRequests;
+use App\Notifications\ProductViewersNotification;
 
 class Show extends Component
 {
@@ -27,6 +28,10 @@ class Show extends Component
         }
         $this->slug = $id;
         Product::where('slug', $id)->increment('viewers', 1);
+        $prod = Product::where('slug', $id)->first();
+        if($prod['viewers'] == 10) {
+            $prod->seller->notify(new ProductViewersNotification($prod));
+        }
     }
 
     public function setToCart()

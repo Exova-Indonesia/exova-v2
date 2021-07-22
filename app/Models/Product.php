@@ -24,6 +24,7 @@ class Product extends Model
         "revision_price",
         "revision_amount",
         "tags",
+        "viewers",
         "youtube_url",
         "is_active", 
         "deleted_at", 

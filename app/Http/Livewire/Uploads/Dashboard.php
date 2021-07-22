@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Uploads;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class Dashboard extends Component
@@ -82,6 +83,15 @@ class Dashboard extends Component
     {
         $this->emit("closeModal");
     }
+
+    public function saveAsDraf()
+    {
+        Product::where('uuid', session()->get('products.uuid'))->update([
+            'is_active' => false,
+        ]);
+        $this->emit("closeModal");
+    }
+    
     public function render()
     {
         return view('livewire.uploads.dashboard');
