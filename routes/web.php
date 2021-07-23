@@ -38,7 +38,7 @@ Route::get('/', function () {
     // return now()->addDays(10)->format('Y-m-d H:i:s');
 });
 
-Route::middleware(['auth:sanctum'])->get('/dashboard', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 

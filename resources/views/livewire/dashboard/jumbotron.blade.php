@@ -16,7 +16,7 @@
          Cari Jasa <span class="hidden lg:block">/Freelancer</span>
         </a>
         <a
-          href="{{ url('user/studio', auth()->user()->username) }}"
+          href="@auth {{ url('user/studio', auth()->user()->username) }} @else {{ route('login') }} @endauth"
           class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 rounded-t-full rounded-l-full hover:bg-purple-700 focus:shadow-outline focus:outline-none"
         >
          Jual Jasa

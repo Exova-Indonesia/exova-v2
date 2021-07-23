@@ -1,5 +1,5 @@
 <div>
-   <x-app-layout>
+   {{-- <x-app-layout> --}}
       <x-slot name="header">
          @livewire('events.components.topnav')
       </x-slot>
@@ -52,5 +52,5 @@
             </div>
          </div>
       </div>
-   </x-app-layout>
+   {{-- </x-app-layout> --}}
 </div>

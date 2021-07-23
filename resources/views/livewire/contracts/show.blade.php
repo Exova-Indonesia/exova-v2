@@ -1,5 +1,5 @@
 <div>
-    <x-app-layout>
+    {{-- <x-app-layout> --}}
         <x-slot name="navbar">
          <div class="flex justify-between">
             <div>
@@ -121,6 +121,6 @@
                 </table>
             </div>
         </div>
-    </x-app-layout>
+    {{-- </x-app-layout> --}}
 </div>
     

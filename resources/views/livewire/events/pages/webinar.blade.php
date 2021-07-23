@@ -1,5 +1,5 @@
 <div>
-   <x-app-layout>
+   {{-- <x-app-layout> --}}
       <x-slot name="header">
          @livewire('events.components.topnav')
       </x-slot>
@@ -71,5 +71,5 @@
         <!-- Card code block end -->
         @endforeach
       </div>
-   </x-app-layout>
+   {{-- </x-app-layout> --}}
 </div>

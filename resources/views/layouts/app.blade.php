@@ -19,9 +19,9 @@
       @livewireStyles
       <!-- Scripts -->
       <script
-      src="https://maps.googleapis.com/maps/api/js?key={{ env('GMAPS_KEY') }}&libraries=places&v=weekly"
-      async
-      ></script>
+         src="https://maps.googleapis.com/maps/api/js?key={{ env('GMAPS_KEY') }}&libraries=places&v=weekly"
+         async
+         ></script>
       <script src="{{ asset('js/upload.js') }}" defer></script>
       <script src="{{ asset('js/maps.js') }}" defer></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -34,30 +34,30 @@
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DZV6LVHTJ"></script>
       <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-9DZV6LVHTJ');
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         
+         gtag('config', 'G-9DZV6LVHTJ');
       </script>
       <!-- Google Tag Manager -->
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-5NDFH6Q');</script>
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-5NDFH6Q');
+      </script>
       <!-- End Google Tag Manager -->
    </head>
    <body class="font-sans antialiased">
-         <!-- Google Tag Manager (noscript) -->
-         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NDFH6Q"
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NDFH6Q"
          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-         <!-- End Google Tag Manager (noscript) -->
-      <x-jet-banner />
+      <!-- End Google Tag Manager (noscript) -->
       <div wire:offline class="bg-red-600 p-4">
-      <p class="text-center text-red-50 text-base uppercase font-semibold">
-         Tidak ada koneksi
-      </p>
+         <p class="text-center text-red-50 text-base uppercase font-semibold">
+            Tidak ada koneksi
+         </p>
       </div>
       <div class="min-h-screen bg-gray-100">
          @if(isset($navbar))
@@ -82,27 +82,24 @@
       @stack('modals')
       @livewireScripts
       @stack('scripts')
-      <div>
-   <script>
-      window.addEventListener('notification', event => {
-         const Toast = Swal.mixin({
-         toast: true,
-         position: 'top-end',
-         showConfirmButton: false,
-         timer: 3000,
-         timerProgressBar: true,
-         didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-         }
+      <script>
+         window.addEventListener('notification', event => {
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+            Toast.fire({
+               icon: event.detail.type,
+               title: event.detail.title
+            })
          })
-
-         Toast.fire({
-            icon: event.detail.type,
-            title: event.detail.title
-         })
-      })
-   </script>
-</div>
+      </script>
    </body>
 </html>

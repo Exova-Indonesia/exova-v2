@@ -2,7 +2,12 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
         </x-slot>
-
+      @if (session('status'))
+      <div class="mb-4 font-medium text-sm text-green-600">
+         {{ session('status') }}
+      </div>
+      @endif
+      <div class="w-full px-6 py-8 md:px-8">
         <x-jet-validation-errors class="mb-4" />
 <div class="text-center flex justify-center py-2">
           <x-jet-authentication-card-logo />
@@ -61,6 +66,7 @@
          <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
          <a href="{{ url('login') }}" class="text-xs text-gray-500 uppercase dark:text-gray-400 hover:underline">Sign In</a>
          <span class="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
+      </div>
       </div>
     </x-jet-authentication-card>
 </x-guest-layout>

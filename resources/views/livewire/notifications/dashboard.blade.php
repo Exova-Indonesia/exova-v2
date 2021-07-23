@@ -1,5 +1,5 @@
 <div>
-    <x-app-layout>
+    {{-- <x-app-layout> --}}
       <x-slot name="navbar">
          <div class="flex justify-between">
             <div>
@@ -19,5 +19,5 @@
         <div class="mx-8">
             @livewire('studios.components.notifikasi')
         </div>
-    </x-app-layout>
+    {{-- </x-app-layout> --}}
 </div>

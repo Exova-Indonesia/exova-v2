@@ -1,5 +1,5 @@
 <div>
-   <x-app-layout>
+   {{-- <x-app-layout> --}}
       <x-slot name="navbar">
          <div class="flex justify-between">
             <div>
@@ -147,7 +147,7 @@
             @endif
          </div>
       </section>
-   </x-app-layout>
+   {{-- </x-app-layout> --}}
    @push('styles')
       <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
       <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">

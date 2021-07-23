@@ -11,20 +11,20 @@
             </button>
          </div>
          <ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-            <li><a class="text-sm text-gray-700 font-bold" href="{{ url('/') }}">@lang('navigation.menu.menu-1')</a></li>
-            <li class="text-gray-800">
+            <li><a class="text-sm text-gray-700" href="{{ url('/') }}">@lang('navigation.menu.menu-1')</a></li>
+            <li class="text-gray-400">
                <svg class="w-4 h-4 current-fill" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
                </svg>
             </li>
             <li><a class="text-sm text-gray-700 hover:text-gray-700" href="#kategori">@lang('navigation.menu.menu-2')</a></li>
-            <li class="text-gray-800">
+            <li class="text-gray-400">
                <svg class="w-4 h-4 current-fill" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
                </svg>
             </li>
             <li><a class="text-sm text-gray-700 hover:text-gray-700" href="{{ url('products?filter=trends') }}">@lang('navigation.menu.menu-3')</a></li>
-            <li class="text-gray-800">
+            <li class="text-gray-400">
                <svg class="w-4 h-4 current-fill" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
                </svg>
@@ -76,7 +76,7 @@
          </a>
          @endauth
          @guest
-         <a class="hidden lg:inline-block py-2 px-6 bg-green-500 hover:bg-green-600 text-sm text-gray-700 font-bold rounded-l-xl rounded-t-xl transition duration-200" href="#">Login</a>
+         <a class="hidden lg:inline-block py-2 px-6 bg-pink-500 hover:bg-pink-600 text-sm text-white font-bold rounded-t-full rounded-l-full transition duration-200" href="{{ route('login') }}">Login</a>
          @else
          <div class="hidden lg:block">
             <x-jet-dropdown align="right" width="48">
@@ -150,10 +150,12 @@
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="#kategori">@lang('navigation.menu.menu-2')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('products?filter=trends') }}">@lang('navigation.menu.menu-3')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('products') }}">@lang('navigation.menu.menu-5')</a></li>
+               @auth
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/profile') }}">@lang('navigation.menu.profile')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('contracts') }}">@lang('navigation.menu.contract')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/studio' , auth()->user()->username) }}">@lang('navigation.menu.studio')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('wishlists') }}">@lang('navigation.menu.wishlist')</a></li>
+               @endauth
                <form method="POST" action="{{ route('logout') }}">
                @csrf
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" onclick="event.preventDefault();
@@ -162,6 +164,7 @@
          </ul>
          </div>
          <div class="mt-auto">
+            @auth
             <center>
                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                  <button class="text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -172,7 +175,7 @@
                        {{ Auth::user()->name }}
                     </h5>
                  </div>
-                 <div class="flex justify-between">
+                 <div class="flex justify-between py-8">
                     <span>
                        Saldo
                     </span>
@@ -191,7 +194,6 @@
                  </span>
                  @endif
             </center>
-         @auth
          <center class="py-4">
             <a class="lg:hidden inline-block lg:ml-auto lg:mr-3 p-2 text-sm text-gray-700 rounded-full transition duration-200" href="cart">
                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -211,7 +213,7 @@
          </center>
          @endauth
          @guest
-         <div class="pt-6"><a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-l-xl rounded-t-xl" href="#">Sign in</a><a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-gray-700 font-semibold bg-green-600 hover:bg-green-700 rounded-l-xl rounded-t-xl" href="#">Sign Up</a></div>
+         <div class="pt-6"><a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-blue-600 hover:bg-gray-100 rounded-l-xl text-white rounded-t-xl" href="{{ route('login') }}">Sign in</a><a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700 rounded-l-xl rounded-t-xl" href="{{ route('register') }}">Sign Up</a></div>
          @endguest
             <p class="my-4 text-xs text-center text-gray-400">
                <span>© {{ date('Y') . ' ' . config('app.name') }}, All rights reserved.</span>

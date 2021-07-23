@@ -11,9 +11,11 @@ class Footer extends Component
     
     public function addDeviceToken($id)
     {
-        User::where('id', auth()->user()->id)->update([
-            'device_token' => $id,
-        ]);
+        if(auth()->check()) {
+            User::where('id', auth()->user()->id)->update([
+                'device_token' => $id,
+            ]);
+        }
     }
 
     public function render()

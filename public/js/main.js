@@ -1,5 +1,5 @@
 // Burger menus
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("livewire:load", function () {
     // open
     const burger = document.querySelectorAll(".navbar-burger");
     const menu = document.querySelectorAll(".navbar-menu");
