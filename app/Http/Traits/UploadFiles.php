@@ -49,10 +49,10 @@ trait UploadFiles
         $this->old_name = $this->files->getClientOriginalName();
         $this->size = $this->files->getSize();
         $this->ext = $this->files->getClientOriginalExtension();
-        $validator = Validator::make(
-            ['files' => $this->files],
-            ['files' => 'max:25600'],
-        );
+        // $validator = Validator::make(
+        //     ['files' => $this->files],
+        //     ['files' => 'max:25600'],
+        // );
 
         if($validator->fails()) {
             $this->flsRemove();
