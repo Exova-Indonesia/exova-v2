@@ -40,15 +40,8 @@ trait UploadFiles
         //     ['picture' => $this->picture],
         //     ['picture' => 'max:2048'],
         // );
-        if($validator->fails()) {
-            $this->removePicture();
-            $this->dispatchBrowserEvent('notification', 
-            ['type' => 'error',
-            'title' => $validator->errors()->first('picture')]);
-        } else {
-            $this->filesName = uniqid();
-            $this->store();
-        }
+        $this->filesName = uniqid();
+        $this->store();
     }
 
     public function upFls()
