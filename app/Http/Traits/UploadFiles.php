@@ -36,10 +36,10 @@ trait UploadFiles
         $this->old_name = $this->picture->getClientOriginalName();
         $this->size = $this->picture->getSize();
         $this->ext = $this->picture->getClientOriginalExtension();
-        $validator = Validator::make(
-            ['picture' => $this->picture],
-            ['picture' => 'max:2048'],
-        );
+        // $validator = Validator::make(
+        //     ['picture' => $this->picture],
+        //     ['picture' => 'max:2048'],
+        // );
         if($validator->fails()) {
             $this->removePicture();
             $this->dispatchBrowserEvent('notification', 
