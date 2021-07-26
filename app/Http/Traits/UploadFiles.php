@@ -54,15 +54,15 @@ trait UploadFiles
         //     ['files' => 'max:25600'],
         // );
 
-        if($validator->fails()) {
-            $this->flsRemove();
-            $this->dispatchBrowserEvent('notification', 
-            ['type' => 'error',
-            'title' => $validator->errors()->first('files')]);
-        } else {
+        // if($validator->fails()) {
+        //     $this->flsRemove();
+        //     $this->dispatchBrowserEvent('notification', 
+        //     ['type' => 'error',
+        //     'title' => $validator->errors()->first('files')]);
+        // } else {
             $this->filesName = uniqid() . '.' . $this->ext;
             $this->storeFls();
-        }
+        // }
     }
 
     public function storeToDb()
