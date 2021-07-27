@@ -17,10 +17,15 @@ class TableProducts extends Component
         ($this->dropdown == $id) ? $this->dropdown = false : $this->dropdown = $id;
     }
 
-    public function openModal() {
+    public function redirectToUpload() {
         try {
-            session()->put('products.uuid', uniqid());
-            $this->emit("openModal");
+            $uuid = uniqid();
+            Product::create([
+                'uuid' => $uuid,
+                'seller_id' => auth()->user()->id,
+                'is_active' => false,
+            ]);
+            return redirect(url('studio/uploads/' . $uuid));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -28,8 +33,7 @@ class TableProducts extends Component
 
     public function editProduct($id) {
         try {
-            session()->put('products.uuid', $id);
-            $this->emit("openModal");
+            return redirect(url('studio/uploads/' . $id));
         } catch (\Throwable $th) {
             throw $th;
         }

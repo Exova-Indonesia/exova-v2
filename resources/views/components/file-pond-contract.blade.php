@@ -14,8 +14,10 @@
             },
             credits: false,
             acceptedFileTypes: {!! $attributes->get('acceptedFileTypes') ?? 'null' !!},
-            allowFileSizeValidation: {{ $attributes->has('allowFileSizeValidation') ? 'true' : 'false' }},
-            maxFileSize: {!! $attributes->has('maxFileSize') ? "'".$attributes->get('maxFileSize')."'" : 'null' !!}
+            allowFileSizeValidation: {!! $attributes->has('allowFileSizeValidation') ? 'true' : 'false' !!},
+            allowMultiple: {!! $attributes->has('allowMultiple') ? 'true' : 'false' !!},
+            maxFileSize: {!! $attributes->has('maxFileSize') ? "'".$attributes->get('maxFileSize')."'" : 'null' !!},
+            maxFiles: {!! $attributes->has('maxFiles') ? "'".$attributes->get('maxFiles')."'" : 'null' !!}
         });
         this.addEventListener('pondReset', e => {
             post.removeFiles();

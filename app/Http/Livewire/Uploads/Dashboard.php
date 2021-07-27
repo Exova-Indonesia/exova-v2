@@ -2,98 +2,182 @@
 
 namespace App\Http\Livewire\Uploads;
 
+use App\Models\Style;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Category;
+use App\Models\SubCategory;
+use Livewire\WithFileUploads;
+use App\Http\Traits\UploadPictures;
 
 class Dashboard extends Component
 {
-    public $namaproject;
-    public $page = 1;
-    public $timeline = [];
-    protected $listeners = ["namaproject", "nextPage"];
+    use UploadPictures, WithFileUploads;
+    public $name;
+    public $deskripsi;
+    public $harga;
+    public $tipeharga;
+    public $kategori;
+    public $style;
+    public $files;
+    public $subkategori;
+    public $allCategory;
+    public $segmentedSubcategory = [];
+    public $allStyles;
+    public $product;
+    public $uuid;
     
-    public function mount()
+    public function mount($id)
     {
-        $this->timeline = [
-            [
-                'page' => 1,
-                'title' => "Details"
-            ],
-            [
-                'page' => 2,
-                'title' => "Gallery"
-            ],
-            [
-                'page' => 3,
-                'title' => "Pricing"
-            ],
-            [
-                'page' => 4,
-                'title' => "Publish & Share"
-            ],
-        ];
+        $this->uuid = $id;
+        $this->product = Product::where([['uuid', $this->uuid],['seller_id', auth()->user()->id]])->first();
+        $this->name = $this->product['title'];
+        $this->harga = 'Rp' . number_format($this->product['price'], 0, ',', '.');
+        $this->tipeharga = $this->product['price_type_id'];
+        $this->style = $this->product['style_id'];
+        $this->deskripsi = $this->product['description'];
+        
+        $category = SubCategory::where('id', $this->product['subcategory_id'])->first();
+        $this->kategori = $category['category_id'];
+        $this->segmentedSubcategory = SubCategory::where('category_id', $this->kategori)->get();
+        $this->subkategori = $this->product['subcategory_id'];
+
     }
 
-    public function namaproject($e)
+    public function updatedKategori()
     {
-        $this->namaproject = $e;
+        $this->segmentedSubcategory = SubCategory::where('category_id', $this->kategori)->get();
     }
-    
-    public function continue()
+
+    public function updatedFiles()
     {
-        switch ($this->page) {
-            case 1:
-                $this->emit("updateDetails");
-                break;
-            
-            case 2:
-                $this->emit("updateGallery");
-                break;
-            
-            case 3:
-                $this->emit("updatePricing");
-                break;
-            
-            case 4:
-                try {
-                    $this->emit("updatePublish");
-                    $this->closeModal();
-                } catch (\Throwable $th) {
-                    throw $th;
-                }
-                break;
-            
-            default:
-                # code...
-                break;
+        if(! empty($this->files)) {
+            $this->updatePictures($this->files);
+            $this->emit('updateCardProduct');
         }
     }
 
-    public function nextPage()
+    public function deletePicture($id)
     {
-        $this->page = $this->page + 1;
+        $this->deletePictures($id);
+        $this->emit('updateCardProduct');
     }
 
-    public function previousPage()
+    public function Cover($id)
     {
-        $this->page = $this->page - 1;
+        $this->setCover($id);
+        $this->emit('updateCardProduct');
     }
 
-    public function closeModal()
+    public function back()
     {
-        $this->emit("closeModal");
+        return redirect(url('user/studio/' .auth()->user()->username));   
     }
 
     public function saveAsDraf()
     {
-        Product::where('uuid', session()->get('products.uuid'))->update([
-            'is_active' => false,
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "is_active" => false,
         ]);
-        $this->emit("closeModal");
+        return redirect(url('user/studio/' .auth()->user()->username));
+    }
+
+    public function updatedName()
+    {
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "title" => $this->name,
+        ]);
+        $this->emit('updateCardProduct');
+    }
+
+    public function updatedSubkategori()
+    {
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "subcategory_id" => $this->subkategori,
+        ]);
+        $this->emit('updateCardProduct');
+    }
+
+    public function updatedStyle()
+    {
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "style_id" => $this->style,
+        ]);
+        $this->emit('updateCardProduct');
+    }
+
+    public function updatedHarga()
+    {
+        $this->harga = str_replace(['.', 'Rp', ' '], '', $this->harga);
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "price" => (int) $this->harga,
+        ]);
+        $this->emit('updateCardProduct');
+        $this->harga = 'Rp' . number_format((int) $this->harga, 0, ',', '.');
+    }
+
+    public function updatedTipeharga()
+    {
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "price_type_id" => $this->tipeharga,
+        ]);
+        $this->emit('updateCardProduct');
+    }
+
+    public function updatedDeskripsi()
+    {
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "description" => $this->deskripsi,
+        ]);
+        $this->emit('updateCardProduct');
+    }
+
+    public function publish()
+    {
+        if(empty($this->product['cover_id'])) {
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => 'Tidak keren!, Kamu belum set cover']);
+        } else {
+            Product::updateOrCreate([
+                "uuid" => $this->uuid,
+                "seller_id" => auth()->user()->id,
+            ],[
+                "is_active" => true,
+            ]);
+            return redirect(url('user/studio/' .auth()->user()->username));
+        }
     }
     
     public function render()
     {
+        $this->product = Product::where('uuid', $this->uuid)->first();
+        if(empty($this->product)) {
+            abort(404);
+        }
+        $this->allCategory = Category::all();
+        $this->allStyles = Style::all();
         return view('livewire.uploads.dashboard');
     }
 }

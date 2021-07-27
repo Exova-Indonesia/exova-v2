@@ -25,9 +25,8 @@ trait UploadPictures
 
     public function mountUploadPictures()
     {
-        $this->uuid = session()->get('products.uuid');
         $this->directory = 'users/' . auth()->user()->id . '/products/' . $this->uuid . '/';
-        $this->product = Product::with('images.getSmall')->where('uuid', $this->uuid)->first();
+        $this->product = Product::where('uuid', $this->uuid)->first();
     }
 
     private function resizeImage($img)
@@ -90,7 +89,7 @@ trait UploadPictures
         }
     }
 
-    public function updatePictures($img, $type)
+    public function updatePictures($img, $type = null)
     {
         try {
             $this->resizeImage($img);
@@ -106,6 +105,16 @@ trait UploadPictures
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
+
+    public function setCover($id)
+    {
+        Product::updateOrCreate([
+            "uuid" => $this->uuid,
+            "seller_id" => auth()->user()->id,
+        ],[
+            "cover_id" => $id,
+        ]);
     }
 
     public function deletePictures($id)

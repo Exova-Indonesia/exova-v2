@@ -19,6 +19,7 @@ use App\Http\Livewire\Payments\Dashboard as Payment;
 use App\Http\Livewire\Products\Dashboard as Product;
 use App\Http\Livewire\Contracts\Dashboard as Contract;
 use App\Http\Livewire\Notifications\Dashboard as Notif;
+use App\Http\Livewire\Uploads\Dashboard as Upload;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function() {
 Route::get('/products/{id}', PS::class)->name('product.show');
 Route::middleware(['auth:sanctum', 'verified', 'isCustomer'])->get('/studio/register', Register::class)->name('studio.register');
 Route::middleware(['auth:sanctum', 'verified', 'isFreelancer'])->get('/user/studio/{id}', Dashboard::class)->name('studio.dashboard');
+Route::middleware(['auth:sanctum', 'verified', 'isFreelancer'])->get('/studio/uploads/{id}', Upload::class)->name('studio.uploads');
 
 Route::get('/event', Event::class)->name('event.dashboard');
 Route::get('/event/webinar', Webinar::class)->name('webinar.dashboard');

@@ -27,7 +27,7 @@
                </button>
             </div> --}}
             <div class="lg:ml-6 flex items-center">
-               <x-upload-button wire:click="openModal" class="ml-2 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900" >
+               <x-upload-button wire:click="redirectToUpload" class="ml-2 bg-green-500 hover:bg-green-600 focus:border-green-600 active:bg-green-900" >
                   {{ __('Upload') }}
                </x-upload-button>
             </div>
@@ -92,7 +92,7 @@
                       <div class="dropdown-content mt-1 absolute left-0 -ml-12 shadow-md z-10 w-32">
                          <ul class="bg-white dark:bg-gray-800 shadow rounded py-1">
                             <li wire:click="editProduct('{{ $item['uuid'] }}')" class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-indigo-700 hover:text-white px-3 font-normal">Edit</li>
-                            <li wire:click="deleteProduct('{{ $item['uuid'] }}')" class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-indigo-700 hover:text-white px-3 font-normal">Delete</li>
+                            {{-- <li wire:click="deleteProduct('{{ $item['uuid'] }}')" class="cursor-pointer text-gray-600 dark:text-gray-400 text-sm leading-3 tracking-normal py-3 hover:bg-indigo-700 hover:text-white px-3 font-normal">Delete</li> --}}
                          </ul>
                       </div>
                       @endif

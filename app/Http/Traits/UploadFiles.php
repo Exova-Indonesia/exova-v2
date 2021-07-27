@@ -36,12 +36,19 @@ trait UploadFiles
         $this->old_name = $this->picture->getClientOriginalName();
         $this->size = $this->picture->getSize();
         $this->ext = $this->picture->getClientOriginalExtension();
-        // $validator = Validator::make(
-        //     ['picture' => $this->picture],
-        //     ['picture' => 'max:2048'],
-        // );
-        $this->filesName = uniqid();
-        $this->store();
+        $validator = Validator::make(
+            ['picture' => $this->picture],
+            ['picture' => 'max:2048'],
+        );
+        if($validator->fails()) {
+            $this->removePicture();
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => $validator->errors()->first('picture')]);
+        } else {
+            $this->filesName = uniqid();
+            $this->store();
+        }
     }
 
     public function upFls()
@@ -49,20 +56,20 @@ trait UploadFiles
         $this->old_name = $this->files->getClientOriginalName();
         $this->size = $this->files->getSize();
         $this->ext = $this->files->getClientOriginalExtension();
-        // $validator = Validator::make(
-        //     ['files' => $this->files],
-        //     ['files' => 'max:25600'],
-        // );
+        $validator = Validator::make(
+            ['files' => $this->files],
+            ['files' => 'max:25600'],
+        );
 
-        // if($validator->fails()) {
-        //     $this->flsRemove();
-        //     $this->dispatchBrowserEvent('notification', 
-        //     ['type' => 'error',
-        //     'title' => $validator->errors()->first('files')]);
-        // } else {
+        if($validator->fails()) {
+            $this->flsRemove();
+            $this->dispatchBrowserEvent('notification', 
+            ['type' => 'error',
+            'title' => $validator->errors()->first('files')]);
+        } else {
             $this->filesName = uniqid() . '.' . $this->ext;
             $this->storeFls();
-        // }
+        }
     }
 
     public function storeToDb()
