@@ -32,6 +32,7 @@ class CreateNewUser implements CreatesNewUsers
             'username' => Str::slug($input['name']) . rand(0, 1000),
             'name' => $input['name'],
             'email' => $input['email'],
+            'role_id' => User::IS_CUST,
             'password' => Hash::make($input['password']),
         ]);
     }
