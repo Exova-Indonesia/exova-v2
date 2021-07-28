@@ -1,5 +1,5 @@
 
-<div class="w-full lg:w-2/5 border-r">
+<div class="w-full border-r">
    <div class="px-12 flex flex-col items-center py-10">
       <div class="w-24 h-24 mb-3 p-2 rounded-full bg-blue-200 dark:bg-gray-700 flex items-center justify-center">
          <img role="img" class="w-full h-full overflow-hidden object-cover rounded-full" src="{{ $user['profile_photo_url'] }}" alt="avatar" />

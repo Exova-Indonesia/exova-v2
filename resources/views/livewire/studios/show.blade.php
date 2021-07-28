@@ -19,10 +19,12 @@
 <div class="w-full">
    <div class="flex items-start justify-center">
       <div aria-label="group of cards" class="w-full">
-         <div class="flex lg:flex-row flex-col mx-auto dark:bg-gray-800 shadow rounded">
-            @livewire('studios.components.profile', ['user' => $user])
+         <div class="grid lg:grid-cols-2 grid-cols-1 gap-2 dark:bg-gray-800 shadow rounded">
             <div>
-               @foreach ($user['products'] as $item)
+               @livewire('studios.components.profile', ['user' => $user])
+            </div>
+            <div>
+               @foreach ($user['products']->where('is_active', true) as $item)
                @livewire('studios.components.feeds', ['product' => $item], key($item->id))
                @endforeach
             </div>
