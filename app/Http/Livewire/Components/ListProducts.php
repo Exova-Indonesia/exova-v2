@@ -63,7 +63,7 @@ class ListProducts extends Component
         $this->product = Product::with('cover.getSmall')->where([
         ['title', 'LIKE', '%' . $this->search . '%'],
         ['is_active', true],
-        ])->orWhere('subcategory_id', $this->filter)->take($this->amount)->orderby($this->newFilter[0], $this->newFilter[1])->get();
+        ])->take($this->amount)->orderby($this->newFilter[0], $this->newFilter[1])->get();
         return view('livewire.components.list-products');
     }
 }
