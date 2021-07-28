@@ -36,7 +36,7 @@
                   </div>
                   <div class="mt-3">
                      <span class="text-sm font-semibold">
-                     {{ $reviews }} Feedbacks
+                     {{ $product['pricetype']['name'] }}
                      </span>
                   </div>
                </div>
