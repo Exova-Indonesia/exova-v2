@@ -51,6 +51,7 @@ class SocialController extends Controller
                 // 'phone'    => !empty($user->phone)? $user->phone : '' ,
                 'provider' => $provider,
                 'provider_id' => $user->id,
+                'role_id' => User::IS_CUST,
             ]);
             return $data;
         }

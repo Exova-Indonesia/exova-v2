@@ -55,9 +55,9 @@
                     <div class="flex">
                        Dilihat : {{ $product['viewers'] }}
                     </div>
-                    <div class="flex">
+                    {{-- <div class="flex">
                        Maksimal Revisi : {{ $product['revision_amount'] }}
-                    </div>
+                    </div> --}}
                     <div class="flex">
                        <span>Penjual : <a class="text-blue-600 hover:text-blue-500" href="{{ url('user/' . $product['seller']['username']) }}">{{ $product['seller']['name'] }}</a></span>
                     </div>

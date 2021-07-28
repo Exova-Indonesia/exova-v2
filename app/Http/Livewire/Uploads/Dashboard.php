@@ -7,6 +7,7 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Http\Traits\UploadPictures;
 
@@ -92,6 +93,7 @@ class Dashboard extends Component
             "seller_id" => auth()->user()->id,
         ],[
             "title" => $this->name,
+            'slug' => Str::slug($this->name) . '-' . rand(0, 9999),
         ]);
         $this->emit('updateCardProduct');
     }
@@ -159,6 +161,10 @@ class Dashboard extends Component
             $this->dispatchBrowserEvent('notification', 
             ['type' => 'error',
             'title' => 'Tidak keren!, Kamu belum set cover']);
+        } else if(empty($this->product['title']) || empty($this->product['price']) || empty($this->product['price_type_id']) || empty($this->product['subcategory_id'])) {
+            $this->dispatchBrowserEvent('notification',
+            ['type' => 'error',
+            'title' => 'Tidak keren!, Data belum lengkap']);
         } else {
             Product::updateOrCreate([
                 "uuid" => $this->uuid,
