@@ -27,10 +27,23 @@ class Dashboard extends Component
     public $allStyles;
     public $product;
     public $uuid;
+
+    public function getListeners()
+    {
+        return [
+            "echo-private:uploaded,UploadEvent" => 'getProduct',
+        ];
+    }
     
+    public function getProduct()
+    {
+        $this->product = Product::where([['uuid', $this->uuid],['seller_id', auth()->user()->id]])->first();
+    }
+
     public function mount($id)
     {
         $this->uuid = $id;
+        session()->put('uuid', $this->uuid);
         $this->product = Product::where([['uuid', $this->uuid],['seller_id', auth()->user()->id]])->first();
         $this->name = $this->product['title'];
         $this->harga = 'Rp' . number_format($this->product['price'], 0, ',', '.');

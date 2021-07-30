@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Studios\Register;
 use App\Http\Livewire\Studios\Dashboard;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\UploadController;
 use App\Http\Livewire\Products\Show as PS;
 use App\Http\Livewire\Contracts\Show as SC;
 use App\Http\Livewire\Events\Pages\Webinar;
@@ -14,12 +15,12 @@ use App\Http\Livewire\Studios\ListFreelancers;
 use App\Http\Livewire\Events\Dashboard as Event;
 use App\Http\Livewire\Wishlists\Dashboard as WS;
 use App\Http\Controllers\PaymentHandlerController;
+use App\Http\Livewire\Uploads\Dashboard as Upload;
 use App\Http\Livewire\Events\Pages\WebinarAttendant;
 use App\Http\Livewire\Payments\Dashboard as Payment;
 use App\Http\Livewire\Products\Dashboard as Product;
 use App\Http\Livewire\Contracts\Dashboard as Contract;
 use App\Http\Livewire\Notifications\Dashboard as Notif;
-use App\Http\Livewire\Uploads\Dashboard as Upload;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/user/{id}', Show::class)->name('studio.show');
     Route::get('/freelancers', ListFreelancers::class)->name('studio.lists');
     Route::get('/products', Product::class)->name('product.dashboard');
+    Route::post('/upload/images', [UploadController::class, 'setImages'])->name('upload.images');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
