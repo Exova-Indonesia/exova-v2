@@ -23,7 +23,7 @@
                allowFileSizeValidation
                allowMultiple
                maxFiles="{{ 3 - count($product['images']) }}"
-               maxFileSize="2mb" />
+               maxFileSize="25mb" />
             </div>
             @endif
             @forelse ($product['images'] as $item)
@@ -72,6 +72,9 @@
                   <x-simple-select-field type="text" class="mt-1 block w-full"
                   id="subkategori"
                   wire:model.lazy="subkategori">
+                     @if(count($segmentedSubcategory) > 0)
+                     <option hidden selected>Pilih SubKategori</option>
+                     @endif
                      @foreach ($segmentedSubcategory as $item)
                      <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
                      @endforeach
