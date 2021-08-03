@@ -44,6 +44,7 @@ class WebinarAttendant extends Component
         try {
             $attendant = WT::updateOrCreate([
                 'email' => $this->email,
+                'webinar_id' => $this->webinar['id'],
             ],[
                 'webinar_id' => $this->webinar['id'],
                 'name' => $this->name,
