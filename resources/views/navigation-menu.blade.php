@@ -30,6 +30,12 @@
                </svg>
             </li>
             <li><a class="text-sm text-gray-700 hover:text-gray-700" href="{{ url('products') }}">@lang('navigation.menu.menu-5')</a></li>
+            <li class="text-gray-400">
+               <svg class="w-4 h-4 current-fill" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+               </svg>
+            </li>
+            <li><a class="text-sm text-gray-700 hover:text-gray-700" href="{{ url('event') }}">@lang('navigation.menu.menu-6')</a></li>
          </ul>
          @auth
          {{-- Wallet --}}
@@ -150,6 +156,7 @@
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="#kategori">@lang('navigation.menu.menu-2')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('products?filter=trends') }}">@lang('navigation.menu.menu-3')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('products') }}">@lang('navigation.menu.menu-5')</a></li>
+               <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('event') }}">@lang('navigation.menu.menu-6')</a></li>
                @auth
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('user/profile') }}">@lang('navigation.menu.profile')</a></li>
                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-green-50 hover:text-green-600 rounded" href="{{ url('contracts') }}">@lang('navigation.menu.contract')</a></li>

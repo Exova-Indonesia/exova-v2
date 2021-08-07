@@ -7,6 +7,9 @@ use Livewire\Component;
 
 class Register extends Component
 {
+    protected $queryString = ['com'];
+    public $com;
+
     public function next()
     {
         if(! in_array(auth()->user()->role_id, [User::IS_PHOTO, User::IS_VIDEO])) {
@@ -14,7 +17,11 @@ class Register extends Component
             ['type' => 'error',
             'title' => 'Kamu harus melengkapi semua kolom terlebih dahulu']);
         } else {
-            return redirect(route('studio.dashboard', auth()->user()->username));
+            if($this->com) {
+                return redirect(route('competition.dashboard'));
+            } else {
+                return redirect(route('studio.dashboard', auth()->user()->username));
+            }
         }
     }
     public function render()

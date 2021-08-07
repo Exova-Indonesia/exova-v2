@@ -15,7 +15,7 @@
         <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
           Sudahi sedihmu kawan<br class="hidden md:block" />
           mari
-          <span class="inline-block text-blue-700">gabung Exova</span>
+          <span class="inline-block text-blue-700">gabung event Exova</span>
         </h2>
         <p class="text-base text-gray-700 md:text-lg">
           If you’re trying to create a company, it’s like baking a cake. You have to have all the ingredients in the right proportion <br> <span class="text-sm">-Elon Musk, CEO SpaceX & Tesla</span>

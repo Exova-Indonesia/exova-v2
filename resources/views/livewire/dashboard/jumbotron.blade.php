@@ -24,4 +24,21 @@
       </div>
     </div>
   </div>
+    <x-jet-dialog-modal wire:model="adsModal">
+      <x-slot name="title">
+      </x-slot>
+      <x-slot name="content">
+        <img src="https://i.graphicmama.com/blog/wp-content/uploads/2019/10/21144144/21-Free-Banner-Templates-for-Photoshop-and-Illustrator.jpg" alt="">
+      </x-slot>
+      <x-slot name="footer">
+          <x-jet-secondary-button wire:click="$toggle('adsModal')" wire:loading.attr="disabled">
+              {{ __('Nantian ah') }}
+          </x-jet-secondary-button>
+          <x-jet-button class="ml-2 bg-red-500 hover:bg-red-600"
+              wire:click="gotoAds"
+              wire:loading.attr="disabled">
+              {{ __('Ikut satu!') }}
+          </x-jet-button>
+      </x-slot>
+    </x-jet-dialog-modal>
 </div>

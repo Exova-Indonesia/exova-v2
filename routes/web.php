@@ -12,6 +12,7 @@ use App\Http\Livewire\Events\Pages\Webinar;
 use App\Http\Livewire\Carts\Dashboard as Cart;
 use App\Http\Livewire\Chats\Dashboard as Chat;
 use App\Http\Livewire\Studios\ListFreelancers;
+use App\Http\Livewire\Events\Pages\Competition;
 use App\Http\Livewire\Events\Dashboard as Event;
 use App\Http\Livewire\Wishlists\Dashboard as WS;
 use App\Http\Controllers\PaymentHandlerController;
@@ -19,6 +20,7 @@ use App\Http\Livewire\Uploads\Dashboard as Upload;
 use App\Http\Livewire\Events\Pages\WebinarAttendant;
 use App\Http\Livewire\Payments\Dashboard as Payment;
 use App\Http\Livewire\Products\Dashboard as Product;
+use App\Http\Livewire\Events\Pages\CompetitionSubmit;
 use App\Http\Livewire\Contracts\Dashboard as Contract;
 use App\Http\Livewire\Notifications\Dashboard as Notif;
 
@@ -54,6 +56,9 @@ Route::middleware(['auth:sanctum'])->group(function() {
     Route::get('/freelancers', ListFreelancers::class)->name('studio.lists');
     Route::get('/products', Product::class)->name('product.dashboard');
     Route::post('/upload/images', [UploadController::class, 'setImages'])->name('upload.images');
+    Route::post('/upload/events/competition/upload', [UploadController::class, 'setFileCompetition'])->name('competition.upload');
+    Route::delete('/upload/events/competition/upload', [UploadController::class, 'delFileCompetition'])->name('competition.delete');
+    Route::post('/submit/events/competition', [UploadController::class, 'submitCompetition'])->name('competition.submit');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
@@ -68,6 +73,9 @@ Route::middleware(['auth:sanctum', 'verified', 'isCustomer'])->get('/studio/regi
 Route::middleware(['auth:sanctum', 'verified', 'isFreelancer'])->get('/user/studio/{id}', Dashboard::class)->name('studio.dashboard');
 Route::middleware(['auth:sanctum', 'verified', 'isFreelancer'])->get('/studio/uploads/{id}', Upload::class)->name('studio.uploads');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/event/competition/{id}', CompetitionSubmit::class)->name('competition.submit.page');
+
 Route::get('/event', Event::class)->name('event.dashboard');
 Route::get('/event/webinar', Webinar::class)->name('webinar.dashboard');
 Route::get('/event/webinar/attend/{id}', WebinarAttendant::class)->name('webinar.attend');
+Route::get('/event/competition', Competition::class)->name('competition.dashboard');

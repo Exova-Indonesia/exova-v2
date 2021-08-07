@@ -37,7 +37,7 @@ class Dashboard extends Component
     
     public function getProduct()
     {
-        $this->product = Product::where([['uuid', $this->uuid],['seller_id', auth()->user()->id]])->first();
+        $this->emit('updateCardProduct');
     }
 
     public function mount($id)

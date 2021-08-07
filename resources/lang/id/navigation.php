@@ -8,6 +8,7 @@
             'menu-3' => 'Trends',
             'menu-4' => 'Feed',
             'menu-5' => 'Xplore',
+            'menu-6' => 'Event',
             'profile' => 'Profil',
             'contract' => 'Kontrak',
             'studio' => 'Studio',

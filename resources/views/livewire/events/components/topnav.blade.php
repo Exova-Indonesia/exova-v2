@@ -13,7 +13,7 @@
     @guest
     <li>
         <a
-          href="/"
+          href="{{ route('login') }}"
           class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-gray-800 hover:bg-gray-900 focus:shadow-outline focus:outline-none"
           aria-label="Sign In"
           title="Sign In"
