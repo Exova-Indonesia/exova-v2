@@ -18,16 +18,16 @@
             <h2 class="text-center font-medium text-lg">Media</h2>
             @if(count($product['images']) < 3)
             <div>
-               {{-- <x-input-file-pond
-               data-max-file-size="2MB"
+               <x-input-file-pond
+               data-max-file-size="25MB"
                multiple
-               data-max-files="{{ 3 - count($product['images']) }}"/> --}}
-            <x-file-pond-contract wire:model="files"
+               data-max-files="{{ 3 - count($product['images']) }}"/>
+            {{-- <x-file-pond-contract wire:model="files"
                allowFileTypeValidation="['image/*']"
                allowFileSizeValidation
                allowMultiple
                maxFiles="{{ 3 - count($product['images']) }}"
-               maxFileSize="25MB" />
+               maxFileSize="25MB" /> --}}
             </div>
             @endif
             @forelse ($product['images'] as $item)
