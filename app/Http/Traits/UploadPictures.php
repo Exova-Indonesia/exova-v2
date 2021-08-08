@@ -40,8 +40,8 @@ trait UploadPictures
                 $constraint->aspectRatio();
                 })->encode($extension);
                 $this->file_path = $this->directory . $value . '/' . $filename;
-                $s3->put($this->file_path, (string)$resize, 'public');
-                $this->storeDbImage($img, $filename, $extension, $s3->size($this->file_path), $s3->url($this->file_path));
+                // $s3->put($this->file_path, (string)$resize, 'public');
+                // $this->storeDbImage($img, $filename, $extension, $s3->size($this->file_path), $s3->url($this->file_path));
             }
                 $s3->putFileAs($this->directory . 'original' . '/', $img, $filename);
                 $this->storeDbImage($img, $filename, $extension, $s3->size($this->directory . 'original' . '/' . $filename), $s3->url($this->directory . 'original' . '/' . $filename));
