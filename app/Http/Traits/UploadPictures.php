@@ -39,9 +39,9 @@ trait UploadPictures
                 $this->file_path = $this->directory . $value . '/' . $filename;
                 $resize = Image::make($img)->resize($value, null, function ($constraint) {
                 $constraint->aspectRatio();
-                });
-                // $s3->put($this->file_path, (string)$resize, 'public');
-                // $this->storeDbImage($img, $filename, $extension, $s3->size($this->file_path), $s3->url($this->file_path));
+                })->save($extension);
+                $s3->put($this->file_path, (string)$resize, 'public');
+                $this->storeDbImage($img, $filename, $extension, $s3->size($this->file_path), $s3->url($this->file_path));
             }
                 $s3->putFileAs($this->directory . 'original' . '/', $img, $filename);
                 $this->storeDbImage($img, $filename, $extension, $s3->size($this->directory . 'original' . '/' . $filename), $s3->url($this->directory . 'original' . '/' . $filename));
