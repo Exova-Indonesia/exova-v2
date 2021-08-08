@@ -29,7 +29,7 @@
                           <div>
                               <x-competition-filepond-upload
                               accept="image/*"
-                              data-max-file-size="50MB"/>
+                              data-max-file-size="25MB"/>
                           </div>
                           <x-jet-input-error for="files" class="mt-2" />
                         {{-- URl --}}

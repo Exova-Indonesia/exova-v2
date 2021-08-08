@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Events\Pages;
 use Livewire\Component;
 use App\Models\Competition;
 use Livewire\WithFileUploads;
+use App\Models\PhotoCompetition;
 
 class CompetitionSubmit extends Component
 {
@@ -31,6 +32,10 @@ class CompetitionSubmit extends Component
 
         if(auth()->user()->role_id == 1) {
             return redirect('studio/register?com=true');
+        }
+
+        if(PhotoCompetition::where('user_id', auth()->user()->id)->first()) {
+            return redirect('/event');
         }
 
     }

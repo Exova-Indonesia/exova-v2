@@ -35,7 +35,7 @@ class UploadController extends Controller
     public function setFileCompetition(Request $request)
     {
         $file = $request->file('files');
-        $filename = rand(0, 9999) . '-' . $file->getClientOriginalName();
+        $filename = rand(0, 9999) . '-' . auth()->user()->username . '-' . $file->getClientOriginalName();
         Storage::disk('local')->putFileAs('events/competitions', $file, $filename);
         $idFile = File::create([
             'user_id' => auth()->user()->id,
@@ -59,8 +59,8 @@ class UploadController extends Controller
     public function submitCompetition(Request $request)
     {
         $this->validate($request,[
-           'title' => 'required',
-           'description' => 'required',
+           'title' => 'required|max:75',
+           'description' => 'required|max:200',
         ], [
             'title.required' => 'Judul karya tidak boleh kosong',
             'description.required' => 'Deskripsi karya tidak boleh kosong',
