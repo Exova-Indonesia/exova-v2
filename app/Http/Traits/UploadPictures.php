@@ -31,18 +31,18 @@ trait UploadPictures
 
     private function resizeImage($img)
     {
-        $s3 = Storage::disk('local');
+        $s3 = Storage::disk('public');
         try {
             $extension = $img->getClientOriginalExtension();
             $filename = time() . '-' . $this->product['id'] . '.' . $extension;
-            foreach ($this->dimensions as $key => $value) {
-                $resize = Image::make($img)->resize($value, null, function ($constraint) {
-                $constraint->aspectRatio();
-                })->encode($extension);
-                $this->file_path = $this->directory . $value . '/' . $filename;
-                // $s3->put($this->file_path, (string)$resize, 'public');
-                // $this->storeDbImage($img, $filename, $extension, $s3->size($this->file_path), $s3->url($this->file_path));
-            }
+            // foreach ($this->dimensions as $key => $value) {
+            //     $resize = Image::make($img)->resize($value, null, function ($constraint) {
+            //     $constraint->aspectRatio();
+            //     })->encode($extension);
+            //     $this->file_path = $this->directory . $value . '/' . $filename;
+            //     $s3->put($this->file_path, (string)$resize, 'public');
+            //     $this->storeDbImage($img, $filename, $extension, $s3->size($this->file_path), $s3->url($this->file_path));
+            // }
                 $s3->putFileAs($this->directory . 'original' . '/', $img, $filename);
                 $this->storeDbImage($img, $filename, $extension, $s3->size($this->directory . 'original' . '/' . $filename), $s3->url($this->directory . 'original' . '/' . $filename));
                 $this->storeDbResizedImage($this->fileDimensionId);
