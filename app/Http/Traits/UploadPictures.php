@@ -31,10 +31,10 @@ trait UploadPictures
 
     private function resizeImage($img)
     {
-        $s3 = Storage::disk('s3');
+        $s3 = Storage::disk('public');
         try {
             $extension = $img->getClientOriginalExtension();
-            $filename = time() . '-' . $this->product['id'];
+            $filename = time() . '-' . $this->product['id'] . '.' . $extension;
             foreach ($this->dimensions as $key => $value) {
                 $resize = Image::make($img)->resize($value, null, function ($constraint) {
                 $constraint->aspectRatio();
@@ -129,7 +129,7 @@ trait UploadPictures
             $idFiles->original] as $key => $value) {
                 $files = File::where('id', $value);
                 $path = $files->first();
-                Storage::disk('s3')->delete($path['path']);
+                Storage::disk('public')->delete($path['path']);
 
                 $files->delete();
                 $dimens->delete();
