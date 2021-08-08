@@ -27,7 +27,7 @@
                allowFileSizeValidation
                allowMultiple
                maxFiles="{{ 3 - count($product['images']) }}"
-               maxFileSize="2mb" />
+               maxFileSize="25MB" />
             </div>
             @endif
             @forelse ($product['images'] as $item)
