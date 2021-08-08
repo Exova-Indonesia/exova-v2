@@ -31,7 +31,7 @@ trait UploadPictures
 
     private function resizeImage($img)
     {
-        $s3 = Storage::disk('public');
+        $s3 = Storage::disk('local');
         try {
             $extension = $img->getClientOriginalExtension();
             $filename = time() . '-' . $this->product['id'] . '.' . $extension;
