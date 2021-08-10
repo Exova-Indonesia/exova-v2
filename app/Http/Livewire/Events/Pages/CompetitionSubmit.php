@@ -30,7 +30,7 @@ class CompetitionSubmit extends Component
 
         session()->put('competition.id', $this->comp['id']);
 
-        if(auth()->user()->role_id == 1) {
+        if(! in_array(auth()->user()->role_id, [2, 3])) {
             return redirect('studio/register?com=true');
         }
 
