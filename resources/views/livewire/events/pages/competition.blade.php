@@ -44,6 +44,7 @@
                       <p class="mb-2 font-normal text-gray-600 dark:text-gray-400 text-sm tracking-normal w-11/12 lg:w-9/12">{{ $item['description'] }}</p>
                       <a href="{{ $item['url_files'] }}" target="_blank" class="mb-6 font-normal text-blue-500 dark:text-gray-400 text-sm tracking-normal w-11/12 lg:w-9/12">{{ __('Unduh Penjelasan Lomba') }}</a>
                       <div class="flex lg:items-center items-start flex-col lg:flex-row my-3">
+                        @if($item['status'] == 2)
                         <div class="flex items-center">
                             @forelse ($item['participant']->take(3) as $p)
                             <div class="border-2 border-white dark:border-gray-700 shadow rounded-full w-6 h-6">
@@ -55,6 +56,7 @@
                               <p class=" dark:text-gray-400 text-xs font-normal ml-1">+{{ count($item['participant']) }} Peserta</p>
                            </a>
                         </div>
+                        @endif
                     </div>
                     <button class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-indigo-700 focus:text-indigo-700 mt-4 lg:mt-0 ml-0 flex items-end">
                        <span class="mr-1 ">
