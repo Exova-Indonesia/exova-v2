@@ -91,9 +91,15 @@
                         @if($item['participant']->where('user_id', auth()->user()->id)->first())
                         <div class="flex items-center">
                             <div class="flex items-center">
-                                <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
-                                    Karya terupload : {{ $item['participant']->where('user_id', auth()->user()->id)->first()['file']['old_name'] }}
-                                </a>
+                               @if ($item['file_id'] == 0)
+                               <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
+                                   Karya terupload di {{ __('Link Google Drive') }}
+                               </a>
+                               @else
+                               <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
+                                   Karya terupload : {{ $item['participant']->where('user_id', auth()->user()->id)->first()['file']['old_name'] }}
+                               </a>
+                               @endif
                             </div>
                         </div>
                         @else

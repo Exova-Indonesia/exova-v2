@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\Product;
 use App\Events\UploadEvent;
+use App\Models\Competition;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PhotoCompetition;
 use App\Http\Traits\UploadPictures;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\SendThanksJoinCompetition;
 
 class UploadController extends Controller
 {
@@ -65,7 +67,7 @@ class UploadController extends Controller
             'title.required' => 'Judul karya tidak boleh kosong',
             'description.required' => 'Deskripsi karya tidak boleh kosong',
         ]);
-        PhotoCompetition::create([
+        $data = PhotoCompetition::create([
             'uuid' => Str::uuid(),
             'competition_id' => (int) session()->get('competition.id'),
             'user_id' => auth()->user()->id,
@@ -74,6 +76,11 @@ class UploadController extends Controller
             'file_id' => $request->get('files') ?? 0,
             'url' => $request->url,
         ]);
+
+        $compe = Competition::where('id', (int) session()->get('competition.id'))->first();
+
+        auth()->user()->notify(new SendThanksJoinCompetition($data, $compe));
+
         return redirect(url('event/competition'))->with(['status' => 'File berhasil dikirim', 'messages' => 'Untuk pengumuman lebih lanjut silakan pantau terus Instagram @exova.id']);
     }
 }

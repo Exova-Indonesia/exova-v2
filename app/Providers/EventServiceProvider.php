@@ -9,6 +9,7 @@ use App\Events\WithDrawEvent;
 use App\Listeners\RefundListener;
 use App\Listeners\MessageListener;
 use App\Listeners\ContractListener;
+use App\Listeners\SendWelcomeEvent;
 use App\Listeners\WithdrawListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
@@ -25,6 +26,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            SendWelcomeEvent::class,
         ],
         MessageSent::class => [
             MessageListener::class,
