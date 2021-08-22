@@ -24,4 +24,8 @@ class Competition extends Model
     {
         return $this->hasMany(PhotoCompetition::class, 'competition_id');
     }
+
+    const IS_WAITING = 0;
+    const IS_STARTED = 1;
+    const IS_ENDED = 2;
 }

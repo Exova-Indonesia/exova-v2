@@ -52,9 +52,9 @@
                             </div>
                             @empty
                             @endforelse
-                           <a tabindex="0" class="cursor-pointer text-gray-600 focus:outline-none focus:underline focus:text-gray-400 hover:text-gray-400">
+                           {{-- <a tabindex="0" class="cursor-pointer text-gray-600 focus:outline-none focus:underline focus:text-gray-400 hover:text-gray-400">
                               <p class=" dark:text-gray-400 text-xs font-normal ml-1">+{{ count($item['participant']) }} Peserta</p>
-                           </a>
+                           </a> --}}
                         </div>
                         @endif
                     </div>
@@ -103,13 +103,15 @@
                             </div>
                         </div>
                         @else
-                        <div class="flex items-center">
-                            <div class="flex items-center">
-                                <a href="{{ url('event/competition/' . $item['uuid']) }}" class="px-3 py-1 cursor-pointer hover:bg-blue-300 duration-500 text-sm rounded-full text-blue-600  bg-blue-200">
+                           @if($item['status'] == 1)
+                           <div class="flex items-center">
+                              <div class="flex items-center">
+                                 <a href="{{ url('event/competition/' . $item['uuid']) }}" class="px-3 py-1 cursor-pointer hover:bg-blue-300 duration-500 text-sm rounded-full text-blue-600  bg-blue-200">
                                     Upload Karya
-                                </a>
-                            </div>
-                        </div>
+                                 </a>
+                              </div>
+                           </div>
+                           @endif
                         @endif
                     @endif
                    </div>

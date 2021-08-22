@@ -54,6 +54,7 @@ class SocialController extends Controller
                 'provider_id' => $user->id,
                 'role_id' => User::IS_CUST,
             ]);
+            event(new Registered($data));
             return $data;
         }
     }
