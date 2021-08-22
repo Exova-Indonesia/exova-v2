@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Notifications\SendWelcomeToExova;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class SendWelcomeEvent implements ShouldQueue
 {
@@ -27,6 +28,9 @@ class SendWelcomeEvent implements ShouldQueue
      */
     public function handle(Registered $event)
     {
+        if ($event->user instanceof MustVerifyEmail && ! $event->user->hasVerifiedEmail()) {
+            $event->user->sendEmailVerificationNotification();
+        }
         $event->user->notify(new SendWelcomeToExova($event->user));
     }
 }

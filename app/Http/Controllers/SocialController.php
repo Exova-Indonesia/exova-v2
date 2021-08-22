@@ -7,6 +7,7 @@ use Socialite;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class SocialController extends Controller
 {
@@ -53,6 +54,7 @@ class SocialController extends Controller
                 'provider_id' => $user->id,
                 'role_id' => User::IS_CUST,
             ]);
+            event(new Registered($data));
             return $data;
         }
     }
