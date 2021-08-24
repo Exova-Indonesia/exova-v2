@@ -27,5 +27,6 @@ class Competition extends Model
 
     const IS_WAITING = 0;
     const IS_STARTED = 1;
-    const IS_ENDED = 2;
+    const IS_CLOSED = 2;
+    const IS_ENDED = 3;
 }

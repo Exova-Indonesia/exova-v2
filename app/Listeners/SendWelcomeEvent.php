@@ -28,9 +28,9 @@ class SendWelcomeEvent implements ShouldQueue
      */
     public function handle(Registered $event)
     {
+        $event->user->notify(new SendWelcomeToExova($event->user));
         if ($event->user instanceof MustVerifyEmail && ! $event->user->hasVerifiedEmail()) {
             $event->user->sendEmailVerificationNotification();
         }
-        $event->user->notify(new SendWelcomeToExova($event->user));
     }
 }

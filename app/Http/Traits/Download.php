@@ -16,6 +16,11 @@ trait Download
 
         return response()->download($tempImage, $filename);
     }
+
+    public function certificateDownload($file)
+    {
+        return Storage::disk('local')->download($file);
+    }
 }
 
 ?>

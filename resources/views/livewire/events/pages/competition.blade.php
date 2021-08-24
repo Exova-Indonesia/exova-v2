@@ -6,7 +6,7 @@
       <div class="lg:m-16">
         @guest
         <div class="px-4 m-2 text-center py-3 leading-normal text-red-100 bg-red-600 rounded-lg" role="alert">
-            <p>Kamu harus login terlebih dahulu sebelum submit karya! <a class="p-2 bg-red-700 text-white text-sm rounded-lg" href="{{ route('login') }}">Login</a> </p>
+            <p>Kamu harus login terlebih dahulu! <a class="p-2 bg-red-700 text-white text-sm rounded-lg" href="{{ route('login') }}">Login</a> </p>
         </div>
         @else
         @if(auth()->user()->role_id == 1)
@@ -44,7 +44,7 @@
                       <p class="mb-2 font-normal text-gray-600 dark:text-gray-400 text-sm tracking-normal w-11/12 lg:w-9/12">{{ $item['description'] }}</p>
                       <a href="{{ $item['url_files'] }}" target="_blank" class="mb-6 font-normal text-blue-500 dark:text-gray-400 text-sm tracking-normal w-11/12 lg:w-9/12">{{ __('Unduh Penjelasan Lomba') }}</a>
                       <div class="flex lg:items-center items-start flex-col lg:flex-row my-3">
-                        @if($item['status'] == 2)
+                        @if(in_array($item['status'], [2, 3]))
                         <div class="flex items-center">
                             @forelse ($item['participant']->take(3) as $p)
                             <div class="border-2 border-white dark:border-gray-700 shadow rounded-full w-6 h-6">
@@ -82,6 +82,10 @@
                                 </span>
                             @elseif($item['status'] == 2)
                                 <span class="px-3 py-1 text-sm rounded-full text-red-600  bg-red-200 ">
+                                Closed
+                                </span>
+                            @elseif($item['status'] == 3)
+                                <span class="px-3 py-1 text-sm rounded-full text-blue-600  bg-blue-200 ">
                                 Ended
                                 </span>
                             @endif
@@ -91,15 +95,26 @@
                         @if($item['participant']->where('user_id', auth()->user()->id)->first())
                         <div class="flex items-center">
                             <div class="flex items-center">
-                               @if ($item['participant']->where('user_id', auth()->user()->id)->first()['file_id'] == 0)
-                               <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
-                                   Karya terupload di {{ __('Link Google Drive') }}
+                               @if ($item['status'] == 3)
+                               <a wire:click="downloadCert" class="px-3 py-1 cursor-pointer hover:bg-green-300 duration-500 text-sm rounded-full text-green-600 bg-green-200">
+                                 <span wire:loading.remove>
+                                    Download Sertifikat
+                                 </span>
+                                 <span wire:loading>
+                                    Loading...
+                                 </span>
                                </a>
                                @else
-                               <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
-                                   Karya terupload : {{ $item['participant']->where('user_id', auth()->user()->id)->first()['file']['old_name'] }}
-                               </a>
-                               @endif
+                                 @if ($item['participant']->where('user_id', auth()->user()->id)->first()['file_id'] == 0)
+                                    <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
+                                    Karya terupload di {{ __('Link Google Drive') }}
+                                 </a>
+                                 @else
+                                 <a class="px-3 py-1 cursor-pointer hover:bg-pink-300 duration-500 text-sm rounded-full text-pink-600 bg-pink-200">
+                                    Karya terupload : {{ $item['participant']->where('user_id', auth()->user()->id)->first()['file']['old_name'] }}
+                                 </a>
+                                 @endif
+                              @endif
                             </div>
                         </div>
                         @else

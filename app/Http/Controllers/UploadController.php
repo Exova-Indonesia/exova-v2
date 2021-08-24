@@ -41,7 +41,7 @@ class UploadController extends Controller
         Storage::disk('local')->putFileAs('events/competitions/' . auth()->user()->id, $file, $filename);
         $idFile = File::create([
             'user_id' => auth()->user()->id,
-            'path' => Storage::disk('local')->url('events/competitions/' . $filename),
+            'path' => Storage::disk('local')->url('events/competitions/' . auth()->user()->id .'/' . $filename),
             'new_name' => $filename,
             'old_name' => $file->getClientOriginalName(),
             'size' => $file->getSize(),
