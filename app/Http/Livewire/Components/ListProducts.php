@@ -12,7 +12,7 @@ class ListProducts extends Component
     public $product;
     public $productAmount;
     public $filter;
-    public $newFilter = ['updated_at', 'asc'];
+    public $newFilter = ['created_at', 'desc'];
 
     protected $listeners = ["setSearch"];
 
@@ -46,7 +46,7 @@ class ListProducts extends Component
             ];
         } else if($this->filter == 'new') {
             $this->newFilter = [
-                'created_at',
+                'updated_at',
                 'DESC'
             ];
         } else if($this->filter == 'trends') {
