@@ -31,6 +31,7 @@ class ListFreelancers extends Component
     {
         $this->data = User::whereIn('role_id', [User::IS_PHOTO, User::IS_VIDEO])
         ->where('name', 'LIKE', '%' . $this->search . '%')
+        ->orderby('updated_at', 'desc')
         ->get();
         return view('livewire.studios.list-freelancers');
     }
