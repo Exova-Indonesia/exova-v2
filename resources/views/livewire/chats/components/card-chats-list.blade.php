@@ -1,6 +1,6 @@
 <div class="flex flex-col flex-none overflow-auto w-24 hover:w-64 group lg:max-w-sm md:w-2/5 transition-all duration-300 ease-in-out">
    <div class="header p-4 flex flex-row justify-between items-center flex-none">
-      <div class="w-16 h-16 relative flex flex-shrink-0">
+      <div class="w-12 h-12 relative flex flex-shrink-0">
          <img class="rounded-full w-full h-full object-cover" alt="ravisankarchinnam"
             src="{{ auth()->user()->profile_photo_url }}"/>
       </div>
@@ -32,7 +32,7 @@
    <div class="contacts p-2 flex-1 overflow-y-scroll">
    @foreach ($room as $item)
    <div wire:click="loadChats('{{ $item['id'] }}')" class="flex justify-between items-center p-3 hover:bg-gray-800 rounded-lg relative cursor-pointer">
-      <div class="w-16 h-16 relative flex flex-shrink-0">
+      <div class="w-10 h-10 relative flex flex-shrink-0">
          <img class="shadow-md rounded-full w-full h-full object-cover"
             src="@if($item['customer']['id'] == $user) {{ $item['seller']['profile_photo_url'] }} @else {{ $item['customer']['profile_photo_url'] }} @endif"
             alt="Photo"

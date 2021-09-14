@@ -128,7 +128,6 @@
                   <x-simple-textarea-field type="text" class="mt-1 block w-full"
                      rows="5"
                      id="deskripsi"
-                     maxlength="200"
                      wire:model.lazy="deskripsi">
                   </x-simple-textarea-field>
                   <x-jet-input-error for="deskripsi" class="mt-2" />
