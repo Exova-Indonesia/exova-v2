@@ -1,4 +1,4 @@
-<div class="relative bg-cover bg-white flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0" style="background-image: url({{ asset('images/banner.png') }});">
+<div class="relative bg-cover bg-white flex flex-col-reverse py-16 lg:pt-0 lg:flex-col lg:pb-0" style="background-image: url({{ asset('images/banner.jpg') }});">
   <div class="relative flex flex-col items-start w-full px-4 mx-auto md:px-0">
     <div class="lg:m-16 lg:my-40 lg:max-w-lg lg:pr-5">
         <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
