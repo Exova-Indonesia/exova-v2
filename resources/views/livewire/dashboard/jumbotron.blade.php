@@ -2,11 +2,11 @@
   <div class="relative flex flex-col items-start w-full px-4 mx-auto md:px-0">
     <div class="lg:m-16 lg:my-40 lg:max-w-lg lg:pr-5">
         <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-         Cari Jasa Dokumentasi?<br class="hidden md:block" />
-          <span class="inline-block text-blue-600">Exova Aja!</span>
+        Mau ke Bali sambil fotoan?<br class="hidden md:block" />
+          <span class="inline-block text-blue-600">samaExova Aja!</span>
         </h2>
       <p class="pr-5 mb-5 text-base text-gray-700 md:text-lg">
-        Exova siap membantu kebutuhan dokumentasi acara kamu! Mulai dari Rp500k kamu bisa mendapatkan freelancer terbaik di bidangnya 
+        Sudahlah kawand, kalo lagi di Bali mau fotoan romantis sama pasangan sama sahabat atau sama siapa gitu, tapi gatau fotographer. Cari di disini aja udah biar cepet!
       </p>
       <div class="flex items-center">
         <a
