@@ -19,8 +19,8 @@
          <div class="rounded transform hover:-translate-y-1 hover:scale-110 transition duration-500 ease-in-out">
             <div class="w-full h-36 flex flex-col justify-between bg-indigo-600 rounded-t-lg rounded-l-lg mb-6 py-5 px-4">
                <div>
-                  <h4 class="text-gray-50 dark:text-gray-100 font-bold mb-3">Javanese Style</h4>
-                  <p class="text-gray-50 dark:text-gray-100 text-sm">Dengan Javanese Style, kamu akan disuguhkan dengan pemotretan photo maupun video ala style Jawa</p>
+                  <h4 class="text-gray-50 dark:text-gray-100 font-bold mb-3">Casual Style</h4>
+                  <p class="text-gray-50 dark:text-gray-100 text-sm">Dengan Casual Style, kamu akan disuguhkan dengan pemotretan photo maupun video ala style casual</p>
                </div>
                <div>
                   <div class="flex items-center justify-between text-gray-50 dark:text-gray-100">
