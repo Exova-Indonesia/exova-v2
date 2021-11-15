@@ -4,10 +4,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="csrf-token" content="{{ csrf_token() }}">
-      <meta name="description" content="Exova adalah platform jual - beli jasa di bidang dokumentasi. Khusus di Exova yaitu bidang Traditional & Budaya seperti. Prewedding, Wedding, Upacara Keagamaan, Upacara Adat, Event Budaya, dll">
-      <meta name="keywords" content="Prewedding, Wedding, Upacara Keagamaan, Upacara Adat, Event Budaya, Exova, Exova ID, Exova Indonesia, Freelancer, Dokumentasi, Traditional, Culture, E-commerce, Undangan Online, Marketplace, Nikah">
+      <meta name="description" content="Exova adalah platform jual - beli jasa di bidang dokumentasi. Khusus untuk turis yang lagi liburan di Bali, kami menyediakan fotographer yang siap senantiasa menemani kamu dalam hal mengabadikan momen di Bali bersama pasangan ataupun keluarga!">
+      <meta name="keywords" content="Prewedding, Wedding, Upacara Keagamaan, liburan, Bali, romantis, couple, pasangan, moment, fotoan di Bali, mai melali, Upacara Adat, Event Budaya, Exova, Exova ID, Exova Indonesia, Freelancer, Dokumentasi, Traditional, Culture, E-commerce, Undangan Online, Marketplace, Nikah">
       <meta name="author" content="{{ env('APP_NAME') }}">
-      <title>{{ __('Exova - Traditional & Culture Documentation Marketplace') }}</title>
+      <title>{{ __('Exova - Take Your Moment and Vacation in Bali') }}</title>
       <link rel="icon" href="{{ Storage::disk('s3')->url('icons/exova.png') }}">
       <!-- Fonts -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
